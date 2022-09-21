@@ -1,4 +1,4 @@
-# eatery_db
+# Eatery DB
  Eatery database package
 
 <p align="center">
