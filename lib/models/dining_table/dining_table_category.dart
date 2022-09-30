@@ -5,7 +5,7 @@ part 'dining_table_category.g.dart';
 @HiveType(typeId: 31)
 class DiningTableCategory extends HiveObject {
   @HiveField(0)
-  int? id;
+  int id;
   @HiveField(1)
   String name;
   @HiveField(2)
@@ -14,7 +14,7 @@ class DiningTableCategory extends HiveObject {
   String? image;
 
   DiningTableCategory(
-      {this.id, required this.name, this.description, this.image});
+      {required this.id, required this.name, this.description, this.image});
 
   DiningTableCategory.fromMap(Map<String, dynamic> map)
       : id = map['_id'],

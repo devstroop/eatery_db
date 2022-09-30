@@ -5,7 +5,7 @@ part 'waiter.g.dart';
 @HiveType(typeId: 90)
 class Waiter extends HiveObject {
   @HiveField(0)
-  int? id;
+  int id;
   @HiveField(1)
   String name;
   @HiveField(2)
@@ -18,7 +18,7 @@ class Waiter extends HiveObject {
   bool isActive;
 
   Waiter(
-      {this.id,
+      {required this.id,
       required this.name,
       this.photo,
       this.phone,

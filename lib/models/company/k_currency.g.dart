@@ -17,7 +17,7 @@ class kCurrencyAdapter extends TypeAdapter<kCurrency> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return kCurrency(
-      id: fields[0] as int?,
+      id: fields[0] as int,
       name: fields[2] as String,
       code: fields[1] as String,
       symbol: fields[3] as String,

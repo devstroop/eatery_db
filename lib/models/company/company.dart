@@ -9,7 +9,7 @@ part 'company.g.dart';
 @HiveType(typeId: 0)
 class Company extends HiveObject {
   @HiveField(0)
-  int? id;
+  int id;
   @HiveField(1)
   String? logo;
   @HiveField(2)
@@ -25,18 +25,18 @@ class Company extends HiveObject {
   @HiveField(7)
   Edition edition; // enum
   @HiveField(8)
-  kCurrency currency; // model
+  int? currencyId; // id?
   @HiveField(9)
   String? salesTaxNumber;
   @HiveField(10)
   String? foodLicenseNo;
   @HiveField(11)
-  TaxSlab? defaultTaxSlab; // model?
+  int? defaultTaxSlabId; // id?
   @HiveField(12)
-  Subscription? subscription; // model?
+  int? subscriptionId; // id?
 
   Company(
-      {this.id,
+      {required this.id,
       this.logo,
       required this.name,
       required this.email,
@@ -44,11 +44,11 @@ class Company extends HiveObject {
       required this.address,
       required this.password,
       required this.edition,
-      required this.currency,
-      this.defaultTaxSlab,
+      this.currencyId,
+      this.defaultTaxSlabId,
       this.foodLicenseNo,
       this.salesTaxNumber,
-      this.subscription});
+      this.subscriptionId});
 
   Company.fromMap(Map<String, dynamic> map)
       : id = map['_id'],
@@ -60,11 +60,11 @@ class Company extends HiveObject {
         password = map['password'],
         edition = Edition.values
             .singleWhere((element) => element.id == map['edition']),
-        currency = kCurrency.fromMap(map['currency']),
-        defaultTaxSlab = TaxSlab.fromMap(map['defaultTaxSlab']),
+        currencyId = map['currencyId'],
+        defaultTaxSlabId = map['defaultTaxSlabId'],
         foodLicenseNo = map['foodLicNo'],
         salesTaxNumber = map['taxLicNo'],
-        subscription = Subscription.fromMap(map['subscription']);
+        subscriptionId = map['subscriptionId'];
 
   Map<String, Object?> toMap() {
     return {
@@ -76,11 +76,11 @@ class Company extends HiveObject {
       'address': address,
       'password': password,
       'edition': edition.id,
-      'currency': currency.toMap(),
-      'defaultTaxSlab': defaultTaxSlab != null ? defaultTaxSlab!.toMap() : null,
+      'currencyId': currencyId,
+      'defaultTaxSlabId': defaultTaxSlabId,
       'foodLicNo': foodLicenseNo,
       'taxLicNo': salesTaxNumber,
-      'subscription': subscription != null ? subscription!.toMap() : null
+      'subscriptionId': subscriptionId
     };
   }
 }

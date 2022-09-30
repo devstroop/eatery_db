@@ -5,7 +5,7 @@ part 'k_currency.g.dart';
 @HiveType(typeId: 1)
 class kCurrency extends HiveObject {
   @HiveField(0)
-  int? id;
+  int id;
   @HiveField(1)
   String code;
   @HiveField(2)
@@ -30,7 +30,7 @@ class kCurrency extends HiveObject {
   bool spaceBetweenAmountAndSymbol;
 
   kCurrency({
-    this.id,
+    required this.id,
     required this.name,
     required this.code,
     required this.symbol,

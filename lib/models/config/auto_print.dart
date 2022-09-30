@@ -11,28 +11,28 @@ class AutoPrint extends HiveObject {
   @HiveField(1)
   bool? kotPrintEnabled;
   @HiveField(2)
-  Printer? invoicePrinter; // model?
+  int? invoicePrinterId; // id?
   @HiveField(3)
-  Printer? kotPrinter; // model?
+  int? kotPrinterId; // id?
 
   AutoPrint(
       {this.invoicePrintEnabled,
       this.kotPrintEnabled,
-      this.invoicePrinter,
-      this.kotPrinter});
+      this.invoicePrinterId,
+      this.kotPrinterId});
 
   AutoPrint.fromMap(Map<String, dynamic> map)
       : invoicePrintEnabled = map['invoicePrint'],
         kotPrintEnabled = map['invoicePrinter'],
-        invoicePrinter = Printer.fromMap(map['invoicePrinter']),
-        kotPrinter = Printer.fromMap(map['kotPrinter']);
+        invoicePrinterId = map['invoicePrinterId'],
+        kotPrinterId = map['kotPrinterId'];
 
   Map<String, Object?> toMap() {
     return {
       'invoicePrint': invoicePrintEnabled,
       'kotPrint': kotPrintEnabled,
-      'invoicePrinter': invoicePrinter != null ? invoicePrinter!.toMap() : null,
-      'kotPrinter': kotPrinter != null ? kotPrinter!.toMap() : null
+      'invoicePrinterId': invoicePrinterId,
+      'kotPrinterId': kotPrinterId
     };
   }
 }

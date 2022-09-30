@@ -7,7 +7,7 @@ part 'subscription.g.dart';
 @HiveType(typeId: 70)
 class Subscription extends HiveObject {
   @HiveField(0)
-  int? id;
+  int id;
   @HiveField(1)
   String? purchaseCode;
   @HiveField(2)
@@ -18,7 +18,7 @@ class Subscription extends HiveObject {
   SubscriptionType subscriptionType = SubscriptionType.free; // enum
 
   Subscription(
-      {this.id,
+      {required this.id,
       this.purchaseCode,
       this.validFrom,
       this.validTill,

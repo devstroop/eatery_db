@@ -17,14 +17,14 @@ class ProductAdapter extends TypeAdapter<Product> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Product(
-      id: fields[0] as int?,
+      id: fields[0] as int,
       name: fields[1] as String,
-      category: fields[2] as ProductCategory?,
+      categoryId: fields[2] as int?,
       description: fields[3] as String?,
       image: fields[4] as String?,
-      mrpPrice: fields[5] as double?,
+      mrpPrice: fields[5] as double,
       salePrice: fields[6] as double?,
-      taxSlab: fields[7] as TaxSlab?,
+      taxSlabId: fields[7] as int?,
       foodType: fields[8] as FoodType?,
       type: fields[9] as ProductType,
       isActive: fields[10] as bool,
@@ -40,7 +40,7 @@ class ProductAdapter extends TypeAdapter<Product> {
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.category)
+      ..write(obj.categoryId)
       ..writeByte(3)
       ..write(obj.description)
       ..writeByte(4)
@@ -50,7 +50,7 @@ class ProductAdapter extends TypeAdapter<Product> {
       ..writeByte(6)
       ..write(obj.salePrice)
       ..writeByte(7)
-      ..write(obj.taxSlab)
+      ..write(obj.taxSlabId)
       ..writeByte(8)
       ..write(obj.foodType)
       ..writeByte(9)

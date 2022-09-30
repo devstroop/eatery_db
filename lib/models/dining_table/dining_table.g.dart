@@ -17,12 +17,12 @@ class DiningTableAdapter extends TypeAdapter<DiningTable> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return DiningTable(
-      id: fields[0] as int?,
+      id: fields[0] as int,
       name: fields[1] as String,
-      category: fields[2] as DiningTableCategory?,
+      categoryId: fields[2] as int?,
       description: fields[3] as String?,
       image: fields[4] as String?,
-      order: fields[5] as Order?,
+      orderId: fields[5] as int?,
       isActive: fields[6] as bool,
     );
   }
@@ -36,13 +36,13 @@ class DiningTableAdapter extends TypeAdapter<DiningTable> {
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.category)
+      ..write(obj.categoryId)
       ..writeByte(3)
       ..write(obj.description)
       ..writeByte(4)
       ..write(obj.image)
       ..writeByte(5)
-      ..write(obj.order)
+      ..write(obj.orderId)
       ..writeByte(6)
       ..write(obj.isActive);
   }

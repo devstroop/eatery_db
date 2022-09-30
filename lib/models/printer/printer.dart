@@ -7,7 +7,7 @@ part 'printer.g.dart';
 @HiveType(typeId: 50)
 class Printer extends HiveObject {
   @HiveField(0)
-  int? id;
+  int id;
   @HiveField(1)
   String name;
   @HiveField(2)
@@ -20,7 +20,7 @@ class Printer extends HiveObject {
   PrinterType? type; // enum?
 
   Printer(
-      {this.id,
+      {required this.id,
       required this.name,
       this.bluetoothAddress,
       this.usbVendorId,

@@ -17,7 +17,7 @@ class CompanyAdapter extends TypeAdapter<Company> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Company(
-      id: fields[0] as int?,
+      id: fields[0] as int,
       logo: fields[1] as String?,
       name: fields[2] as String,
       email: fields[3] as String,
@@ -25,11 +25,11 @@ class CompanyAdapter extends TypeAdapter<Company> {
       address: fields[5] as String,
       password: fields[6] as String,
       edition: fields[7] as Edition,
-      currency: fields[8] as kCurrency,
-      defaultTaxSlab: fields[11] as TaxSlab?,
+      currencyId: fields[8] as int?,
+      defaultTaxSlabId: fields[11] as int?,
       foodLicenseNo: fields[10] as String?,
       salesTaxNumber: fields[9] as String?,
-      subscription: fields[12] as Subscription?,
+      subscriptionId: fields[12] as int?,
     );
   }
 
@@ -54,15 +54,15 @@ class CompanyAdapter extends TypeAdapter<Company> {
       ..writeByte(7)
       ..write(obj.edition)
       ..writeByte(8)
-      ..write(obj.currency)
+      ..write(obj.currencyId)
       ..writeByte(9)
       ..write(obj.salesTaxNumber)
       ..writeByte(10)
       ..write(obj.foodLicenseNo)
       ..writeByte(11)
-      ..write(obj.defaultTaxSlab)
+      ..write(obj.defaultTaxSlabId)
       ..writeByte(12)
-      ..write(obj.subscription);
+      ..write(obj.subscriptionId);
   }
 
   @override

@@ -4,6 +4,7 @@ import 'package:eatery_db/models/printer/printer_type.dart';
 import 'package:eatery_db/models/product/food_type.dart';
 import 'package:eatery_db/models/product/product_type.dart';
 import 'package:eatery_db/models/subscription/subscription_type.dart';
+import 'package:eatery_db/models/tax/tax_type.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'models/company/company.dart';
 import 'models/company/edition.dart';
@@ -22,6 +23,15 @@ import 'models/tax/tax_slab.dart';
 import 'models/waiter/waiter.dart';
 
 class EateryDB{
+  int getIdentity(Iterable<dynamic> table){
+    int identity = 0;
+    while(table.where((element) => element.id == identity).isNotEmpty){
+      identity++;
+    }
+    print(identity);
+    return identity;
+  }
+
   Box<Company> companyBox() => Hive.box<Company>('companies');
   Box<kCurrency> currencyBox() => Hive.box<kCurrency>('currencies');
   Box<AutoPrint> autoPrintBox() => Hive.box<AutoPrint>('autoPrint');
@@ -69,6 +79,7 @@ class EateryDB{
     Hive.registerAdapter(FoodTypeAdapter());
     Hive.registerAdapter(ProductTypeAdapter());
     Hive.registerAdapter(SubscriptionTypeAdapter());
+    Hive.registerAdapter(TaxTypeAdapter());
 
     // open box
     await Hive.openBox<Company>('companies');

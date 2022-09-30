@@ -19,8 +19,8 @@ class AutoPrintAdapter extends TypeAdapter<AutoPrint> {
     return AutoPrint(
       invoicePrintEnabled: fields[0] as bool?,
       kotPrintEnabled: fields[1] as bool?,
-      invoicePrinter: fields[2] as Printer?,
-      kotPrinter: fields[3] as Printer?,
+      invoicePrinterId: fields[2] as int?,
+      kotPrinterId: fields[3] as int?,
     );
   }
 
@@ -33,9 +33,9 @@ class AutoPrintAdapter extends TypeAdapter<AutoPrint> {
       ..writeByte(1)
       ..write(obj.kotPrintEnabled)
       ..writeByte(2)
-      ..write(obj.invoicePrinter)
+      ..write(obj.invoicePrinterId)
       ..writeByte(3)
-      ..write(obj.kotPrinter);
+      ..write(obj.kotPrinterId);
   }
 
   @override

@@ -17,36 +17,39 @@ class OrderItemAdapter extends TypeAdapter<OrderItem> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return OrderItem(
-      id: fields[0] as int?,
-      name: fields[1] as String,
-      description: fields[2] as String?,
-      image: fields[3] as String?,
-      mrpPrice: fields[4] as double?,
-      salePrice: fields[5] as double?,
-      taxSlab: fields[6] as TaxSlab?,
-      foodType: fields[7] as FoodType,
+      id: fields[0] as int,
+      orderId: fields[1] as int,
+      name: fields[2] as String,
+      description: fields[3] as String?,
+      image: fields[4] as String?,
+      mrpPrice: fields[5] as double?,
+      salePrice: fields[6] as double?,
+      taxSlab: fields[7] as TaxSlab?,
+      foodType: fields[8] as FoodType,
     );
   }
 
   @override
   void write(BinaryWriter writer, OrderItem obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.name)
+      ..write(obj.orderId)
       ..writeByte(2)
-      ..write(obj.description)
+      ..write(obj.name)
       ..writeByte(3)
-      ..write(obj.image)
+      ..write(obj.description)
       ..writeByte(4)
-      ..write(obj.mrpPrice)
+      ..write(obj.image)
       ..writeByte(5)
-      ..write(obj.salePrice)
+      ..write(obj.mrpPrice)
       ..writeByte(6)
-      ..write(obj.taxSlab)
+      ..write(obj.salePrice)
       ..writeByte(7)
+      ..write(obj.taxSlab)
+      ..writeByte(8)
       ..write(obj.foodType);
   }
 

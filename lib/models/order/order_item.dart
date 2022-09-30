@@ -8,24 +8,26 @@ part 'order_item.g.dart';
 @HiveType(typeId: 41)
 class OrderItem extends HiveObject {
   @HiveField(0)
-  int? id;
+  int id;
   @HiveField(1)
-  String name;
+  int orderId;
   @HiveField(2)
-  String? description;
+  String name;
   @HiveField(3)
-  String? image;
+  String? description;
   @HiveField(4)
-  double? mrpPrice;
+  String? image;
   @HiveField(5)
-  double? salePrice;
+  double? mrpPrice;
   @HiveField(6)
-  TaxSlab? taxSlab; // model?
+  double? salePrice;
   @HiveField(7)
+  TaxSlab? taxSlab; // model?
+  @HiveField(8)
   FoodType foodType; // enum
 
   OrderItem(
-      {this.id,
+      {required this.id,required this.orderId,
       required this.name,
       this.description,
       this.image,
@@ -36,6 +38,7 @@ class OrderItem extends HiveObject {
 
   OrderItem.fromMap(Map<String, dynamic> map)
       : id = map['_id'],
+        orderId = map['orderId'],
         name = map['name'],
         description = map['description'],
         image = map['image'],
@@ -48,6 +51,7 @@ class OrderItem extends HiveObject {
   Map<String, Object?> toMap() {
     return {
       '_id': id,
+      'orderId': orderId,
       'name': name,
       'description': description,
       'image': image,

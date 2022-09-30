@@ -17,7 +17,7 @@ class DiningTableCategoryAdapter extends TypeAdapter<DiningTableCategory> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return DiningTableCategory(
-      id: fields[0] as int?,
+      id: fields[0] as int,
       name: fields[1] as String,
       description: fields[2] as String?,
       image: fields[3] as String?,

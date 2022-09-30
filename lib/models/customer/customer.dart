@@ -5,7 +5,7 @@ part 'customer.g.dart';
 @HiveType(typeId: 20)
 class Customer {
   @HiveField(0)
-  int? id;
+  int id;
   @HiveField(1)
   String name;
   @HiveField(2)
@@ -22,7 +22,7 @@ class Customer {
   double? longitude;
 
   Customer(
-      {this.id,
+      {required this.id,
       required this.name,
       this.phone,
       this.email,

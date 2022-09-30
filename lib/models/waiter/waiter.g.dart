@@ -17,7 +17,7 @@ class WaiterAdapter extends TypeAdapter<Waiter> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Waiter(
-      id: fields[0] as int?,
+      id: fields[0] as int,
       name: fields[1] as String,
       photo: fields[2] as String?,
       phone: fields[3] as String?,

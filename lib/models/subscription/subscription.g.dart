@@ -17,7 +17,7 @@ class SubscriptionAdapter extends TypeAdapter<Subscription> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Subscription(
-      id: fields[0] as int?,
+      id: fields[0] as int,
       purchaseCode: fields[1] as String?,
       validFrom: fields[2] as DateTime?,
       validTill: fields[3] as DateTime?,
