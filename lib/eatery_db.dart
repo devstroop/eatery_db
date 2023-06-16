@@ -1,10 +1,12 @@
 library eatery_db;
+
 import 'package:eatery_db/models/order/order_type.dart';
 import 'package:eatery_db/models/printer/printer_type.dart';
 import 'package:eatery_db/models/product/food_type.dart';
 import 'package:eatery_db/models/product/product_type.dart';
 import 'package:eatery_db/models/subscription/subscription_type.dart';
 import 'package:eatery_db/models/tax/tax_type.dart';
+import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'models/company/company.dart';
 import 'models/company/edition.dart';
@@ -22,13 +24,13 @@ import 'models/subscription/subscription.dart';
 import 'models/tax/tax_slab.dart';
 import 'models/waiter/waiter.dart';
 
-class EateryDB{
-  int getIdentity(Iterable<dynamic> table){
+class EateryDB {
+  int getNewIdentity(Iterable<dynamic> table) {
     int identity = 0;
-    while(table.where((element) => element.id == identity).isNotEmpty){
+    while (table.where((element) => element.id == identity).isNotEmpty) {
       identity++;
     }
-    print(identity);
+    debugPrint('$identity');
     return identity;
   }
 
@@ -37,27 +39,27 @@ class EateryDB{
   Box<AutoPrint> autoPrintBox() => Hive.box<AutoPrint>('autoPrint');
   Box<Customer> customerBox() => Hive.box<Customer>('customers');
   Box<DiningTable> diningTableBox() => Hive.box<DiningTable>('diningTables');
-  Box<DiningTableCategory> diningTableCategoryBox() => Hive.box<DiningTableCategory>('diningTableCategories');
+  Box<DiningTableCategory> diningTableCategoryBox() =>
+      Hive.box<DiningTableCategory>('diningTableCategories');
   Box<Order> orderBox() => Hive.box<Order>('orders');
   Box<OrderItem> orderItemBox() => Hive.box<OrderItem>('orderItems');
   Box<Printer> printerBox() => Hive.box<Printer>('printers');
   Box<Product> productBox() => Hive.box<Product>('products');
-  Box<ProductCategory> productCategoryBox() => Hive.box<ProductCategory>('productCategories');
+  Box<ProductCategory> productCategoryBox() =>
+      Hive.box<ProductCategory>('productCategories');
   Box<Subscription> subscriptionBox() => Hive.box<Subscription>('subscription');
   Box<TaxSlab> taxSlabBox() => Hive.box<TaxSlab>('taxSlabs');
   Box<Waiter> waiterBox() => Hive.box<Waiter>('waiters');
 
-
-
-  dispose(){
+  dispose() {
     Hive.close();
   }
 
-  init([String? subDir]) async{
-    // init
+  init([String? subDir]) async {
+    // initialize hive
     await Hive.initFlutter(subDir);
 
-    // register adapter
+    // register adapters
     Hive.registerAdapter(CompanyAdapter());
     Hive.registerAdapter(kCurrencyAdapter());
     Hive.registerAdapter(AutoPrintAdapter());
