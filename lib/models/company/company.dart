@@ -1,6 +1,3 @@
-import '../subscription/subscription.dart';
-import '../tax/tax_slab.dart';
-import 'k_currency.dart';
 import 'edition.dart';
 import 'package:hive/hive.dart';
 

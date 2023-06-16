@@ -1,8 +1,5 @@
 import 'package:hive/hive.dart';
 
-import '../order/order.dart';
-import 'dining_table_category.dart';
-
 part 'dining_table.g.dart';
 
 @HiveType(typeId: 30)

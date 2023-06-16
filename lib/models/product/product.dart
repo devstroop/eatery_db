@@ -1,8 +1,5 @@
 import 'package:hive/hive.dart';
-
-import '../tax/tax_slab.dart';
 import 'food_type.dart';
-import 'product_category.dart';
 import 'product_type.dart';
 
 part 'product.g.dart';

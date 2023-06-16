@@ -1,7 +1,6 @@
 import 'package:hive/hive.dart';
 
 import '../customer/customer.dart';
-import 'order_item.dart';
 import 'order_type.dart';
 
 part 'order.g.dart';

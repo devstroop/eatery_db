@@ -1,7 +1,5 @@
 import 'package:hive/hive.dart';
 
-import '../printer/printer.dart';
-
 part 'auto_print.g.dart';
 
 @HiveType(typeId: 10)

@@ -1,7 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:eatery_db/eatery_db.dart';
-
 void main() {
   test('adds one to input values', () {
     /*final calculator = Calculator();
