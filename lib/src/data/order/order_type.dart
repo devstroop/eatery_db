@@ -1,5 +1,4 @@
 import 'package:eatery_db/eatery_db.dart';
-import 'package:flutter/material.dart';
 part 'order_type.g.dart';
 
 @HiveType(typeId: 42)
@@ -68,11 +67,11 @@ extension OrderTypeExtension on OrderType {
   IconData? get icon {
     switch (this) {
       case OrderType.dine:
-        return Icons.dinner_dining;
+        return UIcons.regularStraight.room_service;
       case OrderType.delivery:
-        return Icons.delivery_dining;
+        return UIcons.regularStraight.bike;
       case OrderType.takeout:
-        return Icons.takeout_dining;
+        return UIcons.regularStraight.pot;
       default:
         return null;
     }

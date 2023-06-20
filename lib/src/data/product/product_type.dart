@@ -9,7 +9,7 @@ enum ProductType {
   inventoryItem
 }
 
-extension EditionExtension on ProductType {
+extension ProductTypeExtension on ProductType {
   int get id {
     switch (this) {
       case ProductType.kitchenDish:

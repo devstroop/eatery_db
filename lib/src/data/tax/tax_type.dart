@@ -9,7 +9,7 @@ enum TaxType {
   exclusive
 }
 
-extension SubscriptionTypeExtension on TaxType {
+extension TaxTypeExtension on TaxType {
   int? get id {
     switch (this) {
       case TaxType.inclusive:

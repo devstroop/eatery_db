@@ -9,11 +9,11 @@ class Subscription extends HiveObject {
   @HiveField(1)
   String? purchaseCode;
   @HiveField(2)
-  DateTime? validFrom; // obj?
+  DateTime? validFrom;
   @HiveField(3)
-  DateTime? validTill; // obj?
+  DateTime? validTill;
   @HiveField(4)
-  SubscriptionType subscriptionType = SubscriptionType.free; // enum
+  SubscriptionType? subscriptionType = SubscriptionType.free;
 
   Subscription(
       {required this.id,
@@ -25,8 +25,10 @@ class Subscription extends HiveObject {
   Subscription.fromMap(Map<String, dynamic> map)
       : id = map['_id'],
         purchaseCode = map['purchaseCode'],
-        validFrom = DateTime.parse(map['validFrom'] as String),
-        validTill = DateTime.parse(map['validTill'] as String),
+        validFrom =
+            DateTime.fromMillisecondsSinceEpoch(map['validFrom'] as int? ?? 0),
+        validTill =
+            DateTime.fromMillisecondsSinceEpoch(map['validTill'] as int? ?? 0),
         subscriptionType = SubscriptionType.values
             .singleWhere((element) => element.id == map['subscriptionType']);
 
@@ -34,9 +36,9 @@ class Subscription extends HiveObject {
     return {
       '_id': id,
       'name': purchaseCode,
-      'validFrom': validFrom != null ? validFrom!.toIso8601String() : null,
-      'validTill': validTill != null ? validTill!.toIso8601String() : null,
-      'subscriptionType': subscriptionType.id
+      'validFrom': validFrom?.millisecondsSinceEpoch,
+      'validTill': validTill?.millisecondsSinceEpoch,
+      'subscriptionType': subscriptionType?.id
     };
   }
 }

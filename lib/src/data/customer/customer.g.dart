@@ -25,13 +25,14 @@ class CustomerAdapter extends TypeAdapter<Customer> {
       landmark: fields[5] as String?,
       latitude: fields[6] as double?,
       longitude: fields[7] as double?,
+      isActive: fields[8] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, Customer obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -47,7 +48,9 @@ class CustomerAdapter extends TypeAdapter<Customer> {
       ..writeByte(6)
       ..write(obj.latitude)
       ..writeByte(7)
-      ..write(obj.longitude);
+      ..write(obj.longitude)
+      ..writeByte(8)
+      ..write(obj.isActive);
   }
 
   @override

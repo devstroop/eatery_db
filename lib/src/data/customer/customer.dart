@@ -20,6 +20,8 @@ class Customer {
   double? latitude;
   @HiveField(7)
   double? longitude;
+  @HiveField(8)
+  bool isActive;
 
   Customer(
       {required this.id,
@@ -29,7 +31,8 @@ class Customer {
       this.address,
       this.landmark,
       this.latitude,
-      this.longitude});
+      this.longitude,
+      this.isActive = false});
 
   Customer.fromMap(Map<String, dynamic> map)
       : id = map['_id'],
@@ -39,7 +42,8 @@ class Customer {
         address = map['address'],
         landmark = map['landmark'],
         latitude = map['latitude'],
-        longitude = map['longitude'];
+        longitude = map['longitude'],
+        isActive = map['isActive'] == 1 ? true : false;
 
   Map<String, Object?> toMap() {
     return {
@@ -50,7 +54,8 @@ class Customer {
       'address': address,
       'landmark': landmark,
       'latitude': latitude,
-      'longitude': longitude
+      'longitude': longitude,
+      'isActive': isActive ? 1 : 0
     };
   }
 }
