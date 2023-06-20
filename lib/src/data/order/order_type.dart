@@ -51,20 +51,20 @@ extension OrderTypeExtension on OrderType {
     }
   }
 
-  Color? get color {
+  int? get color {
     switch (this) {
       case OrderType.dine:
-        return const Color(0xFFE0855E);
+        return 0xFFE0855E;
       case OrderType.delivery:
-        return const Color(0xFF705EE0);
+        return 0xFF705EE0;
       case OrderType.takeout:
-        return const Color(0xFF4AC3A1);
+        return 0xFF4AC3A1;
       default:
         return null;
     }
   }
 
-  IconData? get icon {
+  dynamic get icon {
     switch (this) {
       case OrderType.dine:
         return UIcons.regularStraight.room_service;

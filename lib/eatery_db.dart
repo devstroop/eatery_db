@@ -1,6 +1,5 @@
 library eatery_db;
 
-export 'package:flutter/material.dart';
 export 'package:uicons/uicons.dart';
 export 'package:hive_flutter/adapters.dart';
 export 'src/data/order/order_type.dart';

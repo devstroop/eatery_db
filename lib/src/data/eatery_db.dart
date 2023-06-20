@@ -11,7 +11,7 @@ import 'package:eatery_db/eatery_db.dart';
  */
 
 class EateryDB {
-  static final EateryDB instance = EateryDB();
+  static final EateryDB instance = EateryDB.instance;
 
   late Box<Company> companyBox;
   late Box<kCurrency> currencyBox;
