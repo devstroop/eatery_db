@@ -28,7 +28,7 @@ class OrderAdapter extends TypeAdapter<Order> {
       otherCharges: fields[8] as double?,
       roundOff: fields[9] as double?,
       finalTotal: fields[10] as double,
-      isPaid: fields[11] as bool?,
+      isPaid: fields[11] as bool,
       type: fields[12] as OrderType,
     );
   }
