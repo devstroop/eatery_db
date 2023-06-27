@@ -19,7 +19,6 @@ class OrderAdapter extends TypeAdapter<Order> {
     return Order(
       id: fields[0] as int,
       customer: fields[1] as Customer,
-      createdAt: fields[2] as DateTime,
       updatedAt: fields[3] as DateTime?,
       taxable: fields[4] as double,
       taxTotal: fields[5] as double?,
@@ -31,7 +30,7 @@ class OrderAdapter extends TypeAdapter<Order> {
       isPaid: fields[11] as bool,
       isClosed: fields[12] as bool,
       type: fields[13] as OrderType,
-    );
+    )..createdAt = fields[2] as DateTime;
   }
 
   @override

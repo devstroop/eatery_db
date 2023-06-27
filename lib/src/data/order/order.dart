@@ -36,18 +36,17 @@ class Order extends HiveObject {
   Order(
       {required this.id,
       required this.customer,
-      required this.createdAt,
       this.updatedAt,
-      required this.taxable,
+      this.taxable = 0.0,
       this.taxTotal,
       this.discountTotal,
       this.serviceCharges,
       this.otherCharges,
       this.roundOff,
-      required this.finalTotal,
+      this.finalTotal = 0.0,
       this.isPaid = false,
       this.isClosed = false,
-      required this.type});
+      required this.type}) : createdAt = DateTime.now();
 
   Order.fromMap(Map<String, dynamic> map)
       : id = map['_id'],
