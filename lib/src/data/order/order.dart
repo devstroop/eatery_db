@@ -27,6 +27,8 @@ class Order extends HiveObject {
   @HiveField(10)
   double finalTotal;
   @HiveField(11)
+  bool? isPaid;
+  @HiveField(12)
   OrderType type; // enum
 
   Order(
@@ -41,6 +43,7 @@ class Order extends HiveObject {
       this.otherCharges,
       this.roundOff,
       required this.finalTotal,
+      this.isPaid,
       required this.type});
 
   Order.fromMap(Map<String, dynamic> map)
@@ -55,6 +58,7 @@ class Order extends HiveObject {
         otherCharges = map['otherCharges'],
         roundOff = map['roundOff'],
         finalTotal = map['finalTotal'],
+        isPaid = map['isPaid'],
         type = OrderType.values
             .singleWhere((element) => element.id == map['type']);
 
@@ -71,6 +75,7 @@ class Order extends HiveObject {
       'otherCharges': otherCharges,
       'roundOff': roundOff,
       'finalTotal': finalTotal,
+      'isPaid': isPaid,
       'type': type.id,
     };
   }
