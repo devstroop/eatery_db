@@ -27,7 +27,7 @@ class Order extends HiveObject {
   @HiveField(10)
   double finalTotal;
   @HiveField(11)
-  bool? isPaid;
+  bool isPaid;
   @HiveField(12)
   OrderType type; // enum
 
@@ -43,7 +43,7 @@ class Order extends HiveObject {
       this.otherCharges,
       this.roundOff,
       required this.finalTotal,
-      this.isPaid,
+      this.isPaid = false,
       required this.type});
 
   Order.fromMap(Map<String, dynamic> map)
