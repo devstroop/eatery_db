@@ -2,28 +2,28 @@ library eatery_db;
 
 // Exports
 export 'package:hive_flutter/adapters.dart';
-export 'src/types/order.type.dart';
-export 'src/types/printer.type.dart';
-export 'src/types/food.type.dart';
-export 'src/models/subscription.dart';
-export 'src/types/subscription.type.dart';
-export 'src/models/company.dart';
-export 'src/types/edition.type.dart';
-export 'src/models/kCurrency.dart';
-export 'src/models/autoPrintConfig.dart';
-export 'src/models/master.dart';
-export 'src/models/diningTable.dart';
-export 'src/models/diningTableCategory.dart';
-export 'src/models/voucher.dart';
-export 'src/models/printer.dart';
-export 'src/models/product.dart';
-export 'src/models/productCategory.dart';
-export 'src/models/taxSlab.dart';
-export 'src/models/user.dart';
-export 'src/types/tax.type.dart';
-export 'src/types/product.type.dart';
-export 'src/types/voucher.type.dart';
-export 'src/types/user.type.dart';
+export 'src/schemas/types/order.type.dart';
+export 'src/schemas/types/printer.type.dart';
+export 'src/schemas/types/food.type.dart';
+export 'src/schemas/subscription.dart';
+export 'src/schemas/types/subscription.type.dart';
+export 'src/schemas/company.dart';
+export 'src/schemas/types/edition.type.dart';
+export 'src/schemas/kCurrency.dart';
+export 'src/schemas/expressConfiguration.dart';
+export 'src/schemas/master.dart';
+export 'src/schemas/diningTable.dart';
+export 'src/schemas/diningTableCategory.dart';
+export 'src/schemas/voucher.dart';
+export 'src/schemas/printer.dart';
+export 'src/schemas/product.dart';
+export 'src/schemas/productCategory.dart';
+export 'src/schemas/taxSlab.dart';
+export 'src/schemas/user.dart';
+export 'src/schemas/types/tax.type.dart';
+export 'src/schemas/types/product.type.dart';
+export 'src/schemas/types/voucher.type.dart';
+export 'src/schemas/types/user.type.dart';
 export 'src/extensions/box.extension.dart';
 
 
@@ -31,14 +31,19 @@ export 'src/extensions/box.extension.dart';
 
 import 'package:eatery_db/eatery_db.dart';
 
-/*
+/*  ****************************************
   * Developed by: Akash Shah (@itsalfredakku)
   * BMC: https://www.buymeacoffee.com/aksbju
   * Email: akash@devstroop.com
   * Organization: Devstroop Technologies
   * Website: https://devstroop.com
   * Github: https://github.com/devstroop
-  * Date: 2023-06-20 11:57:00
+  * Timestamp: 2023-06-20 11:57:00 IST
+  * ****************************************
+  * Schema Upgrade - Akash Shah (@itsalfredakku)
+  * Timestamp: 2023-06-29 00:13:00 IST
+  * ****************************************
+  * 
  */
 
 class EateryDB {
@@ -46,7 +51,7 @@ class EateryDB {
 
   late Box<Company> companyBox;
   late Box<kCurrency> currencyBox;
-  late Box<AutoPrintConfig> autoPrintBox;
+  late Box<ExpressConfiguration> autoPrintBox;
   late Box<Master> masterBox;
   late Box<DiningTable> diningTableBox;
   late Box<DiningTableCategory> diningTableCategoryBox;
@@ -74,7 +79,7 @@ class EateryDB {
     // Register adapters
     Hive.registerAdapter(CompanyAdapter());
     Hive.registerAdapter(kCurrencyAdapter());
-    Hive.registerAdapter(AutoPrintConfigAdapter());
+    Hive.registerAdapter(ExpressConfigurationAdapter());
     Hive.registerAdapter(MasterAdapter());
     Hive.registerAdapter(DiningTableAdapter());
     Hive.registerAdapter(DiningTableCategoryAdapter());
@@ -96,7 +101,7 @@ class EateryDB {
     // Open boxes
     companyBox = await Hive.openBox<Company>('company');
     currencyBox = await Hive.openBox<kCurrency>('currency');
-    autoPrintBox = await Hive.openBox<AutoPrintConfig>('autoPrint');
+    autoPrintBox = await Hive.openBox<ExpressConfiguration>('autoPrint');
     masterBox = await Hive.openBox<Master>('master');
     diningTableBox = await Hive.openBox<DiningTable>('diningTable');
     diningTableCategoryBox =
