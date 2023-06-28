@@ -2,7 +2,7 @@ import 'package:eatery_db/eatery_db.dart';
 
 part 'diningTableCategory.g.dart';
 
-@HiveType(typeId: 31)
+@HiveType(typeId: 103)
 class DiningTableCategory extends HiveObject {
   @HiveField(0)
   int companyKey; // Multi company identification
@@ -27,7 +27,7 @@ class DiningTableCategory extends HiveObject {
         name = map['name'],
         description = map['description'],
         image = map['image'],
-        isActive = map['isActive'] == 1 ? true : false;
+        isActive = map['isActive'];
 
   Map<String, Object?> toMap() {
     return {
@@ -35,7 +35,7 @@ class DiningTableCategory extends HiveObject {
       'name': name,
       'description': description,
       'image': image,
-      'isActive': isActive ? 1 : 0
+      'isActive': isActive
     };
   }
 }

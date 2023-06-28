@@ -8,7 +8,7 @@ part of 'product.dart';
 
 class ProductAdapter extends TypeAdapter<Product> {
   @override
-  final int typeId = 60;
+  final int typeId = 108;
 
   @override
   Product read(BinaryReader reader) {
@@ -17,45 +17,47 @@ class ProductAdapter extends TypeAdapter<Product> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Product(
-      sku: fields[0] as int,
-      name: fields[1] as String,
-      categoryId: fields[2] as int?,
-      description: fields[3] as String?,
-      image: fields[4] as String?,
-      mrpPrice: fields[5] as double,
-      salePrice: fields[6] as double?,
-      taxSlabId: fields[7] as int?,
-      foodType: fields[8] as FoodType?,
-      type: fields[9] as ProductType,
-      isActive: fields[10] as bool,
-    );
+      sku: fields[1] as int?,
+      name: fields[2] as String,
+      categoryId: fields[3] as int?,
+      description: fields[4] as String?,
+      image: fields[5] as String?,
+      mrpPrice: fields[6] as double,
+      salePrice: fields[7] as double?,
+      taxSlabId: fields[8] as int?,
+      foodType: fields[9] as FoodType?,
+      type: fields[10] as ProductType,
+      isActive: fields[11] as bool,
+    )..companyKey = fields[0] as int;
   }
 
   @override
   void write(BinaryWriter writer, Product obj) {
     writer
-      ..writeByte(11)
+      ..writeByte(12)
       ..writeByte(0)
-      ..write(obj.sku)
+      ..write(obj.companyKey)
       ..writeByte(1)
-      ..write(obj.name)
+      ..write(obj.sku)
       ..writeByte(2)
-      ..write(obj.categoryId)
+      ..write(obj.name)
       ..writeByte(3)
-      ..write(obj.description)
+      ..write(obj.categoryId)
       ..writeByte(4)
-      ..write(obj.image)
+      ..write(obj.description)
       ..writeByte(5)
-      ..write(obj.mrpPrice)
+      ..write(obj.image)
       ..writeByte(6)
-      ..write(obj.salePrice)
+      ..write(obj.mrpPrice)
       ..writeByte(7)
-      ..write(obj.taxSlabId)
+      ..write(obj.salePrice)
       ..writeByte(8)
-      ..write(obj.foodType)
+      ..write(obj.taxSlabId)
       ..writeByte(9)
-      ..write(obj.type)
+      ..write(obj.foodType)
       ..writeByte(10)
+      ..write(obj.type)
+      ..writeByte(11)
       ..write(obj.isActive);
   }
 

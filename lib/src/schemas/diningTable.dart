@@ -2,7 +2,7 @@ import 'package:eatery_db/eatery_db.dart';
 
 part 'diningTable.g.dart';
 
-@HiveType(typeId: 30)
+@HiveType(typeId: 102)
 class DiningTable extends HiveObject {
   @HiveField(0)
   int companyKey; // Multi company identification

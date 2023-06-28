@@ -1,7 +1,7 @@
 import 'package:eatery_db/eatery_db.dart';
 part 'expressConfiguration.g.dart';
 
-@HiveType(typeId: 10)
+@HiveType(typeId: 104)
 class ExpressConfiguration extends HiveObject {
   @HiveField(0)
   int companyKey; // Multi company identification
@@ -35,7 +35,7 @@ class ExpressConfiguration extends HiveObject {
 
   Map<String, Object?> toMap() {
     return {
-
+      'companyKey': companyKey,
       'printInvoice': printInvoice,
       'printKot': printKot,
       'sendPaymentLink': sendPaymentLink,

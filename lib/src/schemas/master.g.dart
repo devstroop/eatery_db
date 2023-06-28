@@ -8,7 +8,7 @@ part of 'master.dart';
 
 class MasterAdapter extends TypeAdapter<Master> {
   @override
-  final int typeId = 20;
+  final int typeId = 106;
 
   @override
   Master read(BinaryReader reader) {
@@ -17,7 +17,6 @@ class MasterAdapter extends TypeAdapter<Master> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Master(
-      id: fields[0] as int,
       name: fields[1] as String,
       phone: fields[2] as String?,
       email: fields[3] as String?,
@@ -26,7 +25,7 @@ class MasterAdapter extends TypeAdapter<Master> {
       latitude: fields[6] as double?,
       longitude: fields[7] as double?,
       isActive: fields[8] as bool,
-    );
+    )..companyKey = fields[0] as int;
   }
 
   @override
@@ -34,7 +33,7 @@ class MasterAdapter extends TypeAdapter<Master> {
     writer
       ..writeByte(9)
       ..writeByte(0)
-      ..write(obj.id)
+      ..write(obj.companyKey)
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)

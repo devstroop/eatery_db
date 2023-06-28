@@ -2,10 +2,10 @@ import 'package:eatery_db/eatery_db.dart';
 
 part 'master.g.dart';
 
-@HiveType(typeId: 20)
+@HiveType(typeId: 106)
 class Master {
   @HiveField(0)
-  int id;
+  int companyKey; // Multi company identification
   @HiveField(1)
   String name;
   @HiveField(2)
@@ -24,7 +24,7 @@ class Master {
   bool isActive;
 
   Master(
-      {required this.id,
+      {
       required this.name,
       this.phone,
       this.email,
@@ -32,10 +32,10 @@ class Master {
       this.landmark,
       this.latitude,
       this.longitude,
-      this.isActive = false});
+      this.isActive = false}) : companyKey = EateryDB.instance.openedCompany?.key;
 
   Master.fromMap(Map<String, dynamic> map)
-      : id = map['_id'],
+      : companyKey = map['companyKey'],
         name = map['name'],
         phone = map['phone'],
         email = map['email'],
@@ -43,11 +43,11 @@ class Master {
         landmark = map['landmark'],
         latitude = map['latitude'],
         longitude = map['longitude'],
-        isActive = map['isActive'] == 1 ? true : false;
+        isActive = map['isActive'];
 
   Map<String, Object?> toMap() {
     return {
-      '_id': id,
+      'companyKey': companyKey,
       'name': name,
       'phone': phone,
       'email': email,
@@ -55,7 +55,7 @@ class Master {
       'landmark': landmark,
       'latitude': latitude,
       'longitude': longitude,
-      'isActive': isActive ? 1 : 0
+      'isActive': isActive
     };
   }
 }

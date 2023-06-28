@@ -8,7 +8,7 @@ part of 'subscription.dart';
 
 class SubscriptionAdapter extends TypeAdapter<Subscription> {
   @override
-  final int typeId = 70;
+  final int typeId = 110;
 
   @override
   Subscription read(BinaryReader reader) {

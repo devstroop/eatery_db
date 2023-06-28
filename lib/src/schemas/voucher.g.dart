@@ -8,7 +8,7 @@ part of 'voucher.dart';
 
 class VoucherAdapter extends TypeAdapter<Voucher> {
   @override
-  final int typeId = 40;
+  final int typeId = 113;
 
   @override
   Voucher read(BinaryReader reader) {
@@ -17,54 +17,58 @@ class VoucherAdapter extends TypeAdapter<Voucher> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Voucher(
-      voucherType: fields[0] as VoucherType,
-      master: fields[1] as Master,
-      updatedAt: fields[3] as DateTime?,
-      taxable: fields[4] as double,
-      taxTotal: fields[5] as double?,
-      discountTotal: fields[6] as double?,
-      serviceCharges: fields[7] as double?,
-      otherCharges: fields[8] as double?,
-      roundOff: fields[9] as double?,
-      finalTotal: fields[10] as double,
-      isPaid: fields[11] as bool,
-      isClosed: fields[12] as bool,
-      type: fields[13] as SaleOrderType,
-    )..createdAt = fields[2] as DateTime;
+      voucherType: fields[1] as VoucherType,
+      master: fields[2] as Master,
+      updatedAt: fields[4] as DateTime?,
+      taxable: fields[5] as double,
+      taxTotal: fields[6] as double?,
+      discountTotal: fields[7] as double?,
+      serviceCharges: fields[8] as double?,
+      otherCharges: fields[9] as double?,
+      roundOff: fields[10] as double?,
+      finalTotal: fields[11] as double,
+      isPaid: fields[12] as bool,
+      isClosed: fields[13] as bool,
+      saleOrderType: fields[14] as SaleOrderType,
+    )
+      ..companyKey = fields[0] as int
+      ..createdAt = fields[3] as DateTime;
   }
 
   @override
   void write(BinaryWriter writer, Voucher obj) {
     writer
-      ..writeByte(14)
+      ..writeByte(15)
       ..writeByte(0)
-      ..write(obj.voucherType)
+      ..write(obj.companyKey)
       ..writeByte(1)
-      ..write(obj.master)
+      ..write(obj.voucherType)
       ..writeByte(2)
-      ..write(obj.createdAt)
+      ..write(obj.master)
       ..writeByte(3)
-      ..write(obj.updatedAt)
+      ..write(obj.createdAt)
       ..writeByte(4)
-      ..write(obj.taxable)
+      ..write(obj.updatedAt)
       ..writeByte(5)
-      ..write(obj.taxTotal)
+      ..write(obj.taxable)
       ..writeByte(6)
-      ..write(obj.discountTotal)
+      ..write(obj.taxTotal)
       ..writeByte(7)
-      ..write(obj.serviceCharges)
+      ..write(obj.discountTotal)
       ..writeByte(8)
-      ..write(obj.otherCharges)
+      ..write(obj.serviceCharges)
       ..writeByte(9)
-      ..write(obj.roundOff)
+      ..write(obj.otherCharges)
       ..writeByte(10)
-      ..write(obj.finalTotal)
+      ..write(obj.roundOff)
       ..writeByte(11)
-      ..write(obj.isPaid)
+      ..write(obj.finalTotal)
       ..writeByte(12)
-      ..write(obj.isClosed)
+      ..write(obj.isPaid)
       ..writeByte(13)
-      ..write(obj.type);
+      ..write(obj.isClosed)
+      ..writeByte(14)
+      ..write(obj.saleOrderType);
   }
 
   @override

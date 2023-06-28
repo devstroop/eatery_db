@@ -1,7 +1,7 @@
 import 'package:eatery_db/eatery_db.dart';
 part 'taxEdition.type.g.dart';
 
-@HiveType(typeId: 2)
+@HiveType(typeId: 8)
 enum TaxEdition {
   @HiveField(0, defaultValue: true)
   gst,

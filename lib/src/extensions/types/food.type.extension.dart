@@ -8,7 +8,7 @@ extension FoodTypeExtension on FoodType {
       case FoodType.veg:
         return 'Veg';
       case FoodType.nonVeg:
-        return 'Non-veg';
+        return 'Nonveg';
       case FoodType.egg:
         return 'Egg';
       case FoodType.vegan:

@@ -2,7 +2,7 @@ import 'package:eatery_db/eatery_db.dart';
 
 part 'subscription.g.dart';
 
-@HiveType(typeId: 70)
+@HiveType(typeId: 110)
 class Subscription extends HiveObject {
   @HiveField(0)
   String serialNo;

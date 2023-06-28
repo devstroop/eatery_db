@@ -2,8 +2,10 @@ import 'package:eatery_db/eatery_db.dart';
 
 part 'kCurrency.g.dart';
 
-@HiveType(typeId: 1)
+@HiveType(typeId: 105)
 class kCurrency extends HiveObject {
+  @HiveField(0)
+  int companyKey; // Multi company identification
   @HiveField(1)
   String code;
   @HiveField(2)
@@ -39,10 +41,10 @@ class kCurrency extends HiveObject {
     required this.thousandsSeparator,
     required this.symbolOnLeft,
     required this.spaceBetweenAmountAndSymbol,
-  });
+  }) : companyKey = EateryDB.instance.openedCompany?.key;
 
   kCurrency.fromMap(Map<String, dynamic> map)
-      :
+      : companyKey = map['companyKey'],
         name = map['name'],
         code = map['code'],
         symbol = map['symbol'],
@@ -57,7 +59,7 @@ class kCurrency extends HiveObject {
 
   Map<String, Object?> toMap() {
     return {
-
+      'companyKey': companyKey,
       'name': name,
       'code': code,
       'symbol': symbol,

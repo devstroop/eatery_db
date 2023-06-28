@@ -2,33 +2,35 @@ import 'package:eatery_db/eatery_db.dart';
 
 part 'product.g.dart';
 
-@HiveType(typeId: 60)
+@HiveType(typeId: 108)
 class Product extends HiveObject {
   @HiveField(0)
-  int sku;
+  int companyKey; // Multi company identification
   @HiveField(1)
-  String name;
+  int? sku;
   @HiveField(2)
-  int? categoryId; // id?
+  String name;
   @HiveField(3)
-  String? description;
+  int? categoryId; // id?
   @HiveField(4)
-  String? image;
+  String? description;
   @HiveField(5)
-  double mrpPrice;
+  String? image;
   @HiveField(6)
-  double? salePrice;
+  double mrpPrice;
   @HiveField(7)
-  int? taxSlabId; // id?
+  double? salePrice;
   @HiveField(8)
-  FoodType? foodType; // enum?
+  int? taxSlabId; // id?
   @HiveField(9)
-  ProductType type; // enum
+  FoodType? foodType; // enum?
   @HiveField(10)
+  ProductType type; // enum
+  @HiveField(11)
   bool isActive;
 
   Product(
-      {required this.sku,
+      {this.sku,
       required this.name,
       this.categoryId,
       this.description,
@@ -38,10 +40,11 @@ class Product extends HiveObject {
       this.taxSlabId,
       this.foodType,
       required this.type,
-      required this.isActive});
+      required this.isActive}) : companyKey = EateryDB.instance.openedCompany?.key;
 
   Product.fromMap(Map<String, dynamic> map)
-      : sku = map['_id'],
+      : companyKey = map['companyKey'],
+        sku = map['sku'],
         name = map['name'],
         categoryId = map['categoryId'],
         description = map['description'],
@@ -55,7 +58,8 @@ class Product extends HiveObject {
 
   Map<String, Object?> toMap() {
     return {
-      '_id': sku,
+      'companyKey': companyKey,
+      'sku': sku,
       'name': name,
       'categoryId': categoryId,
       'description': description,

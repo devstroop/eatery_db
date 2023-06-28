@@ -8,7 +8,7 @@ part of 'printer.type.dart';
 
 class PrinterTypeAdapter extends TypeAdapter<PrinterType> {
   @override
-  final int typeId = 51;
+  final int typeId = 3;
 
   @override
   PrinterType read(BinaryReader reader) {

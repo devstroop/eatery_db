@@ -2,36 +2,38 @@ import 'package:eatery_db/eatery_db.dart';
 
 part 'voucher.g.dart';
 
-@HiveType(typeId: 40)
+@HiveType(typeId: 113)
 class Voucher extends HiveObject {
   @HiveField(0)
-  VoucherType voucherType;
+  int companyKey; // Multi company identification
   @HiveField(1)
-  Master master; // model
+  VoucherType voucherType;
   @HiveField(2)
-  DateTime createdAt; // obj
+  Master master; // model
   @HiveField(3)
-  DateTime? updatedAt; // obj
+  DateTime createdAt; // obj
   @HiveField(4)
-  double taxable;
+  DateTime? updatedAt; // obj
   @HiveField(5)
-  double? taxTotal;
+  double taxable;
   @HiveField(6)
-  double? discountTotal;
+  double? taxTotal;
   @HiveField(7)
-  double? serviceCharges;
+  double? discountTotal;
   @HiveField(8)
-  double? otherCharges;
+  double? serviceCharges;
   @HiveField(9)
-  double? roundOff;
+  double? otherCharges;
   @HiveField(10)
-  double finalTotal;
+  double? roundOff;
   @HiveField(11)
-  bool isPaid;
+  double finalTotal;
   @HiveField(12)
-  bool isClosed;
+  bool isPaid;
   @HiveField(13)
-  SaleOrderType type; // enum
+  bool isClosed;
+  @HiveField(14)
+  SaleOrderType saleOrderType; // enum
 
   Voucher(
       {required this.voucherType,
@@ -46,10 +48,11 @@ class Voucher extends HiveObject {
       this.finalTotal = 0.0,
       this.isPaid = false,
       this.isClosed = false,
-      required this.type}) : createdAt = DateTime.now();
+      required this.saleOrderType}) : companyKey = EateryDB.instance.openedCompany?.key, createdAt = DateTime.now();
 
   Voucher.fromMap(Map<String, dynamic> map)
-      : voucherType = map['voucherType'],
+      : companyKey = map['companyKey'],
+        voucherType = map['voucherType'],
         master = Master.fromMap(map['master']),
         createdAt = DateTime.parse(map['createdAt'] as String),
         updatedAt = DateTime.parse(map['updatedAt'] as String),
@@ -62,10 +65,11 @@ class Voucher extends HiveObject {
         finalTotal = map['finalTotal'],
         isPaid = map['isPaid'],
         isClosed = map['isClosed'],
-        type = SaleOrderType.values[map['type']];
+        saleOrderType = SaleOrderType.values[map['type']];
 
   Map<String, Object?> toMap() {
     return {
+      'companyKey': companyKey,
       'voucherType': voucherType,
       'customer': master.toMap(),
       'createdAt': createdAt.toIso8601String(),
@@ -79,7 +83,7 @@ class Voucher extends HiveObject {
       'finalTotal': finalTotal,
       'isPaid': isPaid,
       'isClosed': isClosed,
-      'type': type.index,
+      'type': saleOrderType.index,
     };
   }
 }

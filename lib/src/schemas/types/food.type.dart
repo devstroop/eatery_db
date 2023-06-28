@@ -2,7 +2,7 @@ import 'package:eatery_db/eatery_db.dart';
 
 part 'food.type.g.dart';
 
-@HiveType(typeId: 62)
+@HiveType(typeId: 1)
 enum FoodType {
   @HiveField(0)
   veg,

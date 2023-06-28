@@ -8,7 +8,7 @@ part of 'taxSlab.dart';
 
 class TaxSlabAdapter extends TypeAdapter<TaxSlab> {
   @override
-  final int typeId = 80;
+  final int typeId = 111;
 
   @override
   TaxSlab read(BinaryReader reader) {
@@ -17,11 +17,10 @@ class TaxSlabAdapter extends TypeAdapter<TaxSlab> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return TaxSlab(
-      id: fields[0] as int,
       name: fields[1] as String,
       rate: fields[2] as double,
       type: fields[3] as TaxType,
-    );
+    )..companyKey = fields[0] as int;
   }
 
   @override
@@ -29,7 +28,7 @@ class TaxSlabAdapter extends TypeAdapter<TaxSlab> {
     writer
       ..writeByte(4)
       ..writeByte(0)
-      ..write(obj.id)
+      ..write(obj.companyKey)
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)

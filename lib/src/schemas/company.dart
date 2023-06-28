@@ -2,7 +2,7 @@ import 'package:eatery_db/eatery_db.dart';
 
 part 'company.g.dart';
 
-@HiveType(typeId: 0)
+@HiveType(typeId: 101)
 class Company extends HiveObject {
   @HiveField(0)
   String name;
@@ -17,11 +17,11 @@ class Company extends HiveObject {
   @HiveField(5)
   TaxEdition edition; // enum
   @HiveField(6)
-  int? defaultCurrencyKey; // id?
-  @HiveField(7)
   String? salesTaxNumber;
-  @HiveField(8)
+  @HiveField(7)
   String? foodLicenseNo;
+  @HiveField(8)
+  int? defaultCurrencyKey; // id?
   @HiveField(9)
   int? defaultTaxSlabKey; // id?
   @HiveField(10)

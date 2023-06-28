@@ -2,7 +2,7 @@ import 'package:eatery_db/eatery_db.dart';
 
 part 'user.type.g.dart';
 
-@HiveType(typeId: 71)
+@HiveType(typeId: 9)
 enum UserType {
   @HiveField(0)
   admin,

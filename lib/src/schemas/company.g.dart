@@ -8,7 +8,7 @@ part of 'company.dart';
 
 class CompanyAdapter extends TypeAdapter<Company> {
   @override
-  final int typeId = 0;
+  final int typeId = 101;
 
   @override
   Company read(BinaryReader reader) {
@@ -23,10 +23,10 @@ class CompanyAdapter extends TypeAdapter<Company> {
       phone: fields[3] as String,
       address: fields[4] as String,
       edition: fields[5] as TaxEdition,
-      defaultCurrencyKey: fields[6] as int?,
+      defaultCurrencyKey: fields[8] as int?,
       defaultTaxSlabKey: fields[9] as int?,
-      foodLicenseNo: fields[8] as String?,
-      salesTaxNumber: fields[7] as String?,
+      foodLicenseNo: fields[7] as String?,
+      salesTaxNumber: fields[6] as String?,
       activeSubscriptionKey: fields[10] as int?,
     );
   }
@@ -48,11 +48,11 @@ class CompanyAdapter extends TypeAdapter<Company> {
       ..writeByte(5)
       ..write(obj.edition)
       ..writeByte(6)
-      ..write(obj.defaultCurrencyKey)
-      ..writeByte(7)
       ..write(obj.salesTaxNumber)
-      ..writeByte(8)
+      ..writeByte(7)
       ..write(obj.foodLicenseNo)
+      ..writeByte(8)
+      ..write(obj.defaultCurrencyKey)
       ..writeByte(9)
       ..write(obj.defaultTaxSlabKey)
       ..writeByte(10)

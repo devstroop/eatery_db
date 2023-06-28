@@ -16,9 +16,9 @@ extension TaxTypeExtension on TaxType {
   String? get description {
     switch (this) {
       case TaxType.inclusive:
-        return 'Included in the price';
+        return 'Tax included in price';
       case TaxType.exclusive:
-        return 'Not included in the price';
+        return 'Tax not included in price';
       default:
         return null;
     }

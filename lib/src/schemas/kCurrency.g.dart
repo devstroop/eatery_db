@@ -8,7 +8,7 @@ part of 'kCurrency.dart';
 
 class kCurrencyAdapter extends TypeAdapter<kCurrency> {
   @override
-  final int typeId = 1;
+  final int typeId = 105;
 
   @override
   kCurrency read(BinaryReader reader) {
@@ -28,13 +28,15 @@ class kCurrencyAdapter extends TypeAdapter<kCurrency> {
       thousandsSeparator: fields[9] as String,
       symbolOnLeft: fields[10] as bool,
       spaceBetweenAmountAndSymbol: fields[11] as bool,
-    );
+    )..companyKey = fields[0] as int;
   }
 
   @override
   void write(BinaryWriter writer, kCurrency obj) {
     writer
-      ..writeByte(11)
+      ..writeByte(12)
+      ..writeByte(0)
+      ..write(obj.companyKey)
       ..writeByte(1)
       ..write(obj.code)
       ..writeByte(2)

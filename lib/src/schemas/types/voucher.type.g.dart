@@ -8,7 +8,7 @@ part of 'voucher.type.dart';
 
 class VoucherTypeAdapter extends TypeAdapter<VoucherType> {
   @override
-  final int typeId = 42;
+  final int typeId = 10;
 
   @override
   VoucherType read(BinaryReader reader) {

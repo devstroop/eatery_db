@@ -19,10 +19,10 @@ extension SubscriptionTypeExtension on SubscriptionType {
     switch (this) {
       case SubscriptionType.basic:
         return [
-          "✅ Free Forever"
-              "✅ 1 User",
-          "⚠️ 50 Sales daily",
-          "⚠️ 50 Customers monthly",
+          "✅ Free Forever",
+          "✅ 1 User",
+          "❎ 50 Sales daily",
+          "❎ 50 Customers monthly",
           "❌ No Backup Support",
           "❌ No Printer Support",
           "❌ No Password Recovery",
