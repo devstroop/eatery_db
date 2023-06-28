@@ -1,0 +1,1 @@
+* Adapters are being generated automatically, do no modify manually. - Akash Shah 2023-06-28 21:19:00

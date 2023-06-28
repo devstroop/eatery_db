@@ -7,7 +7,7 @@ extension BoxExtension<T> on Box<T> {
     Iterable<T> table = values;
     int identity = 1;
     while (table
-        .where((element) => (element as dynamic).id == identity)
+        .where((element) => (element as dynamic).sku == identity)
         .isNotEmpty) {
       identity++;
     }
