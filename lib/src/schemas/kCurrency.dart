@@ -1,6 +1,6 @@
 import 'package:eatery_db/eatery_db.dart';
 
-part 'kCurrency.auto-generated.dart';
+part 'kCurrency.g.dart';
 
 @HiveType(typeId: 1)
 class kCurrency extends HiveObject {

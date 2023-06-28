@@ -1,27 +1,30 @@
 import 'package:eatery_db/eatery_db.dart';
-part 'user.auto-generated.dart';
+part 'user.g.dart';
 
 @HiveType(typeId: 90)
 class User extends HiveObject {
   @HiveField(0)
   UserType type;
   @HiveField(1)
-  String name;
+  String username;
   @HiveField(2)
-  String? image;
+  String fullName;
   @HiveField(3)
-  String? phone;
+  String? image;
   @HiveField(4)
-  String? email;
+  String? phone;
   @HiveField(5)
-  String? passHash;
+  String? email;
   @HiveField(6)
+  String? passHash;
+  @HiveField(7)
   bool isActive;
 
   User(
       {
         required this.type,
-      required this.name,
+      required this.username,
+      required this.fullName,
       this.image,
       this.phone,
       this.email,
@@ -30,7 +33,8 @@ class User extends HiveObject {
 
   User.fromMap(Map<String, dynamic> map)
       : type = UserType.values[map['type']],
-        name = map['name'],
+        username = map['username'],
+        fullName = map['fullName'],
         image = map['image'],
         phone = map['phone'],
         email = map['email'],
@@ -40,7 +44,8 @@ class User extends HiveObject {
   Map<String, Object?> toMap() {
     return {
       'type': type.index,
-      'name': name,
+      'username': username,
+      'fullName': fullName,
       'image': image,
       'phone': phone,
       'email': email,

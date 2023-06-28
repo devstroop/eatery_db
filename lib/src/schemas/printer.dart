@@ -1,6 +1,6 @@
 import 'package:eatery_db/eatery_db.dart';
 
-part 'printer.auto-generated.dart';
+part 'printer.g.dart';
 
 @HiveType(typeId: 50)
 class Printer extends HiveObject {

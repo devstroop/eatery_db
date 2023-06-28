@@ -1,9 +1,11 @@
 import 'package:eatery_db/eatery_db.dart';
 
-part 'diningTableCategory.auto-generated.dart';
+part 'diningTableCategory.g.dart';
 
 @HiveType(typeId: 31)
 class DiningTableCategory extends HiveObject {
+  @HiveField(0)
+  int companyKey; // Multi company identification
   @HiveField(1)
   String name;
   @HiveField(2)
@@ -18,10 +20,10 @@ class DiningTableCategory extends HiveObject {
       required this.name,
       this.description,
       this.image,
-      this.isActive = false});
+      this.isActive = false}) : companyKey = EateryDB.instance.openedCompany?.key;
 
   DiningTableCategory.fromMap(Map<String, dynamic> map)
-      :
+      : companyKey = map['companyKey'],
         name = map['name'],
         description = map['description'],
         image = map['image'],
@@ -29,7 +31,7 @@ class DiningTableCategory extends HiveObject {
 
   Map<String, Object?> toMap() {
     return {
-
+      'companyKey': companyKey,
       'name': name,
       'description': description,
       'image': image,

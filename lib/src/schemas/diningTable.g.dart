@@ -1,40 +1,48 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'diningTableCategory.dart';
+part of 'diningTable.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class DiningTableCategoryAdapter extends TypeAdapter<DiningTableCategory> {
+class DiningTableAdapter extends TypeAdapter<DiningTable> {
   @override
-  final int typeId = 31;
+  final int typeId = 30;
 
   @override
-  DiningTableCategory read(BinaryReader reader) {
+  DiningTable read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return DiningTableCategory(
+    return DiningTable(
       name: fields[1] as String,
-      description: fields[2] as String?,
-      image: fields[3] as String?,
-      isActive: fields[4] as bool,
-    );
+      categoryId: fields[2] as int?,
+      description: fields[3] as String?,
+      image: fields[4] as String?,
+      orderId: fields[5] as int?,
+      isActive: fields[6] as bool,
+    )..companyKey = fields[0] as int;
   }
 
   @override
-  void write(BinaryWriter writer, DiningTableCategory obj) {
+  void write(BinaryWriter writer, DiningTable obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(7)
+      ..writeByte(0)
+      ..write(obj.companyKey)
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.description)
+      ..write(obj.categoryId)
       ..writeByte(3)
-      ..write(obj.image)
+      ..write(obj.description)
       ..writeByte(4)
+      ..write(obj.image)
+      ..writeByte(5)
+      ..write(obj.orderId)
+      ..writeByte(6)
       ..write(obj.isActive);
   }
 
@@ -44,7 +52,7 @@ class DiningTableCategoryAdapter extends TypeAdapter<DiningTableCategory> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is DiningTableCategoryAdapter &&
+      other is DiningTableAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

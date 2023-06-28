@@ -1,6 +1,6 @@
 import 'package:eatery_db/eatery_db.dart';
 
-part 'food.type.auto-generated.dart';
+part 'food.type.g.dart';
 
 @HiveType(typeId: 62)
 enum FoodType {
@@ -10,5 +10,6 @@ enum FoodType {
   nonVeg,
   @HiveField(2)
   egg,
-
+  @HiveField(3)
+  vegan,
 }

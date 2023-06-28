@@ -1,34 +1,34 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'edition.type.dart';
+part of 'taxEdition.type.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class EditionAdapter extends TypeAdapter<Edition> {
+class TaxEditionAdapter extends TypeAdapter<TaxEdition> {
   @override
   final int typeId = 2;
 
   @override
-  Edition read(BinaryReader reader) {
+  TaxEdition read(BinaryReader reader) {
     switch (reader.readByte()) {
       case 0:
-        return Edition.gst;
+        return TaxEdition.gst;
       case 1:
-        return Edition.vat;
+        return TaxEdition.vat;
       default:
-        return Edition.gst;
+        return TaxEdition.gst;
     }
   }
 
   @override
-  void write(BinaryWriter writer, Edition obj) {
+  void write(BinaryWriter writer, TaxEdition obj) {
     switch (obj) {
-      case Edition.gst:
+      case TaxEdition.gst:
         writer.writeByte(0);
         break;
-      case Edition.vat:
+      case TaxEdition.vat:
         writer.writeByte(1);
         break;
     }
@@ -40,7 +40,7 @@ class EditionAdapter extends TypeAdapter<Edition> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is EditionAdapter &&
+      other is TaxEditionAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

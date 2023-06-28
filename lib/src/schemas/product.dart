@@ -1,6 +1,6 @@
 import 'package:eatery_db/eatery_db.dart';
 
-part 'product.auto-generated.dart';
+part 'product.g.dart';
 
 @HiveType(typeId: 60)
 class Product extends HiveObject {

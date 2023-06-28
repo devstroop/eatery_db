@@ -29,7 +29,7 @@ class VoucherAdapter extends TypeAdapter<Voucher> {
       finalTotal: fields[10] as double,
       isPaid: fields[11] as bool,
       isClosed: fields[12] as bool,
-      type: fields[13] as OrderType,
+      type: fields[13] as SaleOrderType,
     )..createdAt = fields[2] as DateTime;
   }
 

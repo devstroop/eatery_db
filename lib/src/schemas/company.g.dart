@@ -22,7 +22,7 @@ class CompanyAdapter extends TypeAdapter<Company> {
       email: fields[2] as String,
       phone: fields[3] as String,
       address: fields[4] as String,
-      edition: fields[5] as Edition,
+      edition: fields[5] as TaxEdition,
       defaultCurrencyKey: fields[6] as int?,
       defaultTaxSlabKey: fields[9] as int?,
       foodLicenseNo: fields[8] as String?,

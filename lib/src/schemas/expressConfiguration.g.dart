@@ -17,27 +17,29 @@ class ExpressConfigurationAdapter extends TypeAdapter<ExpressConfiguration> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return ExpressConfiguration(
-      printInvoice: fields[0] as bool,
-      printKot: fields[1] as bool,
-      sendPaymentLink: fields[2] as bool,
-      sendConfirmation: fields[3] as bool,
-      enabled: fields[4] as bool,
-    );
+      printInvoice: fields[1] as bool,
+      printKot: fields[2] as bool,
+      sendPaymentLink: fields[3] as bool,
+      sendConfirmation: fields[4] as bool,
+      enabled: fields[5] as bool,
+    )..companyKey = fields[0] as int;
   }
 
   @override
   void write(BinaryWriter writer, ExpressConfiguration obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
-      ..write(obj.printInvoice)
+      ..write(obj.companyKey)
       ..writeByte(1)
-      ..write(obj.printKot)
+      ..write(obj.printInvoice)
       ..writeByte(2)
-      ..write(obj.sendPaymentLink)
+      ..write(obj.printKot)
       ..writeByte(3)
-      ..write(obj.sendConfirmation)
+      ..write(obj.sendPaymentLink)
       ..writeByte(4)
+      ..write(obj.sendConfirmation)
+      ..writeByte(5)
       ..write(obj.enabled);
   }
 

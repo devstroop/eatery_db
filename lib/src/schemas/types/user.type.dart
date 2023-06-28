@@ -1,48 +1,21 @@
 import 'package:eatery_db/eatery_db.dart';
 
-part 'user.type.auto-generated.dart';
+part 'user.type.g.dart';
 
 @HiveType(typeId: 71)
 enum UserType {
-  @HiveField(0, defaultValue: true)
+  @HiveField(0)
   admin,
   @HiveField(1)
   manager,
   @HiveField(2)
-  cashierOrAccountant,
+  accountantOrCashier,
   @HiveField(3)
-  chefOrCook,
+  chefOrCookOrBarTender,
   @HiveField(4)
-  barTender,
-  @HiveField(5)
   deliveryPerson,
-  @HiveField(6)
+  @HiveField(5)
   dishWasherOrCleanerOrHelper,
-  @HiveField(7)
+  @HiveField(6)
   other,
-}
-
-extension StaffTypeExtension on UserType {
-  String? get name {
-    switch (this) {
-      case UserType.admin:
-        return "Admin";
-      case UserType.manager:
-        return "Manager";
-      case UserType.cashierOrAccountant:
-        return "Cashier/Accountant";
-      case UserType.chefOrCook:
-        return "Chef/Cook";
-      case UserType.barTender:
-        return "Bar Tender";
-      case UserType.deliveryPerson:
-        return "Delivery Person";
-      case UserType.dishWasherOrCleanerOrHelper:
-        return "Dish Washer/Cleaner/Helper";
-      case UserType.other:
-        return "Other";
-      default:
-        return null;
-    }
-  }
 }

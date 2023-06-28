@@ -11,17 +11,21 @@ extension FoodTypeExtension on FoodType {
         return 'Non-veg';
       case FoodType.egg:
         return 'Egg';
+      case FoodType.vegan:
+        return 'Vegan';
     }
   }
 
   String get description {
     switch (this) {
       case FoodType.veg:
-        return 'Veg food includes all plant based diets like fruits, vegetables, etc.';
+        return 'contains vegetables, fruits, grains, nuts, etc.';
       case FoodType.nonVeg:
-        return 'Non-veg food contains meat and sometimes, eggs.';
+        return 'contains meat, poultry, fish, etc.';
       case FoodType.egg:
-        return 'Egg food contains eggs.';
+        return 'contains eggs.';
+      case FoodType.vegan:
+        return 'contains only plant based diets.';
     }
   }
 
@@ -33,6 +37,8 @@ extension FoodTypeExtension on FoodType {
         return 0xFFE53935;
       case FoodType.egg:
         return 0xFFFB8C00;
+      case FoodType.vegan:
+        return 0xFF1E88E5;
     }
   }
 }

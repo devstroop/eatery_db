@@ -1,6 +1,6 @@
 import 'package:eatery_db/eatery_db.dart';
 
-part 'company.auto-generated.dart';
+part 'company.g.dart';
 
 @HiveType(typeId: 0)
 class Company extends HiveObject {
@@ -15,7 +15,7 @@ class Company extends HiveObject {
   @HiveField(4)
   String address;
   @HiveField(5)
-  Edition edition; // enum
+  TaxEdition edition; // enum
   @HiveField(6)
   int? defaultCurrencyKey; // id?
   @HiveField(7)
@@ -47,7 +47,7 @@ class Company extends HiveObject {
         email = map['email'],
         phone = map['phone'],
         address = map['address'],
-        edition = Edition.values[map['edition']],
+        edition = TaxEdition.values[map['edition']],
         defaultCurrencyKey = map['defaultCurrencyKey'],
         defaultTaxSlabKey = map['defaultTaxSlabKey'],
         foodLicenseNo = map['foodLicNo'],

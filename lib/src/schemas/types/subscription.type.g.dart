@@ -1,39 +1,39 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'order.type.dart';
+part of 'subscription.type.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class OrderTypeAdapter extends TypeAdapter<OrderType> {
+class SubscriptionTypeAdapter extends TypeAdapter<SubscriptionType> {
   @override
-  final int typeId = 42;
+  final int typeId = 71;
 
   @override
-  OrderType read(BinaryReader reader) {
+  SubscriptionType read(BinaryReader reader) {
     switch (reader.readByte()) {
       case 0:
-        return OrderType.dine;
+        return SubscriptionType.basic;
       case 1:
-        return OrderType.delivery;
+        return SubscriptionType.professional;
       case 2:
-        return OrderType.takeout;
+        return SubscriptionType.enterprise;
       default:
-        return OrderType.dine;
+        return SubscriptionType.basic;
     }
   }
 
   @override
-  void write(BinaryWriter writer, OrderType obj) {
+  void write(BinaryWriter writer, SubscriptionType obj) {
     switch (obj) {
-      case OrderType.dine:
+      case SubscriptionType.basic:
         writer.writeByte(0);
         break;
-      case OrderType.delivery:
+      case SubscriptionType.professional:
         writer.writeByte(1);
         break;
-      case OrderType.takeout:
+      case SubscriptionType.enterprise:
         writer.writeByte(2);
         break;
     }
@@ -45,7 +45,7 @@ class OrderTypeAdapter extends TypeAdapter<OrderType> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is OrderTypeAdapter &&
+      other is SubscriptionTypeAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

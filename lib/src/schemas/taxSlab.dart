@@ -1,6 +1,6 @@
 import 'package:eatery_db/eatery_db.dart';
 
-part 'taxSlab.auto-generated.dart';
+part 'taxSlab.g.dart';
 
 @HiveType(typeId: 80)
 class TaxSlab extends HiveObject {

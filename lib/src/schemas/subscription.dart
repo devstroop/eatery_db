@@ -1,6 +1,6 @@
 import 'package:eatery_db/eatery_db.dart';
 
-part 'subscription.auto-generated.dart';
+part 'subscription.g.dart';
 
 @HiveType(typeId: 70)
 class Subscription extends HiveObject {

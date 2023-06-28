@@ -1,6 +1,6 @@
 import 'package:eatery_db/eatery_db.dart';
 
-part 'voucher.auto-generated.dart';
+part 'voucher.g.dart';
 
 @HiveType(typeId: 40)
 class Voucher extends HiveObject {
@@ -31,7 +31,7 @@ class Voucher extends HiveObject {
   @HiveField(12)
   bool isClosed;
   @HiveField(13)
-  OrderType type; // enum
+  SaleOrderType type; // enum
 
   Voucher(
       {required this.voucherType,
@@ -62,7 +62,7 @@ class Voucher extends HiveObject {
         finalTotal = map['finalTotal'],
         isPaid = map['isPaid'],
         isClosed = map['isClosed'],
-        type = OrderType.values[map['type']];
+        type = SaleOrderType.values[map['type']];
 
   Map<String, Object?> toMap() {
     return {

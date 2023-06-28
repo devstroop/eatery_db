@@ -1,21 +1,21 @@
 import 'package:eatery_db/eatery_db.dart';
 
 
-extension EditionExtension on Edition {
+extension TaxEditionExtension on TaxEdition {
   String get label {
     switch (this) {
-      case Edition.gst:
+      case TaxEdition.gst:
         return 'GST';
-      case Edition.vat:
+      case TaxEdition.vat:
         return 'VAT';
     }
   }
 
   String get description {
     switch (this) {
-      case Edition.gst:
+      case TaxEdition.gst:
         return 'Goods and Service Tax';
-      case Edition.vat:
+      case TaxEdition.vat:
         return 'Value Added Tax';
     }
   }

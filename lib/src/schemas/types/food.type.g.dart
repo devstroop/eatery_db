@@ -19,6 +19,8 @@ class FoodTypeAdapter extends TypeAdapter<FoodType> {
         return FoodType.nonVeg;
       case 2:
         return FoodType.egg;
+      case 3:
+        return FoodType.vegan;
       default:
         return FoodType.veg;
     }
@@ -35,6 +37,9 @@ class FoodTypeAdapter extends TypeAdapter<FoodType> {
         break;
       case FoodType.egg:
         writer.writeByte(2);
+        break;
+      case FoodType.vegan:
+        writer.writeByte(3);
         break;
     }
   }

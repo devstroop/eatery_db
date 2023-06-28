@@ -1,6 +1,6 @@
 import 'package:eatery_db/eatery_db.dart';
 
-part 'master.auto-generated.dart';
+part 'master.g.dart';
 
 @HiveType(typeId: 20)
 class Master {

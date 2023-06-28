@@ -18,16 +18,14 @@ class UserTypeAdapter extends TypeAdapter<UserType> {
       case 1:
         return UserType.manager;
       case 2:
-        return UserType.cashierOrAccountant;
+        return UserType.accountantOrCashier;
       case 3:
-        return UserType.chefOrCook;
+        return UserType.chefOrCookOrBarTender;
       case 4:
-        return UserType.barTender;
-      case 5:
         return UserType.deliveryPerson;
-      case 6:
+      case 5:
         return UserType.dishWasherOrCleanerOrHelper;
-      case 7:
+      case 6:
         return UserType.other;
       default:
         return UserType.admin;
@@ -43,23 +41,20 @@ class UserTypeAdapter extends TypeAdapter<UserType> {
       case UserType.manager:
         writer.writeByte(1);
         break;
-      case UserType.cashierOrAccountant:
+      case UserType.accountantOrCashier:
         writer.writeByte(2);
         break;
-      case UserType.chefOrCook:
+      case UserType.chefOrCookOrBarTender:
         writer.writeByte(3);
         break;
-      case UserType.barTender:
+      case UserType.deliveryPerson:
         writer.writeByte(4);
         break;
-      case UserType.deliveryPerson:
+      case UserType.dishWasherOrCleanerOrHelper:
         writer.writeByte(5);
         break;
-      case UserType.dishWasherOrCleanerOrHelper:
-        writer.writeByte(6);
-        break;
       case UserType.other:
-        writer.writeByte(7);
+        writer.writeByte(6);
         break;
     }
   }
