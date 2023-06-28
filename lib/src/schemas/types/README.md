@@ -1,5 +1,5 @@
 # Types
-`enumurator` `class` `typedef` `mixin` `extension`
+`enumurator`
 
 This directory contains the schemas for the types of the application.
 
