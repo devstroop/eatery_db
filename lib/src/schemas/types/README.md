@@ -1,5 +1,4 @@
-# Types
-`enumurator`
+# Types `enumurator`
 
 This directory contains the schemas for the types of the application.
 
