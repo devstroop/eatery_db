@@ -57,7 +57,7 @@ class EateryDB {
   static final EateryDB instance = EateryDB();
 
   // Model Boxes
-  Box<Company>? companyBox;
+  late Box<Company> companyBox;
   Box<DiningTable>? diningTableBox;
   Box<DiningTableCategory>? diningTableCategoryBox;
   Box<ExpressConfiguration>? expressConfigurationBox;
