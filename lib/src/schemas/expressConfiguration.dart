@@ -1,7 +1,7 @@
 import 'package:eatery_db/eatery_db.dart';
 part 'expressConfiguration.g.dart';
 
-@HiveType(typeId: 104)
+@HiveType(typeId: expressConfigurationSchemaIndex)
 class ExpressConfiguration extends HiveObject {
   @HiveField(0)
   int companyKey; // Multi company identification

@@ -28,6 +28,7 @@ export 'src/extensions/box.extension.dart';
 export 'src/extensions/subscription.extension.dart';
 export 'src/schemas/types/master.type.dart';
 
+export 'src/schema.index.dart';
 // Imports
 
 import 'package:eatery_db/eatery_db.dart';
@@ -70,7 +71,7 @@ class EateryDB {
   late Box<ProductType> productTypeBox;
   late Box<FoodType> foodTypeBox;
   late Box<SubscriptionType> subscriptionTypeBox;
-  late Box<TaxEdition> editionBox;
+  late Box<TaxEditionType> editionBox;
   late Box<SaleOrderType> orderTypeBox;
   late Box<PrinterType> printerTypeBox;
   late Box<VoucherType> voucherTypeBox;
@@ -123,7 +124,7 @@ class EateryDB {
     subscriptionBox = await Hive.openBox<Subscription>('subscription');
     taxSlabBox = await Hive.openBox<TaxSlab>('taxSlab');
     userBox = await Hive.openBox<User>('staff');
-    editionBox = await Hive.openBox<TaxEdition>('edition');
+    editionBox = await Hive.openBox<TaxEditionType>('edition');
     orderTypeBox = await Hive.openBox<SaleOrderType>('orderType');
     printerTypeBox = await Hive.openBox<PrinterType>('printerType');
     foodTypeBox = await Hive.openBox<FoodType>('foodType');

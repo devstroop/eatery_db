@@ -2,7 +2,7 @@ import 'package:eatery_db/eatery_db.dart';
 
 part 'kCurrency.g.dart';
 
-@HiveType(typeId: 105)
+@HiveType(typeId: kCurrencySchemaIndex)
 class kCurrency extends HiveObject {
   @HiveField(0)
   int companyKey; // Multi company identification

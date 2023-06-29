@@ -6,29 +6,29 @@ part of 'taxEdition.type.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class TaxEditionAdapter extends TypeAdapter<TaxEdition> {
+class TaxEditionAdapter extends TypeAdapter<TaxEditionType> {
   @override
   final int typeId = 8;
 
   @override
-  TaxEdition read(BinaryReader reader) {
+  TaxEditionType read(BinaryReader reader) {
     switch (reader.readByte()) {
       case 0:
-        return TaxEdition.gst;
+        return TaxEditionType.gst;
       case 1:
-        return TaxEdition.vat;
+        return TaxEditionType.vat;
       default:
-        return TaxEdition.gst;
+        return TaxEditionType.gst;
     }
   }
 
   @override
-  void write(BinaryWriter writer, TaxEdition obj) {
+  void write(BinaryWriter writer, TaxEditionType obj) {
     switch (obj) {
-      case TaxEdition.gst:
+      case TaxEditionType.gst:
         writer.writeByte(0);
         break;
-      case TaxEdition.vat:
+      case TaxEditionType.vat:
         writer.writeByte(1);
         break;
     }

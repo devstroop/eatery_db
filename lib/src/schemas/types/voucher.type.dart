@@ -1,7 +1,7 @@
 import 'package:eatery_db/eatery_db.dart';
 part 'voucher.type.g.dart';
 
-@HiveType(typeId: 10)
+@HiveType(typeId: voucherTypeSchemaIndex)
 enum VoucherType {
   @HiveField(0, defaultValue: true)
   saleOrder,

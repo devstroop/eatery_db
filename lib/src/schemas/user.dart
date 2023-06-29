@@ -1,7 +1,7 @@
 import 'package:eatery_db/eatery_db.dart';
 part 'user.g.dart';
 
-@HiveType(typeId: 112)
+@HiveType(typeId: userSchemaIndex)
 class User extends HiveObject {
   @HiveField(0)
   int companyKey; // Multi company identification

@@ -2,7 +2,7 @@ import 'package:eatery_db/eatery_db.dart';
 
 part 'printer.g.dart';
 
-@HiveType(typeId: 107)
+@HiveType(typeId: printerSchemaIndex)
 class Printer extends HiveObject {
   @HiveField(0)
   int companyKey; // Multi company identification

@@ -1,0 +1,1 @@
+part of 'permission.type.dart';

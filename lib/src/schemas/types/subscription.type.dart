@@ -2,7 +2,7 @@ import 'package:eatery_db/eatery_db.dart';
 
 part 'subscription.type.g.dart';
 
-@HiveType(typeId: 6)
+@HiveType(typeId: subscriptionTypeSchemaIndex)
 enum SubscriptionType {
   @HiveField(0, defaultValue: true)
   basic,

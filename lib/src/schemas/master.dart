@@ -2,7 +2,7 @@ import 'package:eatery_db/eatery_db.dart';
 
 part 'master.g.dart';
 
-@HiveType(typeId: 106)
+@HiveType(typeId: masterSchemaIndex)
 class Master {
   @HiveField(0)
   int companyKey; // Multi company identification

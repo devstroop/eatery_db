@@ -1,21 +1,21 @@
 import 'package:eatery_db/eatery_db.dart';
 
-part 'userTypePermission.g.dart';
+part 'userPermission.g.dart';
 
-@HiveType(typeId: 112)
-class UserTypePermission extends HiveObject {
+@HiveType(typeId: userPermissionSchemaIndex)
+class UserPermission extends HiveObject {
   @HiveField(0)
   int companyKey; // Multi company identification
   @HiveField(1)
-  UserType userType;
+  int userKey;
   @HiveField(2)
-  bool userRead = false;
+  bool userRead;
   @HiveField(3)
-  bool userWrite = false;
+  bool userWrite;
   @HiveField(4)
-  bool userDelete = false;
+  bool userDelete;
   @HiveField(5)
-  bool userModify = false;
+  bool userModify;
   @HiveField(6)
   bool diningTableRead = false;
   @HiveField(7)
@@ -25,8 +25,8 @@ class UserTypePermission extends HiveObject {
   @HiveField(9)
   bool diningTableModify = false;
 
-  UserTypePermission(
-      {required this.userType,
+  UserPermission(
+      {required this.userKey,
       required this.userRead,
       required this.userWrite,
       required this.userDelete,
@@ -39,9 +39,9 @@ class UserTypePermission extends HiveObject {
       })
       : companyKey = EateryDB.instance.openedCompany?.key;
 
-  UserTypePermission.fromMap(Map<String, dynamic> map)
+  UserPermission.fromMap(Map<String, dynamic> map)
       : companyKey = map['companyKey'],
-        userType = UserType.values[map['type']],
+        userKey = map['userKey'],
         userRead = map['userRead'],
         userWrite = map['userWrite'],
         userDelete = map['userDelete'],
@@ -56,7 +56,7 @@ class UserTypePermission extends HiveObject {
   Map<String, Object?> toMap() {
     return {
       'companyKey': companyKey,
-      'type': userType.index,
+      'userKey': userKey,
       'userRead': userRead,
       'userWrite': userWrite,
       'userDelete': userDelete,
