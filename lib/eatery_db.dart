@@ -58,6 +58,8 @@ class EateryDB {
 
   // Model Boxes
   late Box<Company> companyBox;
+  late Box<Subscription> subscriptionBox;
+
   Box<DiningTable>? diningTableBox;
   Box<DiningTableCategory>? diningTableCategoryBox;
   Box<ExpressConfiguration>? expressConfigurationBox;
@@ -66,7 +68,6 @@ class EateryDB {
   Box<Printer>? printerBox;
   Box<Product>? productBox;
   Box<ProductCategory>? productCategoryBox;
-  Box<Subscription>? subscriptionBox;
   Box<TaxSlab>? taxSlabBox;
   Box<User>? userBox;
   Box<Voucher>? voucherBox;
@@ -124,6 +125,7 @@ class EateryDB {
 
     // Global Boxes
     companyBox = await Hive.openBox<Company>('company');
+    subscriptionBox = await Hive.openBox<Subscription>('subscription');
 
     // Model Boxes
     diningTableBox = openedCompany != null
@@ -157,10 +159,6 @@ class EateryDB {
         ? await Hive.openBox<ProductCategory>(
             'productCategory_${_openedCompany?.key}')
         : null;
-    subscriptionBox = openedCompany != null
-        ? await Hive.openBox<Subscription>(
-            'subscription_${_openedCompany?.key}')
-        : null;
     taxSlabBox = openedCompany != null
         ? await Hive.openBox<TaxSlab>('taxSlab_${_openedCompany?.key}')
         : null;
@@ -189,7 +187,7 @@ class EateryDB {
 
   Future<void> clearDB({bool confirm = false}) async {
     if (!confirm) return;
-    await companyBox?.clear();
+    await companyBox.clear();
     await currencyBox?.clear();
     await expressConfigurationBox?.clear();
     await masterBox?.clear();
@@ -198,7 +196,7 @@ class EateryDB {
     await printerBox?.clear();
     await productBox?.clear();
     await productCategoryBox?.clear();
-    await subscriptionBox?.clear();
+    await subscriptionBox.clear();
     await taxSlabBox?.clear();
     await userBox?.clear();
     await permissionBox?.clear();
@@ -218,7 +216,7 @@ class EateryDB {
 
   Future<void> deleteDB({bool confirm = false}) async {
     if (!confirm) return;
-    await companyBox?.deleteFromDisk();
+    await companyBox.deleteFromDisk();
     await currencyBox?.deleteFromDisk();
     await expressConfigurationBox?.deleteFromDisk();
     await masterBox?.deleteFromDisk();
@@ -227,7 +225,7 @@ class EateryDB {
     await printerBox?.deleteFromDisk();
     await productBox?.deleteFromDisk();
     await productCategoryBox?.deleteFromDisk();
-    await subscriptionBox?.deleteFromDisk();
+    await subscriptionBox.deleteFromDisk();
     await taxSlabBox?.deleteFromDisk();
     await userBox?.deleteFromDisk();
     await permissionBox?.deleteFromDisk();
@@ -247,7 +245,7 @@ class EateryDB {
 
   Future<void> openCompany(
       int companyKey, String username, String passHash) async {
-    Company? company = companyBox?.get(companyKey);
+    Company? company = companyBox.get(companyKey);
     if (company == null) {
       throw Exception('Company not found');
     }
