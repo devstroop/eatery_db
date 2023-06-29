@@ -5,32 +5,36 @@ part 'product.g.dart';
 @HiveType(typeId: productSchemaIndex)
 class Product extends HiveObject {
   @HiveField(0)
-  int companyKey; // Multi company identification
+  String? barCode;
   @HiveField(1)
-  int? sku;
+  String? qrCode;
   @HiveField(2)
-  String name;
+  List<String> tags;
   @HiveField(3)
-  int? categoryId; // id?
+  String name;
   @HiveField(4)
-  String? description;
+  int? categoryId; // id?
   @HiveField(5)
-  String? image;
+  String? description;
   @HiveField(6)
-  double mrpPrice;
+  String? image;
   @HiveField(7)
-  double? salePrice;
+  double mrpPrice;
   @HiveField(8)
-  int? taxSlabId; // id?
+  double? salePrice;
   @HiveField(9)
-  FoodType? foodType; // enum?
+  int? taxSlabId; // id?
   @HiveField(10)
-  ProductType type; // enum
+  FoodType? foodType; // enum?
   @HiveField(11)
+  ProductType type; // enum
+  @HiveField(12)
   bool isActive;
 
   Product(
-      {this.sku,
+      {this.barCode,
+      this.qrCode,
+      this.tags = const [],
       required this.name,
       this.categoryId,
       this.description,
@@ -40,11 +44,12 @@ class Product extends HiveObject {
       this.taxSlabId,
       this.foodType,
       required this.type,
-      required this.isActive}) : companyKey = EateryDB.instance.openedCompany?.key;
+      required this.isActive});
 
   Product.fromMap(Map<String, dynamic> map)
-      : companyKey = map['companyKey'],
-        sku = map['sku'],
+      : barCode = map['barCode'],
+        qrCode = map['qrCode'],
+        tags = List<String>.from(map['tags']),
         name = map['name'],
         categoryId = map['categoryId'],
         description = map['description'],
@@ -58,8 +63,9 @@ class Product extends HiveObject {
 
   Map<String, Object?> toMap() {
     return {
-      'companyKey': companyKey,
-      'sku': sku,
+      'barCode': barCode,
+      'qrCode': qrCode,
+      'tags': tags,
       'name': name,
       'categoryId': categoryId,
       'description': description,

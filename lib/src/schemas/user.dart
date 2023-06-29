@@ -4,49 +4,48 @@ part 'user.g.dart';
 @HiveType(typeId: userSchemaIndex)
 class User extends HiveObject {
   @HiveField(0)
-  int companyKey; // Multi company identification
-  @HiveField(1)
   UserType type;
-  @HiveField(2)
+  @HiveField(1)
   String username;
-  @HiveField(3)
+  @HiveField(2)
   String fullName;
-  @HiveField(4)
+  @HiveField(3)
   String? image;
-  @HiveField(5)
+  @HiveField(4)
   String? phone;
-  @HiveField(6)
+  @HiveField(5)
   String? email;
-  @HiveField(7)
+  @HiveField(6)
   String? passHash;
-  @HiveField(8)
+  @HiveField(7)
   bool isActive;
+  @HiveField(8)
+  List<PermissionType> permissions;
 
   User(
-      {
-        required this.type,
+      {required this.type,
       required this.username,
       required this.fullName,
       this.image,
       this.phone,
       this.email,
       this.passHash,
-      required this.isActive}) : companyKey = EateryDB.instance.openedCompany?.key;
+      required this.isActive,
+      this.permissions = const []});
 
   User.fromMap(Map<String, dynamic> map)
-      : companyKey = map['companyKey'],
-        type = UserType.values[map['type']],
+      : type = UserType.values[map['type']],
         username = map['username'],
         fullName = map['fullName'],
         image = map['image'],
         phone = map['phone'],
         email = map['email'],
         passHash = map['passHash'],
-        isActive = map['isActive'];
+        isActive = map['isActive'],
+        permissions = List<PermissionType>.from(map['permissions']);
 
   Map<String, Object?> toMap() {
     return {
-      'companyKey': companyKey,
       'type': type.index,
       'username': username,
       'fullName': fullName,
@@ -54,7 +53,8 @@ class User extends HiveObject {
       'phone': phone,
       'email': email,
       'passHash': passHash,
-      'isActive': isActive
+      'isActive': isActive,
+      'permissions': permissions
     };
   }
 }

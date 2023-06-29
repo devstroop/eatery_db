@@ -7,19 +7,17 @@ export 'src/schema.index.dart';
 
 export 'src/schemas/subscription.dart';
 export 'src/schemas/company.dart';
-export 'src/schemas/kCurrency.dart';
-export 'src/schemas/expressConfiguration.dart';
+export 'src/schemas/k_currency.dart';
+export 'src/schemas/express_configuration.dart';
 export 'src/schemas/master.dart';
-export 'src/schemas/diningTable.dart';
-export 'src/schemas/diningTableCategory.dart';
+export 'src/schemas/dining_table.dart';
+export 'src/schemas/dining_table_category.dart';
 export 'src/schemas/voucher.dart';
 export 'src/schemas/printer.dart';
 export 'src/schemas/product.dart';
-export 'src/schemas/productCategory.dart';
-export 'src/schemas/taxSlab.dart';
+export 'src/schemas/product_category.dart';
+export 'src/schemas/tax_slab.dart';
 export 'src/schemas/user.dart';
-export 'src/schemas/userPermission.dart';
-export 'src/schemas/permission.dart';
 
 export 'src/schemas/types/saleOrder.type.dart';
 export 'src/schemas/types/printer.type.dart';
@@ -27,6 +25,7 @@ export 'src/schemas/types/food.type.dart';
 export 'src/schemas/types/subscription.type.dart';
 export 'src/schemas/types/taxEdition.type.dart';
 export 'src/schemas/types/tax.type.dart';
+export 'src/schemas/types/permission.type.dart';
 export 'src/schemas/types/product.type.dart';
 export 'src/schemas/types/voucher.type.dart';
 export 'src/schemas/types/user.type.dart';
@@ -58,33 +57,32 @@ class EateryDB {
   static final EateryDB instance = EateryDB();
 
   // Model Boxes
-  late Box<Company> companyBox;
-  late Box<DiningTable> diningTableBox;
-  late Box<DiningTableCategory> diningTableCategoryBox;
-  late Box<ExpressConfiguration> expressConfigurationBox;
-  late Box<kCurrency> currencyBox;
-  late Box<Master> masterBox;
-  late Box<Permission> permissionBox;
-  late Box<Printer> printerBox;
-  late Box<Product> productBox;
-  late Box<ProductCategory> productCategoryBox;
-  late Box<Subscription> subscriptionBox;
-  late Box<TaxSlab> taxSlabBox;
-  late Box<User> userBox;
-  late Box<UserPermission> userPermissionBox;
-  late Box<Voucher> voucherBox;
+  Box<Company>? companyBox;
+  Box<DiningTable>? diningTableBox;
+  Box<DiningTableCategory>? diningTableCategoryBox;
+  Box<ExpressConfiguration>? expressConfigurationBox;
+  Box<KCurrency>? currencyBox;
+  Box<Master>? masterBox;
+  Box<Printer>? printerBox;
+  Box<Product>? productBox;
+  Box<ProductCategory>? productCategoryBox;
+  Box<Subscription>? subscriptionBox;
+  Box<TaxSlab>? taxSlabBox;
+  Box<User>? userBox;
+  Box<Voucher>? voucherBox;
 
-  // Type Boxes
-  late Box<FoodType> foodTypeBox;
-  late Box<MasterType> masterTypeBox;
-  late Box<PrinterType> printerTypeBox;
-  late Box<ProductType> productTypeBox;
-  late Box<SaleOrderType> saleOrderTypeBox;
-  late Box<SubscriptionType> subscriptionTypeBox;
-  late Box<TaxType> taxTypeBox;
-  late Box<TaxEditionType> taxEditionTypeBox;
-  late Box<UserType> userTypeBox;
-  late Box<VoucherType> voucherTypeBox;
+// Type Boxes
+  Box<FoodType>? foodTypeBox;
+  Box<MasterType>? masterTypeBox;
+  Box<PermissionType>? permissionBox;
+  Box<PrinterType>? printerTypeBox;
+  Box<ProductType>? productTypeBox;
+  Box<SaleOrderType>? saleOrderTypeBox;
+  Box<SubscriptionType>? subscriptionTypeBox;
+  Box<TaxType>? taxTypeBox;
+  Box<TaxEditionType>? taxEditionTypeBox;
+  Box<UserType>? userTypeBox;
+  Box<VoucherType>? voucherTypeBox;
 
   // Getters and Setters
   Company? _openedCompany;
@@ -97,23 +95,22 @@ class EateryDB {
     // Initialize hive
     await Hive.initFlutter(subDir);
 
-    // Register adapters
+    // Model Adapters
     Hive.registerAdapter(CompanyAdapter());
     Hive.registerAdapter(DiningTableAdapter());
     Hive.registerAdapter(DiningTableCategoryAdapter());
     Hive.registerAdapter(ExpressConfigurationAdapter());
-    Hive.registerAdapter(kCurrencyAdapter());
+    Hive.registerAdapter(KCurrencyAdapter());
     Hive.registerAdapter(MasterAdapter());
-    Hive.registerAdapter(PermissionAdapter());
+    Hive.registerAdapter(PermissionTypeAdapter());
     Hive.registerAdapter(PrinterAdapter());
     Hive.registerAdapter(ProductAdapter());
     Hive.registerAdapter(ProductCategoryAdapter());
     Hive.registerAdapter(SubscriptionAdapter());
     Hive.registerAdapter(TaxSlabAdapter());
     Hive.registerAdapter(UserAdapter());
-    Hive.registerAdapter(UserPermissionAdapter());
     Hive.registerAdapter(VoucherAdapter());
-
+    // Type Adapters
     Hive.registerAdapter(FoodTypeAdapter());
     Hive.registerAdapter(MasterTypeAdapter());
     Hive.registerAdapter(PrinterTypeAdapter());
@@ -125,25 +122,56 @@ class EateryDB {
     Hive.registerAdapter(UserTypeAdapter());
     Hive.registerAdapter(VoucherTypeAdapter());
 
-    // Open boxes
+    // Global Boxes
     companyBox = await Hive.openBox<Company>('company');
-    diningTableBox = await Hive.openBox<DiningTable>('diningTable');
-    diningTableCategoryBox =
-        await Hive.openBox<DiningTableCategory>('diningTableCategory');
-    expressConfigurationBox =
-        await Hive.openBox<ExpressConfiguration>('expressConfiguration');
-    currencyBox = await Hive.openBox<kCurrency>('currency');
-    masterBox = await Hive.openBox<Master>('master');
-    permissionBox = await Hive.openBox<Permission>('permission');
-    printerBox = await Hive.openBox<Printer>('printer');
-    productBox = await Hive.openBox<Product>('product');
-    productCategoryBox = await Hive.openBox<ProductCategory>('productCategory');
-    subscriptionBox = await Hive.openBox<Subscription>('subscription');
-    taxSlabBox = await Hive.openBox<TaxSlab>('taxSlab');
-    userBox = await Hive.openBox<User>('user');
-    userPermissionBox = await Hive.openBox<UserPermission>('userPermission');
-    voucherBox = await Hive.openBox<Voucher>('voucher');
 
+    // Model Boxes
+    diningTableBox = openedCompany != null
+        ? await Hive.openBox<DiningTable>('diningTable_${_openedCompany?.key}')
+        : null;
+    diningTableCategoryBox = openedCompany != null
+        ? await Hive.openBox<DiningTableCategory>(
+            'diningTableCategory_${_openedCompany?.key}')
+        : null;
+    expressConfigurationBox = openedCompany != null
+        ? await Hive.openBox<ExpressConfiguration>(
+            'expressConfiguration_${_openedCompany?.key}')
+        : null;
+    currencyBox = openedCompany != null
+        ? await Hive.openBox<KCurrency>('currency_${_openedCompany?.key}')
+        : null;
+    masterBox = openedCompany != null
+        ? await Hive.openBox<Master>('master_${_openedCompany?.key}')
+        : null;
+    permissionBox = openedCompany != null
+        ? await Hive.openBox<PermissionType>(
+            'permission_${_openedCompany?.key}')
+        : null;
+    printerBox = openedCompany != null
+        ? await Hive.openBox<Printer>('printer_${_openedCompany?.key}')
+        : null;
+    productBox = openedCompany != null
+        ? await Hive.openBox<Product>('product_${_openedCompany?.key}')
+        : null;
+    productCategoryBox = openedCompany != null
+        ? await Hive.openBox<ProductCategory>(
+            'productCategory_${_openedCompany?.key}')
+        : null;
+    subscriptionBox = openedCompany != null
+        ? await Hive.openBox<Subscription>(
+            'subscription_${_openedCompany?.key}')
+        : null;
+    taxSlabBox = openedCompany != null
+        ? await Hive.openBox<TaxSlab>('taxSlab_${_openedCompany?.key}')
+        : null;
+    userBox = openedCompany != null
+        ? await Hive.openBox<User>('user_${_openedCompany?.key}')
+        : null;
+    voucherBox = openedCompany != null
+        ? await Hive.openBox<Voucher>('voucher_${_openedCompany?.key}')
+        : null;
+
+    // Static Boxes
     foodTypeBox = await Hive.openBox<FoodType>('foodType');
     masterTypeBox = await Hive.openBox<MasterType>('masterType');
     printerTypeBox = await Hive.openBox<PrinterType>('printerType');
@@ -158,73 +186,72 @@ class EateryDB {
   }
 
   Future<void> disconnectDB() => Hive.close();
+
   Future<void> clearDB({bool confirm = false}) async {
     if (!confirm) return;
-    await companyBox.clear();
-    await currencyBox.clear();
-    await expressConfigurationBox.clear();
-    await masterBox.clear();
-    await diningTableBox.clear();
-    await diningTableCategoryBox.clear();
-    await printerBox.clear();
-    await productBox.clear();
-    await productCategoryBox.clear();
-    await subscriptionBox.clear();
-    await taxSlabBox.clear();
-    await userBox.clear();
-    await userPermissionBox.clear();
-    await permissionBox.clear();
-    await voucherBox.clear();
+    await companyBox?.clear();
+    await currencyBox?.clear();
+    await expressConfigurationBox?.clear();
+    await masterBox?.clear();
+    await diningTableBox?.clear();
+    await diningTableCategoryBox?.clear();
+    await printerBox?.clear();
+    await productBox?.clear();
+    await productCategoryBox?.clear();
+    await subscriptionBox?.clear();
+    await taxSlabBox?.clear();
+    await userBox?.clear();
+    await permissionBox?.clear();
+    await voucherBox?.clear();
 
-    await taxEditionTypeBox.clear();
-    await saleOrderTypeBox.clear();
-    await printerTypeBox.clear();
-    await foodTypeBox.clear();
-    await masterTypeBox.clear();
-    await productTypeBox.clear();
-    await subscriptionTypeBox.clear();
-    await taxTypeBox.clear();
-    await userTypeBox.clear();
-    await voucherTypeBox.clear();
+    await taxEditionTypeBox?.clear();
+    await saleOrderTypeBox?.clear();
+    await printerTypeBox?.clear();
+    await foodTypeBox?.clear();
+    await masterTypeBox?.clear();
+    await productTypeBox?.clear();
+    await subscriptionTypeBox?.clear();
+    await taxTypeBox?.clear();
+    await userTypeBox?.clear();
+    await voucherTypeBox?.clear();
   }
 
   Future<void> deleteDB({bool confirm = false}) async {
     if (!confirm) return;
-    await companyBox.deleteFromDisk();
-    await currencyBox.deleteFromDisk();
-    await expressConfigurationBox.deleteFromDisk();
-    await masterBox.deleteFromDisk();
-    await diningTableBox.deleteFromDisk();
-    await diningTableCategoryBox.deleteFromDisk();
-    await printerBox.deleteFromDisk();
-    await productBox.deleteFromDisk();
-    await productCategoryBox.deleteFromDisk();
-    await subscriptionBox.deleteFromDisk();
-    await taxSlabBox.deleteFromDisk();
-    await userBox.deleteFromDisk();
-    await userPermissionBox.deleteFromDisk();
-    await permissionBox.deleteFromDisk();
-    await voucherBox.deleteFromDisk();
+    await companyBox?.deleteFromDisk();
+    await currencyBox?.deleteFromDisk();
+    await expressConfigurationBox?.deleteFromDisk();
+    await masterBox?.deleteFromDisk();
+    await diningTableBox?.deleteFromDisk();
+    await diningTableCategoryBox?.deleteFromDisk();
+    await printerBox?.deleteFromDisk();
+    await productBox?.deleteFromDisk();
+    await productCategoryBox?.deleteFromDisk();
+    await subscriptionBox?.deleteFromDisk();
+    await taxSlabBox?.deleteFromDisk();
+    await userBox?.deleteFromDisk();
+    await permissionBox?.deleteFromDisk();
+    await voucherBox?.deleteFromDisk();
 
-    await taxEditionTypeBox.deleteFromDisk();
-    await saleOrderTypeBox.deleteFromDisk();
-    await printerTypeBox.deleteFromDisk();
-    await foodTypeBox.deleteFromDisk();
-    await masterTypeBox.deleteFromDisk();
-    await productTypeBox.deleteFromDisk();
-    await subscriptionTypeBox.deleteFromDisk();
-    await taxTypeBox.deleteFromDisk();
-    await userTypeBox.deleteFromDisk();
-    await voucherTypeBox.deleteFromDisk();
+    await taxEditionTypeBox?.deleteFromDisk();
+    await saleOrderTypeBox?.deleteFromDisk();
+    await printerTypeBox?.deleteFromDisk();
+    await foodTypeBox?.deleteFromDisk();
+    await masterTypeBox?.deleteFromDisk();
+    await productTypeBox?.deleteFromDisk();
+    await subscriptionTypeBox?.deleteFromDisk();
+    await taxTypeBox?.deleteFromDisk();
+    await userTypeBox?.deleteFromDisk();
+    await voucherTypeBox?.deleteFromDisk();
   }
 
   Future<void> openCompany(
       int companyKey, String username, String passHash) async {
-    Company? company = companyBox.get(companyKey);
+    Company? company = companyBox?.get(companyKey);
     if (company == null) {
       throw Exception('Company not found');
     }
-    _loggedInUser = userBox.values.firstWhere(
+    _loggedInUser = userBox?.values.firstWhere(
         (element) =>
             element.username.toLowerCase().trim() ==
                 username.toLowerCase().trim() &&

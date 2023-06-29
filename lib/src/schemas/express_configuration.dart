@@ -1,41 +1,35 @@
 import 'package:eatery_db/eatery_db.dart';
-part 'expressConfiguration.g.dart';
+part 'express_configuration.g.dart';
 
 @HiveType(typeId: expressConfigurationSchemaIndex)
 class ExpressConfiguration extends HiveObject {
   @HiveField(0)
-  int companyKey; // Multi company identification
-  @HiveField(1)
   bool printInvoice;
-  @HiveField(2)
+  @HiveField(1)
   bool printKot;
-  @HiveField(3)
+  @HiveField(2)
   bool sendPaymentLink;
-  @HiveField(4)
+  @HiveField(3)
   bool sendConfirmation;
-  @HiveField(5)
+  @HiveField(4)
   bool enabled;
 
-  ExpressConfiguration({
-    this.printInvoice = false,
-    this.printKot = false,
-    this.sendPaymentLink = false,
-    this.sendConfirmation = false,
-    this.enabled = false
-  }) : companyKey = EateryDB.instance.openedCompany?.key;
+  ExpressConfiguration(
+      {this.printInvoice = false,
+      this.printKot = false,
+      this.sendPaymentLink = false,
+      this.sendConfirmation = false,
+      this.enabled = false});
 
   ExpressConfiguration.fromMap(Map<String, dynamic> map)
-      : companyKey = map['companyKey'],
-        printInvoice = map['printInvoice'],
+      : printInvoice = map['printInvoice'],
         printKot = map['printKot'],
         sendPaymentLink = map['sendPaymentLink'],
         sendConfirmation = map['sendConfirmation'],
-        enabled = map['enabled']
-  ;
+        enabled = map['enabled'];
 
   Map<String, Object?> toMap() {
     return {
-      'companyKey': companyKey,
       'printInvoice': printInvoice,
       'printKot': printKot,
       'sendPaymentLink': sendPaymentLink,

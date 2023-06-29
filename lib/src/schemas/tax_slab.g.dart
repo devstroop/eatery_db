@@ -1,44 +1,38 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'permission.dart';
+part of 'tax_slab.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class PermissionAdapter extends TypeAdapter<Permission> {
+class TaxSlabAdapter extends TypeAdapter<TaxSlab> {
   @override
-  final int typeId = 106;
+  final int typeId = 111;
 
   @override
-  Permission read(BinaryReader reader) {
+  TaxSlab read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Permission(
-      readAll: fields[0] as bool,
-      read: fields[1] as bool,
-      write: fields[2] as bool,
-      update: fields[3] as bool,
-      delete: fields[4] as bool,
+    return TaxSlab(
+      name: fields[0] as String,
+      rate: fields[1] as double,
+      type: fields[2] as TaxType,
     );
   }
 
   @override
-  void write(BinaryWriter writer, Permission obj) {
+  void write(BinaryWriter writer, TaxSlab obj) {
     writer
-      ..writeByte(5)
-      ..writeByte(0)
-      ..write(obj.readAll)
-      ..writeByte(1)
-      ..write(obj.read)
-      ..writeByte(2)
-      ..write(obj.write)
       ..writeByte(3)
-      ..write(obj.update)
-      ..writeByte(4)
-      ..write(obj.delete);
+      ..writeByte(0)
+      ..write(obj.name)
+      ..writeByte(1)
+      ..write(obj.rate)
+      ..writeByte(2)
+      ..write(obj.type);
   }
 
   @override
@@ -47,7 +41,7 @@ class PermissionAdapter extends TypeAdapter<Permission> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is PermissionAdapter &&
+      other is TaxSlabAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

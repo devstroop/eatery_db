@@ -5,34 +5,32 @@ part 'voucher.g.dart';
 @HiveType(typeId: voucherSchemaIndex)
 class Voucher extends HiveObject {
   @HiveField(0)
-  int companyKey; // Multi company identification
-  @HiveField(1)
   VoucherType voucherType;
-  @HiveField(2)
+  @HiveField(1)
   Master master; // model
-  @HiveField(3)
+  @HiveField(2)
   DateTime createdAt; // obj
-  @HiveField(4)
+  @HiveField(3)
   DateTime? updatedAt; // obj
-  @HiveField(5)
+  @HiveField(4)
   double taxable;
-  @HiveField(6)
+  @HiveField(5)
   double? taxTotal;
-  @HiveField(7)
+  @HiveField(6)
   double? discountTotal;
-  @HiveField(8)
+  @HiveField(7)
   double? serviceCharges;
-  @HiveField(9)
+  @HiveField(8)
   double? otherCharges;
-  @HiveField(10)
+  @HiveField(9)
   double? roundOff;
-  @HiveField(11)
+  @HiveField(10)
   double finalTotal;
-  @HiveField(12)
+  @HiveField(11)
   bool isPaid;
-  @HiveField(13)
+  @HiveField(12)
   bool isClosed;
-  @HiveField(14)
+  @HiveField(13)
   SaleOrderType saleOrderType; // enum
 
   Voucher(
@@ -48,11 +46,11 @@ class Voucher extends HiveObject {
       this.finalTotal = 0.0,
       this.isPaid = false,
       this.isClosed = false,
-      required this.saleOrderType}) : companyKey = EateryDB.instance.openedCompany?.key, createdAt = DateTime.now();
+      required this.saleOrderType})
+      : createdAt = DateTime.now();
 
   Voucher.fromMap(Map<String, dynamic> map)
-      : companyKey = map['companyKey'],
-        voucherType = map['voucherType'],
+      : voucherType = map['voucherType'],
         master = Master.fromMap(map['master']),
         createdAt = DateTime.parse(map['createdAt'] as String),
         updatedAt = DateTime.parse(map['updatedAt'] as String),
@@ -69,7 +67,6 @@ class Voucher extends HiveObject {
 
   Map<String, Object?> toMap() {
     return {
-      'companyKey': companyKey,
       'voucherType': voucherType,
       'customer': master.toMap(),
       'createdAt': createdAt.toIso8601String(),

@@ -15,7 +15,6 @@ const diningTableCategorySchemaIndex = 102;
 const expressConfigurationSchemaIndex = 103;
 const kCurrencySchemaIndex = 104;
 const masterSchemaIndex = 105;
-
 const permissionSchemaIndex = 106;
 const printerSchemaIndex = 107;
 const productSchemaIndex = 108;

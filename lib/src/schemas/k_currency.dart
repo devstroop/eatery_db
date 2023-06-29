@@ -1,35 +1,33 @@
 import 'package:eatery_db/eatery_db.dart';
 
-part 'kCurrency.g.dart';
+part 'k_currency.g.dart';
 
 @HiveType(typeId: kCurrencySchemaIndex)
-class kCurrency extends HiveObject {
+class KCurrency extends HiveObject {
   @HiveField(0)
-  int companyKey; // Multi company identification
-  @HiveField(1)
   String code;
-  @HiveField(2)
+  @HiveField(1)
   String name;
-  @HiveField(3)
+  @HiveField(2)
   String symbol;
-  @HiveField(4)
+  @HiveField(3)
   String? flag;
-  @HiveField(5)
+  @HiveField(4)
   int number;
-  @HiveField(6)
+  @HiveField(5)
   int decimalDigits;
-  @HiveField(7)
+  @HiveField(6)
   String namePlural;
-  @HiveField(8)
+  @HiveField(7)
   String decimalSeparator;
-  @HiveField(9)
+  @HiveField(8)
   String thousandsSeparator;
-  @HiveField(10)
+  @HiveField(9)
   bool symbolOnLeft;
-  @HiveField(11)
+  @HiveField(10)
   bool spaceBetweenAmountAndSymbol;
 
-  kCurrency({
+  KCurrency({
     required this.name,
     required this.code,
     required this.symbol,
@@ -41,11 +39,10 @@ class kCurrency extends HiveObject {
     required this.thousandsSeparator,
     required this.symbolOnLeft,
     required this.spaceBetweenAmountAndSymbol,
-  }) : companyKey = EateryDB.instance.openedCompany?.key;
+  });
 
-  kCurrency.fromMap(Map<String, dynamic> map)
-      : companyKey = map['companyKey'],
-        name = map['name'],
+  KCurrency.fromMap(Map<String, dynamic> map)
+      : name = map['name'],
         code = map['code'],
         symbol = map['symbol'],
         flag = map['flag'],
@@ -59,7 +56,6 @@ class kCurrency extends HiveObject {
 
   Map<String, Object?> toMap() {
     return {
-      'companyKey': companyKey,
       'name': name,
       'code': code,
       'symbol': symbol,

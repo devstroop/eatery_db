@@ -17,15 +17,16 @@ class UserAdapter extends TypeAdapter<User> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return User(
-      type: fields[1] as UserType,
-      username: fields[2] as String,
-      fullName: fields[3] as String,
-      image: fields[4] as String?,
-      phone: fields[5] as String?,
-      email: fields[6] as String?,
-      passHash: fields[7] as String?,
-      isActive: fields[8] as bool,
-    )..companyKey = fields[0] as int;
+      type: fields[0] as UserType,
+      username: fields[1] as String,
+      fullName: fields[2] as String,
+      image: fields[3] as String?,
+      phone: fields[4] as String?,
+      email: fields[5] as String?,
+      passHash: fields[6] as String?,
+      isActive: fields[7] as bool,
+      permissions: (fields[8] as List).cast<PermissionType<dynamic>>(),
+    );
   }
 
   @override
@@ -33,23 +34,23 @@ class UserAdapter extends TypeAdapter<User> {
     writer
       ..writeByte(9)
       ..writeByte(0)
-      ..write(obj.companyKey)
-      ..writeByte(1)
       ..write(obj.type)
-      ..writeByte(2)
+      ..writeByte(1)
       ..write(obj.username)
-      ..writeByte(3)
+      ..writeByte(2)
       ..write(obj.fullName)
-      ..writeByte(4)
+      ..writeByte(3)
       ..write(obj.image)
-      ..writeByte(5)
+      ..writeByte(4)
       ..write(obj.phone)
-      ..writeByte(6)
+      ..writeByte(5)
       ..write(obj.email)
-      ..writeByte(7)
+      ..writeByte(6)
       ..write(obj.passHash)
+      ..writeByte(7)
+      ..write(obj.isActive)
       ..writeByte(8)
-      ..write(obj.isActive);
+      ..write(obj.permissions);
   }
 
   @override

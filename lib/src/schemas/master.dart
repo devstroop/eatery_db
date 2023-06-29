@@ -5,38 +5,34 @@ part 'master.g.dart';
 @HiveType(typeId: masterSchemaIndex)
 class Master {
   @HiveField(0)
-  int companyKey; // Multi company identification
-  @HiveField(1)
   String name;
-  @HiveField(2)
+  @HiveField(1)
   String? phone;
-  @HiveField(3)
+  @HiveField(2)
   String? email;
-  @HiveField(4)
+  @HiveField(3)
   String? address;
-  @HiveField(5)
+  @HiveField(4)
   String? landmark;
-  @HiveField(6)
+  @HiveField(5)
   double? latitude;
-  @HiveField(7)
+  @HiveField(6)
   double? longitude;
-  @HiveField(8)
+  @HiveField(7)
   bool isActive;
 
   Master(
-      {
-      required this.name,
+      {required this.name,
       this.phone,
       this.email,
       this.address,
       this.landmark,
       this.latitude,
       this.longitude,
-      this.isActive = false}) : companyKey = EateryDB.instance.openedCompany?.key;
+      this.isActive = false});
 
   Master.fromMap(Map<String, dynamic> map)
-      : companyKey = map['companyKey'],
-        name = map['name'],
+      : name = map['name'],
         phone = map['phone'],
         email = map['email'],
         address = map['address'],
@@ -47,7 +43,6 @@ class Master {
 
   Map<String, Object?> toMap() {
     return {
-      'companyKey': companyKey,
       'name': name,
       'phone': phone,
       'email': email,

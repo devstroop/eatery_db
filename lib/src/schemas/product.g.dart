@@ -17,47 +17,51 @@ class ProductAdapter extends TypeAdapter<Product> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Product(
-      sku: fields[1] as int?,
-      name: fields[2] as String,
-      categoryId: fields[3] as int?,
-      description: fields[4] as String?,
-      image: fields[5] as String?,
-      mrpPrice: fields[6] as double,
-      salePrice: fields[7] as double?,
-      taxSlabId: fields[8] as int?,
-      foodType: fields[9] as FoodType?,
-      type: fields[10] as ProductType,
-      isActive: fields[11] as bool,
-    )..companyKey = fields[0] as int;
+      barCode: fields[0] as String?,
+      qrCode: fields[1] as String?,
+      tags: (fields[2] as List).cast<String>(),
+      name: fields[3] as String,
+      categoryId: fields[4] as int?,
+      description: fields[5] as String?,
+      image: fields[6] as String?,
+      mrpPrice: fields[7] as double,
+      salePrice: fields[8] as double?,
+      taxSlabId: fields[9] as int?,
+      foodType: fields[10] as FoodType?,
+      type: fields[11] as ProductType,
+      isActive: fields[12] as bool,
+    );
   }
 
   @override
   void write(BinaryWriter writer, Product obj) {
     writer
-      ..writeByte(12)
+      ..writeByte(13)
       ..writeByte(0)
-      ..write(obj.companyKey)
+      ..write(obj.barCode)
       ..writeByte(1)
-      ..write(obj.sku)
+      ..write(obj.qrCode)
       ..writeByte(2)
-      ..write(obj.name)
+      ..write(obj.tags)
       ..writeByte(3)
-      ..write(obj.categoryId)
+      ..write(obj.name)
       ..writeByte(4)
-      ..write(obj.description)
+      ..write(obj.categoryId)
       ..writeByte(5)
-      ..write(obj.image)
+      ..write(obj.description)
       ..writeByte(6)
-      ..write(obj.mrpPrice)
+      ..write(obj.image)
       ..writeByte(7)
-      ..write(obj.salePrice)
+      ..write(obj.mrpPrice)
       ..writeByte(8)
-      ..write(obj.taxSlabId)
+      ..write(obj.salePrice)
       ..writeByte(9)
-      ..write(obj.foodType)
+      ..write(obj.taxSlabId)
       ..writeByte(10)
-      ..write(obj.type)
+      ..write(obj.foodType)
       ..writeByte(11)
+      ..write(obj.type)
+      ..writeByte(12)
       ..write(obj.isActive);
   }
 
