@@ -8,7 +8,7 @@ part of 'userPermission.dart';
 
 class UserPermissionAdapter extends TypeAdapter<UserPermission> {
   @override
-  final int typeId = 112;
+  final int typeId = 113;
 
   @override
   UserPermission read(BinaryReader reader) {

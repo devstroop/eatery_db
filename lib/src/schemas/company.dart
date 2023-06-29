@@ -15,26 +15,25 @@ class Company extends HiveObject {
   @HiveField(4)
   String address;
   @HiveField(5)
-  TaxEditionType edition; // enum
+  TaxEditionType taxEdition;
   @HiveField(6)
   String? salesTaxNumber;
   @HiveField(7)
   String? foodLicenseNo;
   @HiveField(8)
-  int? defaultCurrencyKey; // id?
+  int? defaultCurrencyKey;
   @HiveField(9)
-  int? defaultTaxSlabKey; // id?
+  int? defaultTaxSlabKey;
   @HiveField(10)
-  int? activeSubscriptionKey; // id?
+  int? activeSubscriptionKey;
 
   Company(
-      {
-        required this.name,
+      {required this.name,
       this.logo,
       required this.email,
       required this.phone,
       required this.address,
-      required this.edition,
+      required this.taxEdition,
       this.defaultCurrencyKey,
       this.defaultTaxSlabKey,
       this.foodLicenseNo,
@@ -47,7 +46,7 @@ class Company extends HiveObject {
         email = map['email'],
         phone = map['phone'],
         address = map['address'],
-        edition = TaxEditionType.values[map['edition']],
+        taxEdition = TaxEditionType.values[map['edition']],
         defaultCurrencyKey = map['defaultCurrencyKey'],
         defaultTaxSlabKey = map['defaultTaxSlabKey'],
         foodLicenseNo = map['foodLicNo'],
@@ -61,7 +60,7 @@ class Company extends HiveObject {
       'email': email,
       'phone': phone,
       'address': address,
-      'edition': edition.index,
+      'edition': taxEdition.index,
       'defaultCurrencyKey': defaultCurrencyKey,
       'defaultTaxSlabKey': defaultTaxSlabKey,
       'foodLicNo': foodLicenseNo,

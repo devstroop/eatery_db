@@ -8,7 +8,7 @@ part of 'diningTable.dart';
 
 class DiningTableAdapter extends TypeAdapter<DiningTable> {
   @override
-  final int typeId = 102;
+  final int typeId = 101;
 
   @override
   DiningTable read(BinaryReader reader) {

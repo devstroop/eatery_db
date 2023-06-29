@@ -6,7 +6,7 @@ part of 'taxEdition.type.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class TaxEditionAdapter extends TypeAdapter<TaxEditionType> {
+class TaxEditionTypeAdapter extends TypeAdapter<TaxEditionType> {
   @override
   final int typeId = 8;
 
@@ -40,7 +40,7 @@ class TaxEditionAdapter extends TypeAdapter<TaxEditionType> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is TaxEditionAdapter &&
+      other is TaxEditionTypeAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

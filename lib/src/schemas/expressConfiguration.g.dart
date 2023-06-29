@@ -8,7 +8,7 @@ part of 'expressConfiguration.dart';
 
 class ExpressConfigurationAdapter extends TypeAdapter<ExpressConfiguration> {
   @override
-  final int typeId = 104;
+  final int typeId = 103;
 
   @override
   ExpressConfiguration read(BinaryReader reader) {
