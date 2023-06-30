@@ -21,7 +21,7 @@ class ProductAdapter extends TypeAdapter<Product> {
       qrCode: fields[1] as String?,
       tags: (fields[2] as List).cast<String>(),
       name: fields[3] as String,
-      categoryId: fields[4] as int?,
+      categoryKey: fields[4] as int?,
       description: fields[5] as String?,
       image: fields[6] as String?,
       mrpPrice: fields[7] as double,
@@ -46,7 +46,7 @@ class ProductAdapter extends TypeAdapter<Product> {
       ..writeByte(3)
       ..write(obj.name)
       ..writeByte(4)
-      ..write(obj.categoryId)
+      ..write(obj.categoryKey)
       ..writeByte(5)
       ..write(obj.description)
       ..writeByte(6)

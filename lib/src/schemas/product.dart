@@ -13,7 +13,7 @@ class Product extends HiveObject {
   @HiveField(3)
   String name;
   @HiveField(4)
-  int? categoryId; // id?
+  int? categoryKey; // id?
   @HiveField(5)
   String? description;
   @HiveField(6)
@@ -36,7 +36,7 @@ class Product extends HiveObject {
       this.qrCode,
       this.tags = const [],
       required this.name,
-      this.categoryId,
+      this.categoryKey,
       this.description,
       this.image,
       required this.mrpPrice,
@@ -51,7 +51,7 @@ class Product extends HiveObject {
         qrCode = map['qrCode'],
         tags = List<String>.from(map['tags']),
         name = map['name'],
-        categoryId = map['categoryId'],
+        categoryKey = map['categoryId'],
         description = map['description'],
         image = map['image'],
         mrpPrice = map['mrpPrice'],
@@ -67,7 +67,7 @@ class Product extends HiveObject {
       'qrCode': qrCode,
       'tags': tags,
       'name': name,
-      'categoryId': categoryId,
+      'categoryId': categoryKey,
       'description': description,
       'image': image,
       'mrpPrice': mrpPrice,

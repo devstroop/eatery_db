@@ -33,6 +33,11 @@ export 'src/schemas/types/master.type.dart';
 
 export 'src/extensions/box.extension.dart';
 export 'src/extensions/subscription.extension.dart';
+export 'src/extensions/types/saleOrder.type.extension.dart';
+export 'src/extensions/types/food.type.extension.dart';
+export 'src/extensions/types/master.type.extension.dart';
+export 'src/extensions/types/printer.type.extension.dart';
+export 'src/extensions/types/subscription.type.extension.dart';
 
 // Imports
 

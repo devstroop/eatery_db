@@ -13,7 +13,7 @@ class DiningTable extends HiveObject {
   @HiveField(3)
   String? image;
   @HiveField(4)
-  int? orderId; // id?
+  int? voucherKey; // id?
   @HiveField(5)
   bool isActive;
 
@@ -22,7 +22,7 @@ class DiningTable extends HiveObject {
       this.categoryId,
       this.description,
       this.image,
-      this.orderId,
+      this.voucherKey,
       this.isActive = false});
 
   DiningTable.fromMap(Map<String, dynamic> map)
@@ -30,7 +30,7 @@ class DiningTable extends HiveObject {
         categoryId = map['categoryId'],
         description = map['description'],
         image = map['image'],
-        orderId = map['orderId'],
+        voucherKey = map['orderId'],
         isActive = map['isActive'];
 
   Map<String, Object?> toMap() {
@@ -39,7 +39,7 @@ class DiningTable extends HiveObject {
       'categoryId': categoryId,
       'description': description,
       'image': image,
-      'orderId': orderId,
+      'orderId': voucherKey,
       'isActive': isActive
     };
   }

@@ -21,7 +21,7 @@ class DiningTableAdapter extends TypeAdapter<DiningTable> {
       categoryId: fields[1] as int?,
       description: fields[2] as String?,
       image: fields[3] as String?,
-      orderId: fields[4] as int?,
+      voucherKey: fields[4] as int?,
       isActive: fields[5] as bool,
     );
   }
@@ -39,7 +39,7 @@ class DiningTableAdapter extends TypeAdapter<DiningTable> {
       ..writeByte(3)
       ..write(obj.image)
       ..writeByte(4)
-      ..write(obj.orderId)
+      ..write(obj.voucherKey)
       ..writeByte(5)
       ..write(obj.isActive);
   }
