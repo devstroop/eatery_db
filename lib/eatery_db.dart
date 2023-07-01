@@ -162,16 +162,16 @@ class EateryDB {
         : null;
     productCategoryBox = openedCompany != null
         ? await Hive.openBox<ProductCategory>(
-            'productCategory_${_openedCompany?.key}')
+            'productCategory_${_openedCompany!.key}')
         : null;
     taxSlabBox = openedCompany != null
-        ? await Hive.openBox<TaxSlab>('taxSlab_${_openedCompany?.key}')
+        ? await Hive.openBox<TaxSlab>('taxSlab_${_openedCompany!.key}')
         : null;
     userBox = openedCompany != null
-        ? await Hive.openBox<User>('user_${_openedCompany?.key}')
+        ? await Hive.openBox<User>('user_${_openedCompany!.key}')
         : null;
     voucherBox = openedCompany != null
-        ? await Hive.openBox<Voucher>('voucher_${_openedCompany?.key}')
+        ? await Hive.openBox<Voucher>('voucher_${_openedCompany!.key}')
         : null;
 
     // Static Boxes
