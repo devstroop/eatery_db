@@ -60,35 +60,65 @@ import 'package:eatery_db/eatery_db.dart';
 
 class EateryDB {
   static final EateryDB instance = EateryDB();
+  ////////////////////////////////
+  // Company
+  ////////////////////////////////
+  Box<Company> get companyBox => Hive.box<Company>('company');
+  Box<Subscription> get subscriptionBox => Hive.box<Subscription>('subscription');
+  // Static Types
+  Box<FoodType>? get foodTypeBox => Hive.box<FoodType>('foodType');
+  Box<MasterType>? get masterTypeBox => Hive.box<MasterType>('masterType');
+  Box<PermissionType>? get permissionBox => Hive.box<PermissionType>('permissionType');
+  Box<PrinterType>? get printerTypeBox => Hive.box<PrinterType>('printerType');
+  Box<ProductType>? get productTypeBox => Hive.box<ProductType>('productType');
+  Box<SaleOrderType>? get saleOrderTypeBox => Hive.box<SaleOrderType>('saleOrderType');
+  Box<SubscriptionType>? get subscriptionTypeBox => Hive.box<SubscriptionType>('subscriptionType');
+  Box<TaxType>? get taxTypeBox => Hive.box<TaxType>('taxType');
+  Box<TaxEditionType>? get taxEditionTypeBox => Hive.box<TaxEditionType>('taxEditionType');
+  Box<UserType>? get userTypeBox => Hive.box<UserType>('userType');
+  Box<VoucherType>? get voucherTypeBox => Hive.box<VoucherType>('voucherType');
 
-  // Model Boxes
-  late Box<Company> companyBox;
-  late Box<Subscription> subscriptionBox;
 
-  Box<DiningTable>? diningTableBox;
-  Box<DiningTableCategory>? diningTableCategoryBox;
-  Box<ExpressConfiguration>? expressConfigurationBox;
-  Box<KCurrency>? currencyBox;
-  Box<Master>? masterBox;
-  Box<Printer>? printerBox;
-  Box<Product>? productBox;
-  Box<ProductCategory>? productCategoryBox;
-  Box<TaxSlab>? taxSlabBox;
-  Box<User>? userBox;
-  Box<Voucher>? voucherBox;
+  ////////////////////////////////
+  // CompanyData
+  ////////////////////////////////
+  Box<DiningTable>? get diningTableBox => openedCompany != null
+      ? Hive.box<DiningTable>('diningTable_${_openedCompany?.key}')
+      : null;
+  Box<DiningTableCategory>? get diningTableCategoryBox => openedCompany != null
+      ? Hive.box<DiningTableCategory>(
+          'diningTableCategory_${_openedCompany?.key}')
+      : null;
+  Box<ExpressConfiguration>? get expressConfigurationBox =>
+      openedCompany != null
+          ? Hive.box<ExpressConfiguration>(
+              'expressConfiguration_${_openedCompany?.key}')
+          : null;
+  Box<KCurrency>? get currencyBox => openedCompany != null
+      ? Hive.box<KCurrency>('currency_${_openedCompany?.key}')
+      : null;
+  Box<Master>? get masterBox => openedCompany != null
+      ? Hive.box<Master>('master_${_openedCompany?.key}')
+      : null;
+  Box<Printer>? get printerBox => openedCompany != null
+      ? Hive.box<Printer>('printer_${_openedCompany?.key}')
+      : null;
+  Box<Product>? get productBox => openedCompany != null
+      ? Hive.box<Product>('product_${_openedCompany?.key}')
+      : null;
+  Box<ProductCategory>? get productCategoryBox => openedCompany != null
+      ? Hive.box<ProductCategory>('productCategory_${_openedCompany?.key}')
+      : null;
+  Box<TaxSlab>? get taxSlabBox => openedCompany != null
+      ? Hive.box<TaxSlab>('taxSlab_${_openedCompany?.key}')
+      : null;
+  Box<User>? get userBox => openedCompany != null
+      ? Hive.box<User>('user_${_openedCompany?.key}')
+      : null;
+  Box<Voucher>? get voucherBox => openedCompany != null
+      ? Hive.box<Voucher>('voucher_${_openedCompany?.key}')
+      : null;
 
-// Type Boxes
-  Box<FoodType>? foodTypeBox;
-  Box<MasterType>? masterTypeBox;
-  Box<PermissionType>? permissionBox;
-  Box<PrinterType>? printerTypeBox;
-  Box<ProductType>? productTypeBox;
-  Box<SaleOrderType>? saleOrderTypeBox;
-  Box<SubscriptionType>? subscriptionTypeBox;
-  Box<TaxType>? taxTypeBox;
-  Box<TaxEditionType>? taxEditionTypeBox;
-  Box<UserType>? userTypeBox;
-  Box<VoucherType>? voucherTypeBox;
 
   // Getters and Setters
   Company? _openedCompany;
@@ -101,21 +131,9 @@ class EateryDB {
     // Initialize hive
     await Hive.initFlutter(subDir);
 
-    // Model Adapters
     Hive.registerAdapter(CompanyAdapter());
-    Hive.registerAdapter(DiningTableAdapter());
-    Hive.registerAdapter(DiningTableCategoryAdapter());
-    Hive.registerAdapter(ExpressConfigurationAdapter());
-    Hive.registerAdapter(KCurrencyAdapter());
-    Hive.registerAdapter(MasterAdapter());
-    Hive.registerAdapter(PermissionTypeAdapter());
-    Hive.registerAdapter(PrinterAdapter());
-    Hive.registerAdapter(ProductAdapter());
-    Hive.registerAdapter(ProductCategoryAdapter());
     Hive.registerAdapter(SubscriptionAdapter());
-    Hive.registerAdapter(TaxSlabAdapter());
-    Hive.registerAdapter(UserAdapter());
-    Hive.registerAdapter(VoucherAdapter());
+
     // Type Adapters
     Hive.registerAdapter(FoodTypeAdapter());
     Hive.registerAdapter(MasterTypeAdapter());
@@ -128,64 +146,37 @@ class EateryDB {
     Hive.registerAdapter(UserTypeAdapter());
     Hive.registerAdapter(VoucherTypeAdapter());
 
-    // Global Boxes
-    companyBox = await Hive.openBox<Company>('company');
-    subscriptionBox = await Hive.openBox<Subscription>('subscription');
 
-    // Model Boxes
-    diningTableBox = openedCompany != null
-        ? await Hive.openBox<DiningTable>('diningTable_${_openedCompany?.key}')
-        : null;
-    diningTableCategoryBox = openedCompany != null
-        ? await Hive.openBox<DiningTableCategory>(
-            'diningTableCategory_${_openedCompany?.key}')
-        : null;
-    expressConfigurationBox = openedCompany != null
-        ? await Hive.openBox<ExpressConfiguration>(
-            'expressConfiguration_${_openedCompany?.key}')
-        : null;
-    currencyBox = openedCompany != null
-        ? await Hive.openBox<KCurrency>('currency_${_openedCompany?.key}')
-        : null;
-    masterBox = openedCompany != null
-        ? await Hive.openBox<Master>('master_${_openedCompany?.key}')
-        : null;
-    permissionBox = openedCompany != null
-        ? await Hive.openBox<PermissionType>(
-            'permission_${_openedCompany?.key}')
-        : null;
-    printerBox = openedCompany != null
-        ? await Hive.openBox<Printer>('printer_${_openedCompany?.key}')
-        : null;
-    productBox = openedCompany != null
-        ? await Hive.openBox<Product>('product_${_openedCompany?.key}')
-        : null;
-    productCategoryBox = openedCompany != null
-        ? await Hive.openBox<ProductCategory>(
-            'productCategory_${_openedCompany!.key}')
-        : null;
-    taxSlabBox = openedCompany != null
-        ? await Hive.openBox<TaxSlab>('taxSlab_${_openedCompany!.key}')
-        : null;
-    userBox = openedCompany != null
-        ? await Hive.openBox<User>('user_${_openedCompany!.key}')
-        : null;
-    voucherBox = openedCompany != null
-        ? await Hive.openBox<Voucher>('voucher_${_openedCompany!.key}')
-        : null;
 
-    // Static Boxes
-    foodTypeBox = await Hive.openBox<FoodType>('foodType');
-    masterTypeBox = await Hive.openBox<MasterType>('masterType');
-    printerTypeBox = await Hive.openBox<PrinterType>('printerType');
-    productTypeBox = await Hive.openBox<ProductType>('productType');
-    saleOrderTypeBox = await Hive.openBox<SaleOrderType>('saleOrderType');
-    subscriptionTypeBox =
-        await Hive.openBox<SubscriptionType>('subscriptionType');
-    taxTypeBox = await Hive.openBox<TaxType>('taxType');
-    taxEditionTypeBox = await Hive.openBox<TaxEditionType>('taxEdition');
-    userTypeBox = await Hive.openBox<UserType>('userType');
-    voucherTypeBox = await Hive.openBox<VoucherType>('voucherType');
+    Hive.registerAdapter(DiningTableAdapter());
+    Hive.registerAdapter(DiningTableCategoryAdapter());
+    Hive.registerAdapter(ExpressConfigurationAdapter());
+    Hive.registerAdapter(KCurrencyAdapter());
+    Hive.registerAdapter(MasterAdapter());
+    Hive.registerAdapter(PermissionTypeAdapter());
+    Hive.registerAdapter(PrinterAdapter());
+    Hive.registerAdapter(ProductAdapter());
+    Hive.registerAdapter(ProductCategoryAdapter());
+    Hive.registerAdapter(TaxSlabAdapter());
+    Hive.registerAdapter(UserAdapter());
+    Hive.registerAdapter(VoucherAdapter());
+
+    await Hive.openBox<Company>('company');
+    await Hive.openBox<Subscription>('subscription');
+    await Hive.openBox<FoodType>('foodType');
+    await Hive.openBox<MasterType>('masterType');
+    await Hive.openBox<PrinterType>('printerType');
+    await Hive.openBox<ProductType>('productType');
+    await Hive.openBox<SaleOrderType>('saleOrderType');
+    await Hive.openBox<SubscriptionType>('subscriptionType');
+    await Hive.openBox<TaxType>('taxType');
+    await Hive.openBox<TaxEditionType>('taxEdition');
+    await Hive.openBox<UserType>('userType');
+    await Hive.openBox<VoucherType>('voucherType');
+
+
+
+
   }
 
   Future<void> disconnectDB() => Hive.close();
@@ -263,6 +254,20 @@ class EateryDB {
       throw Exception('Invalid username or password');
     });
     _openedCompany = company;
+    await Hive.openBox<DiningTable>('diningTable_${_openedCompany?.key}');
+    await Hive.openBox<DiningTableCategory>('diningTableCategory_${_openedCompany?.key}');
+    await Hive.openBox<ExpressConfiguration>(
+        'expressConfiguration_${_openedCompany?.key}');
+    await Hive.openBox<KCurrency>('currency_${_openedCompany?.key}');
+    await Hive.openBox<Master>('master_${_openedCompany?.key}');
+    await Hive.openBox<PermissionType>('permission_${_openedCompany?.key}');
+    await Hive.openBox<Printer>('printer_${_openedCompany?.key}');
+    await Hive.openBox<Product>('product_${_openedCompany?.key}');
+    await Hive.openBox<ProductCategory>(
+        'productCategory_${_openedCompany?.key}');
+    await Hive.openBox<TaxSlab>('taxSlab_${_openedCompany?.key}');
+    await Hive.openBox<User>('user_${_openedCompany?.key}');
+    await Hive.openBox<Voucher>('voucher_${_openedCompany?.key}');
   }
 
   Future<void> closeCompany() async {
