@@ -38,6 +38,7 @@ export 'src/extensions/types/food.type.extension.dart';
 export 'src/extensions/types/master.type.extension.dart';
 export 'src/extensions/types/printer.type.extension.dart';
 export 'src/extensions/types/subscription.type.extension.dart';
+export 'src/extensions/types/taxEdition.type.extension.dart';
 
 // Imports
 
