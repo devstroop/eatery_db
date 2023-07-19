@@ -66,6 +66,7 @@ class EateryDB {
   ////////////////////////////////
   Box<Company> get companyBox => Hive.box<Company>('company');
   Box<Subscription> get subscriptionBox => Hive.box<Subscription>('subscription');
+  Box<KCurrency>? get currencyBox => Hive.box<KCurrency>('currency');
   // Static Types
   Box<FoodType>? get foodTypeBox => Hive.box<FoodType>('foodType');
   Box<MasterType>? get masterTypeBox => Hive.box<MasterType>('masterType');
@@ -95,9 +96,6 @@ class EateryDB {
           ? Hive.box<ExpressConfiguration>(
               'expressConfiguration_${_openedCompany?.key}')
           : null;
-  Box<KCurrency>? get currencyBox => openedCompany != null
-      ? Hive.box<KCurrency>('currency_${_openedCompany?.key}')
-      : null;
   Box<Master>? get masterBox => openedCompany != null
       ? Hive.box<Master>('master_${_openedCompany?.key}')
       : null;
