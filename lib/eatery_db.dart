@@ -160,7 +160,9 @@ class EateryDB {
     Hive.registerAdapter(VoucherAdapter());
 
     await Hive.openBox<Company>('company');
+    await Hive.openBox<KCurrency>('currency');
     await Hive.openBox<Subscription>('subscription');
+    // Static types initialization
     await Hive.openBox<FoodType>('foodType');
     await Hive.openBox<MasterType>('masterType');
     await Hive.openBox<PrinterType>('printerType');
@@ -182,7 +184,7 @@ class EateryDB {
   Future<void> clearDB({bool confirm = false}) async {
     if (!confirm) return;
     await companyBox.clear();
-    await currencyBox?.clear();
+    await currencyBox.clear();
     await expressConfigurationBox?.clear();
     await masterBox?.clear();
     await diningTableBox?.clear();
@@ -211,7 +213,7 @@ class EateryDB {
   Future<void> deleteDB({bool confirm = false}) async {
     if (!confirm) return;
     await companyBox.deleteFromDisk();
-    await currencyBox?.deleteFromDisk();
+    await currencyBox.deleteFromDisk();
     await expressConfigurationBox?.deleteFromDisk();
     await masterBox?.deleteFromDisk();
     await diningTableBox?.deleteFromDisk();
@@ -256,7 +258,6 @@ class EateryDB {
     await Hive.openBox<DiningTableCategory>('diningTableCategory_${_openedCompany?.key}');
     await Hive.openBox<ExpressConfiguration>(
         'expressConfiguration_${_openedCompany?.key}');
-    await Hive.openBox<KCurrency>('currency_${_openedCompany?.key}');
     await Hive.openBox<Master>('master_${_openedCompany?.key}');
     await Hive.openBox<PermissionType>('permission_${_openedCompany?.key}');
     await Hive.openBox<Printer>('printer_${_openedCompany?.key}');
