@@ -56,7 +56,6 @@ import 'package:eatery_db/eatery_db.dart';
   * Schema Upgrade - Akash Shah (@itsalfredakku)
   * Timestamp: 2023-06-29 00:13:00 IST
   * ****************************************
-  *
  */
 
 class EateryDB {
@@ -66,7 +65,7 @@ class EateryDB {
   ////////////////////////////////
   Box<Company> get companyBox => Hive.box<Company>('company');
   Box<Subscription> get subscriptionBox => Hive.box<Subscription>('subscription');
-  Box<KCurrency>? get currencyBox => Hive.box<KCurrency>('currency');
+  Box<KCurrency> get currencyBox => Hive.box<KCurrency>('currency');
   // Static Types
   Box<FoodType>? get foodTypeBox => Hive.box<FoodType>('foodType');
   Box<MasterType>? get masterTypeBox => Hive.box<MasterType>('masterType');
