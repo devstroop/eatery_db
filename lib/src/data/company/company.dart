@@ -5,33 +5,34 @@ part 'company.g.dart';
 @HiveType(typeId: TypeIndex.company)
 class Company extends HiveObject {
   @HiveField(0)
-  String? logo;
+  int id;
   @HiveField(1)
-  String name;
+  String? logo;
   @HiveField(2)
-  String email;
+  String name;
   @HiveField(3)
-  String phone;
+  String email;
   @HiveField(4)
-  String address;
+  String phone;
   @HiveField(5)
-  String password;
+  String address;
   @HiveField(6)
-  Edition edition; // enum
+  String password;
   @HiveField(7)
-  int? currencyId; // id?
+  Edition edition; // enum
   @HiveField(8)
-  String? salesTaxNumber;
+  int? currencyId; // id?
   @HiveField(9)
-  String? foodLicenseNo;
+  String? salesTaxNumber;
   @HiveField(10)
-  int? defaultTaxSlabId; // id?
+  String? foodLicenseNo;
   @HiveField(11)
+  int? defaultTaxSlabId; // id?
+  @HiveField(12)
   int? subscriptionId; // id?
 
   Company(
-      {
-      this.logo,
+      {this.logo,
       required this.name,
       required this.email,
       required this.phone,
@@ -42,10 +43,12 @@ class Company extends HiveObject {
       this.defaultTaxSlabId,
       this.foodLicenseNo,
       this.salesTaxNumber,
-      this.subscriptionId});
+      this.subscriptionId})
+      : id = EateryDB.instance.companyBox.nextId();
 
   Company.fromMap(Map<String, dynamic> map)
-      : logo = map['logo'],
+      : id = map['id'],
+        logo = map['logo'],
         name = map['name'],
         email = map['email'],
         phone = map['phone'],
@@ -61,6 +64,7 @@ class Company extends HiveObject {
 
   Map<String, Object?> toMap() {
     return {
+      'id': id,
       'logo': logo,
       'name': name,
       'email': email,

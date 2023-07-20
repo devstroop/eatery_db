@@ -21,13 +21,15 @@ class DiningTableCategoryAdapter extends TypeAdapter<DiningTableCategory> {
       description: fields[2] as String?,
       image: fields[3] as String?,
       isActive: fields[4] as bool,
-    );
+    )..id = fields[0] as int;
   }
 
   @override
   void write(BinaryWriter writer, DiningTableCategory obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
+      ..writeByte(0)
+      ..write(obj.id)
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)

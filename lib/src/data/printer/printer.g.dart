@@ -17,27 +17,29 @@ class PrinterAdapter extends TypeAdapter<Printer> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Printer(
-      name: fields[0] as String,
-      bluetoothAddress: fields[1] as String?,
-      usbVendorId: fields[2] as String?,
-      usbProductId: fields[3] as String?,
-      type: fields[4] as PrinterType?,
-    );
+      name: fields[1] as String,
+      bluetoothAddress: fields[2] as String?,
+      usbVendorId: fields[3] as String?,
+      usbProductId: fields[4] as String?,
+      type: fields[5] as PrinterType?,
+    )..id = fields[0] as int;
   }
 
   @override
   void write(BinaryWriter writer, Printer obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
-      ..write(obj.name)
+      ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.bluetoothAddress)
+      ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.usbVendorId)
+      ..write(obj.bluetoothAddress)
       ..writeByte(3)
-      ..write(obj.usbProductId)
+      ..write(obj.usbVendorId)
       ..writeByte(4)
+      ..write(obj.usbProductId)
+      ..writeByte(5)
       ..write(obj.type);
   }
 

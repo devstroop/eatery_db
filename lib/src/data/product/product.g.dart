@@ -17,42 +17,44 @@ class ProductAdapter extends TypeAdapter<Product> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Product(
-      name: fields[0] as String,
-      categoryId: fields[1] as int?,
-      description: fields[2] as String?,
-      image: fields[3] as String?,
-      mrpPrice: fields[4] as double,
-      salePrice: fields[5] as double?,
-      taxSlabId: fields[6] as int?,
-      foodType: fields[7] as FoodType?,
-      type: fields[8] as ProductType,
-      isActive: fields[9] as bool,
-    );
+      name: fields[1] as String,
+      categoryId: fields[2] as int?,
+      description: fields[3] as String?,
+      image: fields[4] as String?,
+      mrpPrice: fields[5] as double,
+      salePrice: fields[6] as double?,
+      taxSlabId: fields[7] as int?,
+      foodType: fields[8] as FoodType?,
+      type: fields[9] as ProductType,
+      isActive: fields[10] as bool,
+    )..id = fields[0] as int;
   }
 
   @override
   void write(BinaryWriter writer, Product obj) {
     writer
-      ..writeByte(10)
+      ..writeByte(11)
       ..writeByte(0)
-      ..write(obj.name)
+      ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.categoryId)
+      ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.description)
+      ..write(obj.categoryId)
       ..writeByte(3)
-      ..write(obj.image)
+      ..write(obj.description)
       ..writeByte(4)
-      ..write(obj.mrpPrice)
+      ..write(obj.image)
       ..writeByte(5)
-      ..write(obj.salePrice)
+      ..write(obj.mrpPrice)
       ..writeByte(6)
-      ..write(obj.taxSlabId)
+      ..write(obj.salePrice)
       ..writeByte(7)
-      ..write(obj.foodType)
+      ..write(obj.taxSlabId)
       ..writeByte(8)
-      ..write(obj.type)
+      ..write(obj.foodType)
       ..writeByte(9)
+      ..write(obj.type)
+      ..writeByte(10)
       ..write(obj.isActive);
   }
 

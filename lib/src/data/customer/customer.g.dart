@@ -17,36 +17,38 @@ class CustomerAdapter extends TypeAdapter<Customer> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Customer(
-      name: fields[0] as String,
-      phone: fields[1] as String?,
-      email: fields[2] as String?,
-      address: fields[3] as String?,
-      landmark: fields[4] as String?,
-      latitude: fields[5] as double?,
-      longitude: fields[6] as double?,
-      isActive: fields[7] as bool,
-    );
+      name: fields[1] as String,
+      phone: fields[2] as String?,
+      email: fields[3] as String?,
+      address: fields[4] as String?,
+      landmark: fields[5] as String?,
+      latitude: fields[6] as double?,
+      longitude: fields[7] as double?,
+      isActive: fields[8] as bool,
+    )..id = fields[0] as int;
   }
 
   @override
   void write(BinaryWriter writer, Customer obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(9)
       ..writeByte(0)
-      ..write(obj.name)
+      ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.phone)
+      ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.email)
+      ..write(obj.phone)
       ..writeByte(3)
-      ..write(obj.address)
+      ..write(obj.email)
       ..writeByte(4)
-      ..write(obj.landmark)
+      ..write(obj.address)
       ..writeByte(5)
-      ..write(obj.latitude)
+      ..write(obj.landmark)
       ..writeByte(6)
-      ..write(obj.longitude)
+      ..write(obj.latitude)
       ..writeByte(7)
+      ..write(obj.longitude)
+      ..writeByte(8)
       ..write(obj.isActive);
   }
 

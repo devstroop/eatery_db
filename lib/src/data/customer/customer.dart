@@ -5,34 +5,38 @@ part 'customer.g.dart';
 @HiveType(typeId: TypeIndex.customer)
 class Customer {
   @HiveField(0)
-  String name;
+  int id;
   @HiveField(1)
-  String? phone;
+  String name;
   @HiveField(2)
-  String? email;
+  String? phone;
   @HiveField(3)
-  String? address;
+  String? email;
   @HiveField(4)
-  String? landmark;
+  String? address;
   @HiveField(5)
-  double? latitude;
+  String? landmark;
   @HiveField(6)
-  double? longitude;
+  double? latitude;
   @HiveField(7)
+  double? longitude;
+  @HiveField(8)
   bool isActive;
 
   Customer(
-      {required this.name,
+      {
+      required this.name,
       this.phone,
       this.email,
       this.address,
       this.landmark,
       this.latitude,
       this.longitude,
-      this.isActive = false});
+      this.isActive = false}): id = EateryDB.instance.customerBox.nextId();
 
   Customer.fromMap(Map<String, dynamic> map)
-      : name = map['name'],
+      : id = map['id'],
+        name = map['name'],
         phone = map['phone'],
         email = map['email'],
         address = map['address'],
@@ -43,6 +47,7 @@ class Customer {
 
   Map<String, Object?> toMap() {
     return {
+      'id': id,
       'name': name,
       'phone': phone,
       'email': email,

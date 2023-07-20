@@ -5,22 +5,26 @@ part 'subscription.g.dart';
 @HiveType(typeId: TypeIndex.subscription)
 class Subscription extends HiveObject {
   @HiveField(0)
-  String? purchaseCode;
+  int id;
   @HiveField(1)
-  DateTime? validFrom;
+  String? purchaseCode;
   @HiveField(2)
-  DateTime? validTill;
+  DateTime? validFrom;
   @HiveField(3)
+  DateTime? validTill;
+  @HiveField(4)
   SubscriptionType? subscriptionType = SubscriptionType.free;
 
   Subscription(
-      {this.purchaseCode,
+      {
+      this.purchaseCode,
       this.validFrom,
       this.validTill,
-      required this.subscriptionType});
+      required this.subscriptionType}): id = EateryDB.instance.subscriptionBox.nextId();
 
   Subscription.fromMap(Map<String, dynamic> map)
-      : purchaseCode = map['purchaseCode'],
+      : id = map['id'],
+        purchaseCode = map['purchaseCode'],
         validFrom =
             DateTime.fromMillisecondsSinceEpoch(map['validFrom'] as int? ?? 0),
         validTill =
@@ -30,6 +34,7 @@ class Subscription extends HiveObject {
 
   Map<String, Object?> toMap() {
     return {
+      'id': id,
       'name': purchaseCode,
       'validFrom': validFrom?.millisecondsSinceEpoch,
       'validTill': validTill?.millisecondsSinceEpoch,

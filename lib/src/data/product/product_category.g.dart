@@ -17,21 +17,23 @@ class ProductCategoryAdapter extends TypeAdapter<ProductCategory> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return ProductCategory(
-      name: fields[0] as String,
-      description: fields[1] as String?,
-      image: fields[2] as String?,
-    );
+      name: fields[1] as String,
+      description: fields[2] as String?,
+      image: fields[3] as String?,
+    )..id = fields[0] as int;
   }
 
   @override
   void write(BinaryWriter writer, ProductCategory obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
-      ..write(obj.name)
+      ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.description)
+      ..write(obj.name)
       ..writeByte(2)
+      ..write(obj.description)
+      ..writeByte(3)
       ..write(obj.image);
   }
 

@@ -14,7 +14,7 @@ class EateryDB {
   static final EateryDB instance = EateryDB();
 
   late Box<Company> companyBox;
-  late Box<kCurrency> currencyBox;
+  late Box<KCurrency> currencyBox;
   late Box<AutoPrint> autoPrintBox;
   late Box<Customer> customerBox;
   late Box<DiningTable> diningTableBox;
@@ -42,7 +42,7 @@ class EateryDB {
 
     // Register adapters
     Hive.registerAdapter(CompanyAdapter());
-    Hive.registerAdapter(kCurrencyAdapter());
+    Hive.registerAdapter(KCurrencyAdapter());
     Hive.registerAdapter(AutoPrintAdapter());
     Hive.registerAdapter(CustomerAdapter());
     Hive.registerAdapter(DiningTableAdapter());
@@ -64,7 +64,7 @@ class EateryDB {
 
     // Open boxes
     companyBox = await Hive.openBox<Company>('company');
-    currencyBox = await Hive.openBox<kCurrency>('currency');
+    currencyBox = await Hive.openBox<KCurrency>('currency');
     autoPrintBox = await Hive.openBox<AutoPrint>('autoPrint');
     customerBox = await Hive.openBox<Customer>('customer');
     diningTableBox = await Hive.openBox<DiningTable>('diningTable');

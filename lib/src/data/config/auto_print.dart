@@ -4,28 +4,33 @@ part 'auto_print.g.dart';
 @HiveType(typeId: TypeIndex.autoPrint)
 class AutoPrint extends HiveObject {
   @HiveField(0)
-  bool? invoicePrintEnabled;
+  int id;
   @HiveField(1)
-  bool? kotPrintEnabled;
+  bool? invoicePrintEnabled;
   @HiveField(2)
-  int? invoicePrinterId; // id?
+  bool? kotPrintEnabled;
   @HiveField(3)
+  int? invoicePrinterId; // id?
+  @HiveField(4)
   int? kotPrinterId; // id?
 
   AutoPrint(
-      {this.invoicePrintEnabled,
+      {
+      this.invoicePrintEnabled,
       this.kotPrintEnabled,
       this.invoicePrinterId,
-      this.kotPrinterId});
+      this.kotPrinterId}): id = EateryDB.instance.autoPrintBox.nextId();
 
   AutoPrint.fromMap(Map<String, dynamic> map)
-      : invoicePrintEnabled = map['invoicePrint'],
+      : id = map['id'],
+        invoicePrintEnabled = map['invoicePrint'],
         kotPrintEnabled = map['invoicePrinter'],
         invoicePrinterId = map['invoicePrinterId'],
         kotPrinterId = map['kotPrinterId'];
 
   Map<String, Object?> toMap() {
     return {
+      'id': id,
       'invoicePrint': invoicePrintEnabled,
       'kotPrint': kotPrintEnabled,
       'invoicePrinterId': invoicePrinterId,

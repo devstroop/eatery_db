@@ -17,24 +17,26 @@ class SubscriptionAdapter extends TypeAdapter<Subscription> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Subscription(
-      purchaseCode: fields[0] as String?,
-      validFrom: fields[1] as DateTime?,
-      validTill: fields[2] as DateTime?,
-      subscriptionType: fields[3] as SubscriptionType?,
-    );
+      purchaseCode: fields[1] as String?,
+      validFrom: fields[2] as DateTime?,
+      validTill: fields[3] as DateTime?,
+      subscriptionType: fields[4] as SubscriptionType?,
+    )..id = fields[0] as int;
   }
 
   @override
   void write(BinaryWriter writer, Subscription obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
-      ..write(obj.purchaseCode)
+      ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.validFrom)
+      ..write(obj.purchaseCode)
       ..writeByte(2)
-      ..write(obj.validTill)
+      ..write(obj.validFrom)
       ..writeByte(3)
+      ..write(obj.validTill)
+      ..writeByte(4)
       ..write(obj.subscriptionType);
   }
 

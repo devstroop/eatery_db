@@ -17,24 +17,26 @@ class AutoPrintAdapter extends TypeAdapter<AutoPrint> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return AutoPrint(
-      invoicePrintEnabled: fields[0] as bool?,
-      kotPrintEnabled: fields[1] as bool?,
-      invoicePrinterId: fields[2] as int?,
-      kotPrinterId: fields[3] as int?,
-    );
+      invoicePrintEnabled: fields[1] as bool?,
+      kotPrintEnabled: fields[2] as bool?,
+      invoicePrinterId: fields[3] as int?,
+      kotPrinterId: fields[4] as int?,
+    )..id = fields[0] as int;
   }
 
   @override
   void write(BinaryWriter writer, AutoPrint obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
-      ..write(obj.invoicePrintEnabled)
+      ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.kotPrintEnabled)
+      ..write(obj.invoicePrintEnabled)
       ..writeByte(2)
-      ..write(obj.invoicePrinterId)
+      ..write(obj.kotPrintEnabled)
       ..writeByte(3)
+      ..write(obj.invoicePrinterId)
+      ..writeByte(4)
       ..write(obj.kotPrinterId);
   }
 

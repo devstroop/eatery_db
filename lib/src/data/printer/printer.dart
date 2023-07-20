@@ -5,25 +5,29 @@ part 'printer.g.dart';
 @HiveType(typeId: TypeIndex.printer)
 class Printer extends HiveObject {
   @HiveField(0)
-  String name;
+  int id;
   @HiveField(1)
-  String? bluetoothAddress;
+  String name;
   @HiveField(2)
-  String? usbVendorId;
+  String? bluetoothAddress;
   @HiveField(3)
-  String? usbProductId;
+  String? usbVendorId;
   @HiveField(4)
+  String? usbProductId;
+  @HiveField(5)
   PrinterType? type; // enum?
 
   Printer(
-      {required this.name,
+      {
+      required this.name,
       this.bluetoothAddress,
       this.usbVendorId,
       this.usbProductId,
-      this.type});
+      this.type}): id = EateryDB.instance.printerBox.nextId();
 
   Printer.fromMap(Map<String, dynamic> map)
-      : name = map['name'],
+      : id = map['id'],
+        name = map['name'],
         bluetoothAddress = map['bluetoothAddress'],
         usbVendorId = map['usbVendorId'],
         usbProductId = map['usbProductId'],
@@ -32,6 +36,7 @@ class Printer extends HiveObject {
 
   Map<String, Object?> toMap() {
     return {
+      'id': id,
       'name': name,
       'bluetoothAddress': bluetoothAddress,
       'usbVendorId': usbVendorId,

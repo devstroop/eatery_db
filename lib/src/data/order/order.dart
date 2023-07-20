@@ -5,34 +5,37 @@ part 'order.g.dart';
 @HiveType(typeId: TypeIndex.order)
 class Order extends HiveObject {
   @HiveField(0)
-  Customer customer; // model
+  int id;
   @HiveField(1)
-  DateTime createdAt; // obj
+  Customer customer; // model
   @HiveField(2)
-  DateTime? updatedAt; // obj
+  DateTime createdAt; // obj
   @HiveField(3)
-  double taxable;
+  DateTime? updatedAt; // obj
   @HiveField(4)
-  double? taxTotal;
+  double taxable;
   @HiveField(5)
-  double? discountTotal;
+  double? taxTotal;
   @HiveField(6)
-  double? serviceCharges;
+  double? discountTotal;
   @HiveField(7)
-  double? otherCharges;
+  double? serviceCharges;
   @HiveField(8)
-  double? roundOff;
+  double? otherCharges;
   @HiveField(9)
-  double finalTotal;
+  double? roundOff;
   @HiveField(10)
-  bool isPaid;
+  double finalTotal;
   @HiveField(11)
-  bool isClosed;
+  bool isPaid;
   @HiveField(12)
+  bool isClosed;
+  @HiveField(13)
   OrderType type; // enum
 
   Order(
-      {required this.customer,
+      {
+      required this.customer,
       this.updatedAt,
       this.taxable = 0.0,
       this.taxTotal,
@@ -43,10 +46,12 @@ class Order extends HiveObject {
       this.finalTotal = 0.0,
       this.isPaid = false,
       this.isClosed = false,
-      required this.type}) : createdAt = DateTime.now();
+      required this.type})
+      : createdAt = DateTime.now(), id = EateryDB.instance.orderBox.nextId();
 
   Order.fromMap(Map<String, dynamic> map)
-      : customer = Customer.fromMap(map['customer']),
+      : id = map['id'],
+        customer = Customer.fromMap(map['customer']),
         createdAt = DateTime.parse(map['createdAt'] as String),
         updatedAt = DateTime.parse(map['updatedAt'] as String),
         taxable = map['taxable'],
@@ -63,6 +68,7 @@ class Order extends HiveObject {
 
   Map<String, Object?> toMap() {
     return {
+      'id': id,
       'customer': customer.toMap(),
       'createdAt': createdAt.toIso8601String(),
       'updatedAt': updatedAt != null ? updatedAt!.toIso8601String() : null,
