@@ -13,8 +13,6 @@ class Waiter extends HiveObject {
   @HiveField(3)
   String? phone;
   @HiveField(4)
-  int? age;
-  @HiveField(5)
   bool isActive;
 
   Waiter(
@@ -22,7 +20,6 @@ class Waiter extends HiveObject {
       required this.name,
       this.photo,
       this.phone,
-      this.age,
       required this.isActive});
 
   Waiter.fromMap(Map<String, dynamic> map)
@@ -30,7 +27,6 @@ class Waiter extends HiveObject {
         name = map['name'],
         photo = map['photo'],
         phone = map['phone'],
-        age = map['age'],
         isActive = map['isActive'];
 
   Map<String, Object?> toMap() {
@@ -39,7 +35,6 @@ class Waiter extends HiveObject {
       'name': name,
       'photo': photo,
       'phone': phone,
-      'age': age,
       'isActive': isActive
     };
   }
