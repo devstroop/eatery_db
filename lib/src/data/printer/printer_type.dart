@@ -1,7 +1,7 @@
 import 'package:eatery_db/eatery_db.dart';
 part 'printer_type.g.dart';
 
-@HiveType(typeId: 51)
+@HiveType(typeId: TypeIndex.printerType)
 enum PrinterType {
   @HiveField(0, defaultValue: true)
   bluetooth,

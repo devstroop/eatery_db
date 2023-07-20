@@ -2,7 +2,7 @@ import 'package:eatery_db/eatery_db.dart';
 
 part 'printer.g.dart';
 
-@HiveType(typeId: 50)
+@HiveType(typeId: TypeIndex.printer)
 class Printer extends HiveObject {
   @HiveField(0)
   int id;

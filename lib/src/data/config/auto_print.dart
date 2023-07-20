@@ -1,7 +1,7 @@
 import 'package:eatery_db/eatery_db.dart';
 part 'auto_print.g.dart';
 
-@HiveType(typeId: 10)
+@HiveType(typeId: TypeIndex.autoPrint)
 class AutoPrint extends HiveObject {
   @HiveField(0)
   bool? invoicePrintEnabled;

@@ -2,7 +2,7 @@ import 'package:eatery_db/eatery_db.dart';
 
 part 'waiter.g.dart';
 
-@HiveType(typeId: 90)
+@HiveType(typeId: TypeIndex.waiter)
 class Waiter extends HiveObject {
   @HiveField(0)
   int id;

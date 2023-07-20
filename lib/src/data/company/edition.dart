@@ -1,7 +1,7 @@
 import 'package:eatery_db/eatery_db.dart';
 part 'edition.g.dart';
 
-@HiveType(typeId: 2)
+@HiveType(typeId: TypeIndex.edition)
 enum Edition {
   @HiveField(0, defaultValue: true)
   gst,

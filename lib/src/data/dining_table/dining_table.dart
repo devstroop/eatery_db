@@ -2,7 +2,7 @@ import 'package:eatery_db/eatery_db.dart';
 
 part 'dining_table.g.dart';
 
-@HiveType(typeId: 30)
+@HiveType(typeId: TypeIndex.diningTable)
 class DiningTable extends HiveObject {
   @HiveField(0)
   int id;

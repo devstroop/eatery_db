@@ -2,7 +2,7 @@ import 'package:eatery_db/eatery_db.dart';
 
 part 'subscription.g.dart';
 
-@HiveType(typeId: 70)
+@HiveType(typeId: TypeIndex.subscription)
 class Subscription extends HiveObject {
   @HiveField(0)
   int id;

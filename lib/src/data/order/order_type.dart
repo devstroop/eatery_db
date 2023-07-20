@@ -1,7 +1,7 @@
 import 'package:eatery_db/eatery_db.dart';
 part 'order_type.g.dart';
 
-@HiveType(typeId: 42)
+@HiveType(typeId: TypeIndex.orderType)
 enum OrderType {
   @HiveField(0, defaultValue: true)
   dine,

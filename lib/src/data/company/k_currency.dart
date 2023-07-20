@@ -2,7 +2,7 @@ import 'package:eatery_db/eatery_db.dart';
 
 part 'k_currency.g.dart';
 
-@HiveType(typeId: 1)
+@HiveType(typeId: TypeIndex.currency)
 class kCurrency extends HiveObject {
   @HiveField(0)
   int id;

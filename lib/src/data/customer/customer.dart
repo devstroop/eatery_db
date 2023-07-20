@@ -2,7 +2,7 @@ import 'package:eatery_db/eatery_db.dart';
 
 part 'customer.g.dart';
 
-@HiveType(typeId: 20)
+@HiveType(typeId: TypeIndex.customer)
 class Customer {
   @HiveField(0)
   int id;

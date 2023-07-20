@@ -2,7 +2,7 @@ import 'package:eatery_db/eatery_db.dart';
 
 part 'tax_slab.g.dart';
 
-@HiveType(typeId: 80)
+@HiveType(typeId: TypeIndex.taxSlab)
 class TaxSlab extends HiveObject {
   @HiveField(0)
   int id;

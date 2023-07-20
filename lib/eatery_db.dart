@@ -24,3 +24,26 @@ export 'src/data/tax/tax_type.dart';
 export 'src/data/product/product_type.dart';
 export 'src/data/eatery_db.dart';
 export 'src/extensions/box.extension.dart';
+
+class TypeIndex{
+  static const company = 0;
+  static const customer = 1;
+  static const diningTable = 2;
+  static const diningTableCategory = 3;
+  static const order = 4;
+  static const orderType = 5;
+  static const printer = 6;
+  static const printerType = 7;
+  static const product = 8;
+  static const productCategory = 9;
+  static const productType = 10;
+  static const foodType = 11;
+  static const subscription = 12;
+  static const subscriptionType = 13;
+  static const taxSlab = 14;
+  static const taxType = 15;
+  static const waiter = 16;
+  static const edition = 17;
+  static const currency = 18;
+  static const autoPrint = 19;
+}

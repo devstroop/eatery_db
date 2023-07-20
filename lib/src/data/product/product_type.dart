@@ -1,7 +1,7 @@
 import 'package:eatery_db/eatery_db.dart';
 part 'product_type.g.dart';
 
-@HiveType(typeId: 63)
+@HiveType(typeId: TypeIndex.productType)
 enum ProductType {
   @HiveField(0, defaultValue: true)
   kitchenDish,

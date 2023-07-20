@@ -2,7 +2,7 @@ import 'package:eatery_db/eatery_db.dart';
 
 part 'product.g.dart';
 
-@HiveType(typeId: 60)
+@HiveType(typeId: TypeIndex.product)
 class Product extends HiveObject {
   @HiveField(0)
   int id;

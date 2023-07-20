@@ -1,7 +1,7 @@
 import 'package:eatery_db/eatery_db.dart';
 part 'subscription_type.g.dart';
 
-@HiveType(typeId: 71)
+@HiveType(typeId: TypeIndex.subscriptionType)
 enum SubscriptionType {
   @HiveField(0, defaultValue: true)
   free,

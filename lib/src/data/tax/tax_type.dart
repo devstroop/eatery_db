@@ -1,7 +1,7 @@
 import 'package:eatery_db/eatery_db.dart';
 part 'tax_type.g.dart';
 
-@HiveType(typeId: 81)
+@HiveType(typeId: TypeIndex.taxType)
 enum TaxType {
   @HiveField(0, defaultValue: true)
   inclusive,

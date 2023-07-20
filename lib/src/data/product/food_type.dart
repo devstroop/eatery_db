@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 part 'food_type.g.dart';
 
-@HiveType(typeId: 62)
+@HiveType(typeId: TypeIndex.foodType)
 enum FoodType {
   @HiveField(0, defaultValue: true)
   veg,

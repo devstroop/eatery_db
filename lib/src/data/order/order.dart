@@ -2,7 +2,7 @@ import 'package:eatery_db/eatery_db.dart';
 
 part 'order.g.dart';
 
-@HiveType(typeId: 40)
+@HiveType(typeId: TypeIndex.order)
 class Order extends HiveObject {
   @HiveField(0)
   int id;
