@@ -239,20 +239,12 @@ class EateryDB {
     await voucherTypeBox?.deleteFromDisk();
   }
 
-  Future<void> openCompany(
-      int companyKey, String username, String passHash) async {
+  Future<void> openCompany(int companyKey) async {
     Company? company = companyBox.get(companyKey);
     if (company == null) {
       throw Exception('Company not found');
     }
-    _loggedInUser = userBox?.values.firstWhere(
-        (element) =>
-            element.username.toLowerCase().trim() ==
-                username.toLowerCase().trim() &&
-            element.passHash?.toLowerCase().trim() ==
-                passHash.toLowerCase().trim(), orElse: () {
-      throw Exception('Invalid username or password');
-    });
+    
     _openedCompany = company;
     await Hive.openBox<DiningTable>('diningTable_${_openedCompany?.key}');
     await Hive.openBox<DiningTableCategory>('diningTableCategory_${_openedCompany?.key}');
