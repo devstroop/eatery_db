@@ -17,7 +17,6 @@ class TaxSlabAdapter extends TypeAdapter<TaxSlab> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return TaxSlab(
-      id: fields[0] as int,
       name: fields[1] as String,
       rate: fields[2] as double,
       type: fields[3] as TaxType,
@@ -27,9 +26,7 @@ class TaxSlabAdapter extends TypeAdapter<TaxSlab> {
   @override
   void write(BinaryWriter writer, TaxSlab obj) {
     writer
-      ..writeByte(4)
-      ..writeByte(0)
-      ..write(obj.id)
+      ..writeByte(3)
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)

@@ -5,31 +5,28 @@ part 'product.g.dart';
 @HiveType(typeId: TypeIndex.product)
 class Product extends HiveObject {
   @HiveField(0)
-  int id;
-  @HiveField(1)
   String name;
-  @HiveField(2)
+  @HiveField(1)
   int? categoryId; // id?
-  @HiveField(3)
+  @HiveField(2)
   String? description;
-  @HiveField(4)
+  @HiveField(3)
   String? image;
-  @HiveField(5)
+  @HiveField(4)
   double mrpPrice;
-  @HiveField(6)
+  @HiveField(5)
   double? salePrice;
-  @HiveField(7)
+  @HiveField(6)
   int? taxSlabId; // id?
-  @HiveField(8)
+  @HiveField(7)
   FoodType? foodType; // enum?
-  @HiveField(9)
+  @HiveField(8)
   ProductType type; // enum
-  @HiveField(10)
+  @HiveField(9)
   bool isActive;
 
   Product(
-      {required this.id,
-      required this.name,
+      {required this.name,
       this.categoryId,
       this.description,
       this.image,
@@ -41,8 +38,7 @@ class Product extends HiveObject {
       required this.isActive});
 
   Product.fromMap(Map<String, dynamic> map)
-      : id = map['_id'],
-        name = map['name'],
+      : name = map['name'],
         categoryId = map['categoryId'],
         description = map['description'],
         image = map['image'],
@@ -57,7 +53,6 @@ class Product extends HiveObject {
 
   Map<String, Object?> toMap() {
     return {
-      '_id': id,
       'name': name,
       'categoryId': categoryId,
       'description': description,

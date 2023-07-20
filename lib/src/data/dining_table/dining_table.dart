@@ -5,22 +5,20 @@ part 'dining_table.g.dart';
 @HiveType(typeId: TypeIndex.diningTable)
 class DiningTable extends HiveObject {
   @HiveField(0)
-  int id;
-  @HiveField(1)
   String name;
-  @HiveField(2)
+  @HiveField(1)
   int? categoryId; // id?
-  @HiveField(3)
+  @HiveField(2)
   String? description;
-  @HiveField(4)
+  @HiveField(3)
   String? image;
-  @HiveField(5)
+  @HiveField(4)
   int? orderId; // id?
-  @HiveField(6)
+  @HiveField(5)
   bool isActive;
 
   DiningTable(
-      {required this.id,
+      {
       required this.name,
       this.categoryId,
       this.description,
@@ -29,8 +27,7 @@ class DiningTable extends HiveObject {
       this.isActive = false});
 
   DiningTable.fromMap(Map<String, dynamic> map)
-      : id = map['_id'],
-        name = map['name'],
+      : name = map['name'],
         categoryId = map['categoryId'],
         description = map['description'],
         image = map['image'],
@@ -39,7 +36,6 @@ class DiningTable extends HiveObject {
 
   Map<String, Object?> toMap() {
     return {
-      '_id': id,
       'name': name,
       'categoryId': categoryId,
       'description': description,

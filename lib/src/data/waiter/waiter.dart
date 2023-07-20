@@ -5,33 +5,28 @@ part 'waiter.g.dart';
 @HiveType(typeId: TypeIndex.waiter)
 class Waiter extends HiveObject {
   @HiveField(0)
-  int id;
-  @HiveField(1)
   String name;
-  @HiveField(2)
+  @HiveField(1)
   String? photo;
-  @HiveField(3)
+  @HiveField(2)
   String? phone;
-  @HiveField(4)
+  @HiveField(3)
   bool isActive;
 
   Waiter(
-      {required this.id,
-      required this.name,
+      {required this.name,
       this.photo,
       this.phone,
       required this.isActive});
 
   Waiter.fromMap(Map<String, dynamic> map)
-      : id = map['_id'],
-        name = map['name'],
+      : name = map['name'],
         photo = map['photo'],
         phone = map['phone'],
         isActive = map['isActive'];
 
   Map<String, Object?> toMap() {
     return {
-      '_id': id,
       'name': name,
       'photo': photo,
       'phone': phone,

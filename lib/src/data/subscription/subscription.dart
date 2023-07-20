@@ -5,26 +5,22 @@ part 'subscription.g.dart';
 @HiveType(typeId: TypeIndex.subscription)
 class Subscription extends HiveObject {
   @HiveField(0)
-  int id;
-  @HiveField(1)
   String? purchaseCode;
-  @HiveField(2)
+  @HiveField(1)
   DateTime? validFrom;
-  @HiveField(3)
+  @HiveField(2)
   DateTime? validTill;
-  @HiveField(4)
+  @HiveField(3)
   SubscriptionType? subscriptionType = SubscriptionType.free;
 
   Subscription(
-      {required this.id,
-      this.purchaseCode,
+      {this.purchaseCode,
       this.validFrom,
       this.validTill,
       required this.subscriptionType});
 
   Subscription.fromMap(Map<String, dynamic> map)
-      : id = map['_id'],
-        purchaseCode = map['purchaseCode'],
+      : purchaseCode = map['purchaseCode'],
         validFrom =
             DateTime.fromMillisecondsSinceEpoch(map['validFrom'] as int? ?? 0),
         validTill =
@@ -34,7 +30,6 @@ class Subscription extends HiveObject {
 
   Map<String, Object?> toMap() {
     return {
-      '_id': id,
       'name': purchaseCode,
       'validFrom': validFrom?.millisecondsSinceEpoch,
       'validTill': validTill?.millisecondsSinceEpoch,

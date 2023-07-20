@@ -5,27 +5,24 @@ part 'customer.g.dart';
 @HiveType(typeId: TypeIndex.customer)
 class Customer {
   @HiveField(0)
-  int id;
-  @HiveField(1)
   String name;
-  @HiveField(2)
+  @HiveField(1)
   String? phone;
-  @HiveField(3)
+  @HiveField(2)
   String? email;
-  @HiveField(4)
+  @HiveField(3)
   String? address;
-  @HiveField(5)
+  @HiveField(4)
   String? landmark;
-  @HiveField(6)
+  @HiveField(5)
   double? latitude;
-  @HiveField(7)
+  @HiveField(6)
   double? longitude;
-  @HiveField(8)
+  @HiveField(7)
   bool isActive;
 
   Customer(
-      {required this.id,
-      required this.name,
+      {required this.name,
       this.phone,
       this.email,
       this.address,
@@ -35,8 +32,7 @@ class Customer {
       this.isActive = false});
 
   Customer.fromMap(Map<String, dynamic> map)
-      : id = map['_id'],
-        name = map['name'],
+      : name = map['name'],
         phone = map['phone'],
         email = map['email'],
         address = map['address'],
@@ -47,7 +43,6 @@ class Customer {
 
   Map<String, Object?> toMap() {
     return {
-      '_id': id,
       'name': name,
       'phone': phone,
       'email': email,

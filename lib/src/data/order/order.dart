@@ -5,37 +5,34 @@ part 'order.g.dart';
 @HiveType(typeId: TypeIndex.order)
 class Order extends HiveObject {
   @HiveField(0)
-  int id;
-  @HiveField(1)
   Customer customer; // model
-  @HiveField(2)
+  @HiveField(1)
   DateTime createdAt; // obj
-  @HiveField(3)
+  @HiveField(2)
   DateTime? updatedAt; // obj
-  @HiveField(4)
+  @HiveField(3)
   double taxable;
-  @HiveField(5)
+  @HiveField(4)
   double? taxTotal;
-  @HiveField(6)
+  @HiveField(5)
   double? discountTotal;
-  @HiveField(7)
+  @HiveField(6)
   double? serviceCharges;
-  @HiveField(8)
+  @HiveField(7)
   double? otherCharges;
-  @HiveField(9)
+  @HiveField(8)
   double? roundOff;
-  @HiveField(10)
+  @HiveField(9)
   double finalTotal;
-  @HiveField(11)
+  @HiveField(10)
   bool isPaid;
-  @HiveField(12)
+  @HiveField(11)
   bool isClosed;
-  @HiveField(13)
+  @HiveField(12)
   OrderType type; // enum
 
   Order(
-      {required this.id,
-      required this.customer,
+      {required this.customer,
       this.updatedAt,
       this.taxable = 0.0,
       this.taxTotal,
@@ -49,8 +46,7 @@ class Order extends HiveObject {
       required this.type}) : createdAt = DateTime.now();
 
   Order.fromMap(Map<String, dynamic> map)
-      : id = map['_id'],
-        customer = Customer.fromMap(map['customer']),
+      : customer = Customer.fromMap(map['customer']),
         createdAt = DateTime.parse(map['createdAt'] as String),
         updatedAt = DateTime.parse(map['updatedAt'] as String),
         taxable = map['taxable'],
@@ -67,7 +63,6 @@ class Order extends HiveObject {
 
   Map<String, Object?> toMap() {
     return {
-      '_id': id,
       'customer': customer.toMap(),
       'createdAt': createdAt.toIso8601String(),
       'updatedAt': updatedAt != null ? updatedAt!.toIso8601String() : null,

@@ -17,7 +17,6 @@ class DiningTableCategoryAdapter extends TypeAdapter<DiningTableCategory> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return DiningTableCategory(
-      id: fields[0] as int,
       name: fields[1] as String,
       description: fields[2] as String?,
       image: fields[3] as String?,
@@ -28,9 +27,7 @@ class DiningTableCategoryAdapter extends TypeAdapter<DiningTableCategory> {
   @override
   void write(BinaryWriter writer, DiningTableCategory obj) {
     writer
-      ..writeByte(5)
-      ..writeByte(0)
-      ..write(obj.id)
+      ..writeByte(4)
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)

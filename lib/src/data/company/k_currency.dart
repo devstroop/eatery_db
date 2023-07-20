@@ -5,32 +5,29 @@ part 'k_currency.g.dart';
 @HiveType(typeId: TypeIndex.currency)
 class kCurrency extends HiveObject {
   @HiveField(0)
-  int id;
-  @HiveField(1)
   String code;
-  @HiveField(2)
+  @HiveField(1)
   String name;
-  @HiveField(3)
+  @HiveField(2)
   String symbol;
-  @HiveField(4)
+  @HiveField(3)
   String? flag;
-  @HiveField(5)
+  @HiveField(4)
   int number;
-  @HiveField(6)
+  @HiveField(5)
   int decimalDigits;
-  @HiveField(7)
+  @HiveField(6)
   String namePlural;
-  @HiveField(8)
+  @HiveField(7)
   String decimalSeparator;
-  @HiveField(9)
+  @HiveField(98)
   String thousandsSeparator;
-  @HiveField(10)
+  @HiveField(9)
   bool symbolOnLeft;
-  @HiveField(11)
+  @HiveField(10)
   bool spaceBetweenAmountAndSymbol;
 
   kCurrency({
-    required this.id,
     required this.name,
     required this.code,
     required this.symbol,
@@ -45,8 +42,7 @@ class kCurrency extends HiveObject {
   });
 
   kCurrency.fromMap(Map<String, dynamic> map)
-      : id = map['_id'],
-        name = map['name'],
+      : name = map['name'],
         code = map['code'],
         symbol = map['symbol'],
         flag = map['flag'],
@@ -60,7 +56,6 @@ class kCurrency extends HiveObject {
 
   Map<String, Object?> toMap() {
     return {
-      '_id': id,
       'name': name,
       'code': code,
       'symbol': symbol,

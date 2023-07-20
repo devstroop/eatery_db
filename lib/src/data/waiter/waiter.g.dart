@@ -17,27 +17,24 @@ class WaiterAdapter extends TypeAdapter<Waiter> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Waiter(
-      id: fields[0] as int,
-      name: fields[1] as String,
-      photo: fields[2] as String?,
-      phone: fields[3] as String?,
-      isActive: fields[4] as bool,
+      name: fields[0] as String,
+      photo: fields[1] as String?,
+      phone: fields[2] as String?,
+      isActive: fields[3] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, Waiter obj) {
     writer
-      ..writeByte(5)
-      ..writeByte(0)
-      ..write(obj.id)
-      ..writeByte(1)
-      ..write(obj.name)
-      ..writeByte(2)
-      ..write(obj.photo)
-      ..writeByte(3)
-      ..write(obj.phone)
       ..writeByte(4)
+      ..writeByte(0)
+      ..write(obj.name)
+      ..writeByte(1)
+      ..write(obj.photo)
+      ..writeByte(2)
+      ..write(obj.phone)
+      ..writeByte(3)
       ..write(obj.isActive);
   }
 

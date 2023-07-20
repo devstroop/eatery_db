@@ -5,34 +5,32 @@ part 'company.g.dart';
 @HiveType(typeId: TypeIndex.company)
 class Company extends HiveObject {
   @HiveField(0)
-  int id;
-  @HiveField(1)
   String? logo;
-  @HiveField(2)
+  @HiveField(1)
   String name;
-  @HiveField(3)
+  @HiveField(2)
   String email;
-  @HiveField(4)
+  @HiveField(3)
   String phone;
-  @HiveField(5)
+  @HiveField(4)
   String address;
-  @HiveField(6)
+  @HiveField(5)
   String password;
-  @HiveField(7)
+  @HiveField(6)
   Edition edition; // enum
-  @HiveField(8)
+  @HiveField(7)
   int? currencyId; // id?
-  @HiveField(9)
+  @HiveField(8)
   String? salesTaxNumber;
-  @HiveField(10)
+  @HiveField(9)
   String? foodLicenseNo;
-  @HiveField(11)
+  @HiveField(10)
   int? defaultTaxSlabId; // id?
-  @HiveField(12)
+  @HiveField(11)
   int? subscriptionId; // id?
 
   Company(
-      {required this.id,
+      {
       this.logo,
       required this.name,
       required this.email,
@@ -47,8 +45,7 @@ class Company extends HiveObject {
       this.subscriptionId});
 
   Company.fromMap(Map<String, dynamic> map)
-      : id = map['_id'],
-        logo = map['logo'],
+      : logo = map['logo'],
         name = map['name'],
         email = map['email'],
         phone = map['phone'],
@@ -64,7 +61,6 @@ class Company extends HiveObject {
 
   Map<String, Object?> toMap() {
     return {
-      '_id': id,
       'logo': logo,
       'name': name,
       'email': email,
