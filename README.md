@@ -7,7 +7,7 @@
 
 <h2 align="center">Made with ❤ by Devstroop Technologies</h2>
 
-### Build
+## Build
 
 Run the following command in the root of the project to generate the required files.
 `Depricated`
