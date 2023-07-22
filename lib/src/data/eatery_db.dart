@@ -25,7 +25,7 @@ class EateryDB {
   late Box<ProductCategory> productCategoryBox;
   late Box<Subscription> subscriptionBox;
   late Box<TaxSlab> taxSlabBox;
-  late Box<Waiter> waiterBox;
+  late Box<Staff> staffBox;
   late Box<TaxType> taxTypeBox;
   late Box<ProductType> productTypeBox;
   late Box<FoodType> foodTypeBox;
@@ -53,7 +53,7 @@ class EateryDB {
     Hive.registerAdapter(ProductCategoryAdapter());
     Hive.registerAdapter(SubscriptionAdapter());
     Hive.registerAdapter(TaxSlabAdapter());
-    Hive.registerAdapter(WaiterAdapter());
+    Hive.registerAdapter(StaffAdapter());
     Hive.registerAdapter(EditionAdapter());
     Hive.registerAdapter(OrderTypeAdapter());
     Hive.registerAdapter(PrinterTypeAdapter());
@@ -76,7 +76,7 @@ class EateryDB {
     productCategoryBox = await Hive.openBox<ProductCategory>('productCategory');
     subscriptionBox = await Hive.openBox<Subscription>('subscription');
     taxSlabBox = await Hive.openBox<TaxSlab>('taxSlab');
-    waiterBox = await Hive.openBox<Waiter>('waiter');
+    staffBox = await Hive.openBox<Staff>('staff');
     editionBox = await Hive.openBox<Edition>('edition');
     orderTypeBox = await Hive.openBox<OrderType>('orderType');
     printerTypeBox = await Hive.openBox<PrinterType>('printerType');

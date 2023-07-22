@@ -24,7 +24,8 @@ export 'src/data/printer/printer.dart';
 export 'src/data/product/product.dart';
 export 'src/data/product/product_category.dart';
 export 'src/data/tax/tax_slab.dart';
-export 'src/data/waiter/waiter.dart';
+export 'src/data/staff/staff.dart';
+export 'src/data/staff/staff_type.dart';
 export 'src/data/tax/tax_type.dart';
 export 'src/data/product/product_type.dart';
 export 'src/data/eatery_db.dart';
@@ -52,8 +53,9 @@ class TypeIndex{
   static const subscriptionType = 13;
   static const taxSlab = 14;
   static const taxType = 15;
-  static const waiter = 16;
-  static const edition = 17;
-  static const currency = 18;
-  static const autoPrint = 19;
+  static const staff = 16;
+  static const staffType = 17;
+  static const edition = 18;
+  static const currency = 19;
+  static const autoPrint = 20;
 }

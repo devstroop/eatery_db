@@ -8,7 +8,7 @@ part of 'k_currency.dart';
 
 class KCurrencyAdapter extends TypeAdapter<KCurrency> {
   @override
-  final int typeId = 18;
+  final int typeId = 19;
 
   @override
   KCurrency read(BinaryReader reader) {

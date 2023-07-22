@@ -1,33 +1,34 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'waiter.dart';
+part of 'staff.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class WaiterAdapter extends TypeAdapter<Waiter> {
+class StaffAdapter extends TypeAdapter<Staff> {
   @override
   final int typeId = 16;
 
   @override
-  Waiter read(BinaryReader reader) {
+  Staff read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Waiter(
+    return Staff(
       name: fields[1] as String,
       photo: fields[2] as String?,
       phone: fields[3] as String?,
-      isActive: fields[4] as bool,
+      type: fields[4] as StaffType,
+      isActive: fields[5] as bool,
     )..id = fields[0] as int;
   }
 
   @override
-  void write(BinaryWriter writer, Waiter obj) {
+  void write(BinaryWriter writer, Staff obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -37,6 +38,8 @@ class WaiterAdapter extends TypeAdapter<Waiter> {
       ..writeByte(3)
       ..write(obj.phone)
       ..writeByte(4)
+      ..write(obj.type)
+      ..writeByte(5)
       ..write(obj.isActive);
   }
 
@@ -46,7 +49,7 @@ class WaiterAdapter extends TypeAdapter<Waiter> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is WaiterAdapter &&
+      other is StaffAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

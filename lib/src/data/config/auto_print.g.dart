@@ -8,7 +8,7 @@ part of 'auto_print.dart';
 
 class AutoPrintAdapter extends TypeAdapter<AutoPrint> {
   @override
-  final int typeId = 19;
+  final int typeId = 20;
 
   @override
   AutoPrint read(BinaryReader reader) {

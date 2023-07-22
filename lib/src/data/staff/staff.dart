@@ -1,9 +1,9 @@
 import 'package:eatery_db/eatery_db.dart';
 
-part 'waiter.g.dart';
+part 'staff.g.dart';
 
-@HiveType(typeId: TypeIndex.waiter)
-class Waiter extends HiveObject {
+@HiveType(typeId: TypeIndex.staff)
+class Staff extends HiveObject {
   @HiveField(0)
   int id;
   @HiveField(1)
@@ -13,20 +13,24 @@ class Waiter extends HiveObject {
   @HiveField(3)
   String? phone;
   @HiveField(4)
+  StaffType type;
+  @HiveField(5)
   bool isActive;
 
-  Waiter(
+  Staff(
       {
       required this.name,
       this.photo,
       this.phone,
-      required this.isActive}) : id = EateryDB.instance.waiterBox.nextId();
+      required this.type,
+      required this.isActive}) : id = EateryDB.instance.staffBox.nextId();
 
-  Waiter.fromMap(Map<String, dynamic> map)
+  Staff.fromMap(Map<String, dynamic> map)
       : id = map['id'],
         name = map['name'],
         photo = map['photo'],
         phone = map['phone'],
+        type = StaffType.values.singleWhere((element) => element.id == map['type']),
         isActive = map['isActive'];
 
   Map<String, Object?> toMap() {
@@ -35,6 +39,7 @@ class Waiter extends HiveObject {
       'name': name,
       'photo': photo,
       'phone': phone,
+      'type': type.id,
       'isActive': isActive
     };
   }

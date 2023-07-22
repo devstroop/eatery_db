@@ -1,35 +1,45 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'edition.dart';
+part of 'staff_type.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class EditionAdapter extends TypeAdapter<Edition> {
+class StaffTypeAdapter extends TypeAdapter<StaffType> {
   @override
-  final int typeId = 18;
+  final int typeId = 17;
 
   @override
-  Edition read(BinaryReader reader) {
+  StaffType read(BinaryReader reader) {
     switch (reader.readByte()) {
       case 0:
-        return Edition.gst;
+        return StaffType.waiter;
       case 1:
-        return Edition.vat;
+        return StaffType.chef;
+      case 2:
+        return StaffType.driver;
+      case 3:
+        return StaffType.other;
       default:
-        return Edition.gst;
+        return StaffType.waiter;
     }
   }
 
   @override
-  void write(BinaryWriter writer, Edition obj) {
+  void write(BinaryWriter writer, StaffType obj) {
     switch (obj) {
-      case Edition.gst:
+      case StaffType.waiter:
         writer.writeByte(0);
         break;
-      case Edition.vat:
+      case StaffType.chef:
         writer.writeByte(1);
+        break;
+      case StaffType.driver:
+        writer.writeByte(2);
+        break;
+      case StaffType.other:
+        writer.writeByte(3);
         break;
     }
   }
@@ -40,7 +50,7 @@ class EditionAdapter extends TypeAdapter<Edition> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is EditionAdapter &&
+      other is StaffTypeAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
