@@ -13,26 +13,26 @@ import 'package:eatery_db/eatery_db.dart';
 class EateryDB {
   static final EateryDB instance = EateryDB();
 
-  late Box<Company> companyBox;
-  late Box<KCurrency> currencyBox;
-  late Box<AutoPrint> autoPrintBox;
-  late Box<Customer> customerBox;
-  late Box<DiningTable> diningTableBox;
-  late Box<DiningTableCategory> diningTableCategoryBox;
-  late Box<Order> orderBox;
-  late Box<Printer> printerBox;
-  late Box<Product> productBox;
-  late Box<ProductCategory> productCategoryBox;
-  late Box<Subscription> subscriptionBox;
-  late Box<TaxSlab> taxSlabBox;
-  late Box<Staff> staffBox;
-  late Box<TaxType> taxTypeBox;
-  late Box<ProductType> productTypeBox;
-  late Box<FoodType> foodTypeBox;
-  late Box<SubscriptionType> subscriptionTypeBox;
-  late Box<Edition> editionBox;
-  late Box<OrderType> orderTypeBox;
-  late Box<PrinterType> printerTypeBox;
+  Box<Company>? companyBox;
+  Box<KCurrency>? currencyBox;
+  Box<AutoPrint>? autoPrintBox;
+  Box<Customer>? customerBox;
+  Box<DiningTable>? diningTableBox;
+  Box<DiningTableCategory>? diningTableCategoryBox;
+  Box<Order>? orderBox;
+  Box<Printer>? printerBox;
+  Box<Product>? productBox;
+  Box<ProductCategory>? productCategoryBox;
+  Box<Subscription>? subscriptionBox;
+  Box<TaxSlab>? taxSlabBox;
+  Box<Staff>? staffBox;
+  Box<TaxType>? taxTypeBox;
+  Box<ProductType>? productTypeBox;
+  Box<FoodType>? foodTypeBox;
+  Box<SubscriptionType>? subscriptionTypeBox;
+  Box<Edition>? editionBox;
+  Box<OrderType>? orderTypeBox;
+  Box<PrinterType>? printerTypeBox;
 
   Future<void> dispose() => Hive.close();
 
