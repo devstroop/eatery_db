@@ -64,14 +64,14 @@ extension OrderTypeExtension on OrderType {
     }
   }
 
-  dynamic get icon {
+  Widget? get icon {
     switch (this) {
       case OrderType.dine:
-        return UIcons.regularStraight.room_service;
+        return DineInDrawing();
       case OrderType.delivery:
-        return UIcons.regularStraight.bike;
+        return DeliveryDrawing();
       case OrderType.takeout:
-        return UIcons.regularStraight.pot;
+        return TakeAwayDrawing();
       default:
         return null;
     }
