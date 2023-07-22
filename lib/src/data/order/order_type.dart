@@ -63,17 +63,4 @@ extension OrderTypeExtension on OrderType {
         return null;
     }
   }
-
-  Widget? get icon {
-    switch (this) {
-      case OrderType.dine:
-        return DineInDrawing(color: Color(color!));
-      case OrderType.delivery:
-        return DeliveryDrawing(color: Color(color!));
-      case OrderType.takeout:
-        return TakeAwayDrawing(color: Color(color!));
-      default:
-        return null;
-    }
-  }
 }

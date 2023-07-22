@@ -20,7 +20,7 @@ class Subscription extends HiveObject {
       this.purchaseCode,
       this.validFrom,
       this.validTill,
-      required this.subscriptionType}): id = EateryDB.instance.subscriptionBox!.nextId();
+      required this.subscriptionType}): id = EateryDB.instance.subscriptionBox != null ? EateryDB.instance.subscriptionBox!.nextId() : throw 'Please wait for the database to initialize';
 
   Subscription.fromMap(Map<String, dynamic> map)
       : id = map['id'],

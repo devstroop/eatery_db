@@ -41,7 +41,7 @@ class KCurrency extends HiveObject {
     required this.thousandsSeparator,
     required this.symbolOnLeft,
     required this.spaceBetweenAmountAndSymbol,
-  }): id = EateryDB.instance.currencyBox!.nextId();
+  }): id = EateryDB.instance.currencyBox != null ? EateryDB.instance.currencyBox!.nextId() : throw 'Please wait for the database to initialize';
 
   KCurrency.fromMap(Map<String, dynamic> map)
       : id = map['id'],

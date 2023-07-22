@@ -37,6 +37,29 @@ class EateryDB {
 
   Future<void> dispose() => Hive.close();
 
+  bool isLoaded() =>
+      companyBox != null &&
+      currencyBox != null &&
+      autoPrintBox != null &&
+      customerBox != null &&
+      diningTableBox != null &&
+      diningTableCategoryBox != null &&
+      orderBox != null &&
+      printerBox != null &&
+      productBox != null &&
+      productCategoryBox != null &&
+      subscriptionBox != null &&
+      taxSlabBox != null &&
+      staffBox != null &&
+      staffTypeBox != null &&
+      taxTypeBox != null &&
+      productTypeBox != null &&
+      foodTypeBox != null &&
+      subscriptionTypeBox != null &&
+      editionBox != null &&
+      orderTypeBox != null &&
+      printerTypeBox != null;
+
   Future<void> init([String? subDir]) async {
     // Initialize hive
     await Hive.initFlutter(subDir);

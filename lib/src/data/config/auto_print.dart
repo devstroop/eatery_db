@@ -19,7 +19,7 @@ class AutoPrint extends HiveObject {
       this.invoicePrintEnabled,
       this.kotPrintEnabled,
       this.invoicePrinterId,
-      this.kotPrinterId}): id = EateryDB.instance.autoPrintBox!.nextId();
+      this.kotPrinterId}): id = EateryDB.instance.autoPrintBox != null ? EateryDB.instance.autoPrintBox!.nextId() : throw 'Please wait for the database to initialize';
 
   AutoPrint.fromMap(Map<String, dynamic> map)
       : id = map['id'],
