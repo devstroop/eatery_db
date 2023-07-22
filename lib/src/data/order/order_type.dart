@@ -67,11 +67,11 @@ extension OrderTypeExtension on OrderType {
   Widget? get icon {
     switch (this) {
       case OrderType.dine:
-        return DineInDrawing();
+        return DineInDrawing(color: Color(color!));
       case OrderType.delivery:
-        return DeliveryDrawing();
+        return DeliveryDrawing(color: Color(color!));
       case OrderType.takeout:
-        return TakeAwayDrawing();
+        return TakeAwayDrawing(color: Color(color!));
       default:
         return null;
     }

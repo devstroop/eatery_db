@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
 
 class DeliveryDrawing extends StatelessWidget {
+  final Color? color;
+
+  const DeliveryDrawing({super.key, this.color});
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      size: Size(40, 40),
-      painter: DeliveryDrawingPainter(),
+      size: const Size(40, 40),
+      painter: DeliveryDrawingPainter(color: color),
     );
   }
 }
 
 class DeliveryDrawingPainter extends CustomPainter {
+  final Color? color;
+
+  DeliveryDrawingPainter({this.color});
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.white
+      ..color = color ?? const Color(0xFF705EE0)
       ..style = PaintingStyle.fill;
 
     final path1 = Path()

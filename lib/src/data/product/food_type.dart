@@ -1,5 +1,4 @@
 import 'package:eatery_db/eatery_db.dart';
-import 'package:flutter/material.dart';
 
 part 'food_type.g.dart';
 

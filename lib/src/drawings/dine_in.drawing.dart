@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
 
 class DineInDrawing extends StatelessWidget {
+  final Color? color;
+
+  const DineInDrawing({super.key, this.color});
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      size: Size(40, 40),
-      painter: DineInPainter(),
+      size: const Size(40, 40),
+      painter: DineInPainter(color: color),
     );
   }
 }
 
 class DineInPainter extends CustomPainter {
+  final Color? color;
+
+  DineInPainter({this.color});
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.white
+      ..color = color ?? const Color(0xFFE0855E)
       ..style = PaintingStyle.fill;
 
     final path = Path()
@@ -25,7 +31,7 @@ class DineInPainter extends CustomPainter {
       ..close();
 
     final circlePath = Path()
-      ..addOval(Rect.fromCircle(center: Offset(20, 13.983), radius: 3.343));
+      ..addOval(Rect.fromCircle(center: const Offset(20, 13.983), radius: 3.343));
 
     canvas.drawPath(path, paint);
     canvas.clipPath(circlePath);

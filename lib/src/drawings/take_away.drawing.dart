@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
 
 class TakeAwayDrawing extends StatelessWidget {
+    final Color? color;
+
+  const TakeAwayDrawing({super.key, this.color});
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      size: Size(40, 40),
-      painter: TakeAwayDrawingPainter(),
+      size: const Size(40, 40),
+      painter: TakeAwayDrawingPainter(color: color),
     );
   }
 }
 
 class TakeAwayDrawingPainter extends CustomPainter {
+    final Color? color;
+
+  const TakeAwayDrawingPainter({this.color});
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.white
+      ..color = color ?? const Color(0xFF4AC3A1)
       ..style = PaintingStyle.fill;
 
     final path1 = Path()
