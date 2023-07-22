@@ -1,8 +1,11 @@
 library eatery_db;
 
-export 'package:uicons/uicons.dart';
+// export 'package:uicons/uicons.dart';
+
+// External packages
 export 'package:hive_flutter/adapters.dart';
-export 'package:currency_picker/currency_picker.dart';
+export 'package:hive/hive.dart';
+export 'package:flutter/material.dart';
 export 'dart:convert' show jsonEncode, jsonDecode;
 export 'src/data/order/order_type.dart';
 export 'src/data/printer/printer_type.dart';
@@ -25,7 +28,12 @@ export 'src/data/waiter/waiter.dart';
 export 'src/data/tax/tax_type.dart';
 export 'src/data/product/product_type.dart';
 export 'src/data/eatery_db.dart';
+// Extensions
 export 'src/extensions/box.extension.dart';
+// Drawings
+export 'src/drawings/dine_in.drawing.dart';
+export 'src/drawings/delivery.drawing.dart';
+export 'src/drawings/take_away.drawing.dart';
 
 class TypeIndex{
   static const company = 0;

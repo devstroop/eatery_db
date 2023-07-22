@@ -73,5 +73,4 @@ class KCurrency extends HiveObject {
       'spaceBetweenAmountAndSymbol': spaceBetweenAmountAndSymbol
     };
   }
-  Currency? toCurrency()  => Currency.from(json: toMap());
 }
