@@ -20,7 +20,7 @@ class DiningTableCategory extends HiveObject {
       required this.name,
       this.description,
       this.image,
-      this.isActive = false}): id = EateryDB.instance.diningTableCategoryBox.nextId();
+      this.isActive = false}): id = EateryDB.instance.diningTableCategoryBox!.nextId();
 
   DiningTableCategory.fromMap(Map<String, dynamic> map)
       : id = map['id'],

@@ -41,7 +41,7 @@ class Company extends HiveObject {
       this.foodLicenseNo,
       this.salesTaxNumber,
       this.subscriptionId})
-      : id = EateryDB.instance.companyBox.nextId();
+      : id = EateryDB.instance.companyBox!.nextId();
 
   Company.fromMap(Map<String, dynamic> map)
       : id = map['id'],

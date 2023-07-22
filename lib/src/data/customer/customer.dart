@@ -32,7 +32,7 @@ class Customer {
       this.landmark,
       this.latitude,
       this.longitude,
-      this.isActive = false}): id = EateryDB.instance.customerBox.nextId();
+      this.isActive = false}): id = EateryDB.instance.customerBox!.nextId();
 
   Customer.fromMap(Map<String, dynamic> map)
       : id = map['id'],
