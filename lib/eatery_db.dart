@@ -2,6 +2,8 @@ library eatery_db;
 
 export 'package:uicons/uicons.dart';
 export 'package:hive_flutter/adapters.dart';
+export 'package:currency_picker/currency_picker.dart';
+export 'dart:convert' show jsonEncode, jsonDecode;
 export 'src/data/order/order_type.dart';
 export 'src/data/printer/printer_type.dart';
 export 'src/data/product/food_type.dart';
