@@ -27,8 +27,6 @@ class Company extends HiveObject {
   @HiveField(10)
   String? foodLicenseNo;
   @HiveField(11)
-  int? defaultTaxSlabId; // id?
-  @HiveField(12)
   int? subscriptionId; // id?
 
   Company(
@@ -40,7 +38,6 @@ class Company extends HiveObject {
       required this.password,
       required this.edition,
       this.currencyId,
-      this.defaultTaxSlabId,
       this.foodLicenseNo,
       this.salesTaxNumber,
       this.subscriptionId})
@@ -57,7 +54,6 @@ class Company extends HiveObject {
         edition = Edition.values
             .singleWhere((element) => element.id == map['edition']),
         currencyId = map['currencyId'],
-        defaultTaxSlabId = map['defaultTaxSlabId'],
         foodLicenseNo = map['foodLicNo'],
         salesTaxNumber = map['taxLicNo'],
         subscriptionId = map['subscriptionId'];
@@ -73,7 +69,6 @@ class Company extends HiveObject {
       'password': password,
       'edition': edition.id,
       'currencyId': currencyId,
-      'defaultTaxSlabId': defaultTaxSlabId,
       'foodLicNo': foodLicenseNo,
       'taxLicNo': salesTaxNumber,
       'subscriptionId': subscriptionId
