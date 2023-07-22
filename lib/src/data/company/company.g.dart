@@ -25,17 +25,16 @@ class CompanyAdapter extends TypeAdapter<Company> {
       password: fields[6] as String,
       edition: fields[7] as Edition,
       currencyId: fields[8] as int?,
-      defaultTaxSlabId: fields[11] as int?,
       foodLicenseNo: fields[10] as String?,
       salesTaxNumber: fields[9] as String?,
-      subscriptionId: fields[12] as int?,
+      subscriptionId: fields[11] as int?,
     )..id = fields[0] as int;
   }
 
   @override
   void write(BinaryWriter writer, Company obj) {
     writer
-      ..writeByte(13)
+      ..writeByte(12)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -59,8 +58,6 @@ class CompanyAdapter extends TypeAdapter<Company> {
       ..writeByte(10)
       ..write(obj.foodLicenseNo)
       ..writeByte(11)
-      ..write(obj.defaultTaxSlabId)
-      ..writeByte(12)
       ..write(obj.subscriptionId);
   }
 
