@@ -6,7 +6,7 @@ library eatery_db;
 export 'package:hive_flutter/adapters.dart';
 export 'package:hive/hive.dart';
 export 'package:flutter/material.dart';
-// Data
+export 'dart:convert' show jsonEncode, jsonDecode;
 export 'src/data/order/order_type.dart';
 export 'src/data/printer/printer_type.dart';
 export 'src/data/product/food_type.dart';
