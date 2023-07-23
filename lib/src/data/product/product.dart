@@ -5,7 +5,7 @@ part 'product.g.dart';
 @HiveType(typeId: TypeIndex.product)
 class Product extends HiveObject {
   @HiveField(0)
-  int id;
+  int? id;
   @HiveField(1)
   String name;
   @HiveField(2)
@@ -38,7 +38,7 @@ class Product extends HiveObject {
       this.taxSlabId,
       this.foodType,
       required this.type,
-      required this.isActive}): id = EateryDB.instance.productBox!.nextId();
+      required this.isActive}): id = EateryDB.instance.productBox?.nextId();
 
   Product.fromMap(Map<String, dynamic> map)
       : id = map['id'],

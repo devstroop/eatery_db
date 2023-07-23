@@ -5,7 +5,7 @@ part 'subscription.g.dart';
 @HiveType(typeId: TypeIndex.subscription)
 class Subscription extends HiveObject {
   @HiveField(0)
-  int id;
+  int? id;
   @HiveField(1)
   String? purchaseCode;
   @HiveField(2)
@@ -20,7 +20,7 @@ class Subscription extends HiveObject {
       this.purchaseCode,
       this.validFrom,
       this.validTill,
-      required this.subscriptionType}): id = EateryDB.instance.subscriptionBox!.nextId();
+      required this.subscriptionType}): id = EateryDB.instance.subscriptionBox?.nextId();
 
   Subscription.fromMap(Map<String, dynamic> map)
       : id = map['id'],

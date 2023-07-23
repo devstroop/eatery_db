@@ -5,7 +5,7 @@ part 'order.g.dart';
 @HiveType(typeId: TypeIndex.order)
 class Order extends HiveObject {
   @HiveField(0)
-  int id;
+  int? id;
   @HiveField(1)
   Customer customer; // model
   @HiveField(2)
@@ -47,7 +47,7 @@ class Order extends HiveObject {
       this.isPaid = false,
       this.isClosed = false,
       required this.type})
-      : createdAt = DateTime.now(), id = EateryDB.instance.orderBox!.nextId();
+      : createdAt = DateTime.now(), id = EateryDB.instance.orderBox?.nextId();
 
   Order.fromMap(Map<String, dynamic> map)
       : id = map['id'],

@@ -5,7 +5,7 @@ part 'tax_slab.g.dart';
 @HiveType(typeId: TypeIndex.taxSlab)
 class TaxSlab extends HiveObject {
   @HiveField(0)
-  int id;
+  int? id;
   @HiveField(1)
   String name;
   @HiveField(2)
@@ -13,7 +13,7 @@ class TaxSlab extends HiveObject {
   @HiveField(3)
   TaxType type;
 
-  TaxSlab({required this.name, required this.rate, required this.type}): id = EateryDB.instance.taxSlabBox!.nextId();
+  TaxSlab({required this.name, required this.rate, required this.type}): id = EateryDB.instance.taxSlabBox?.nextId();
 
   TaxSlab.fromMap(Map<String, dynamic> map)
       : id = map['id'],

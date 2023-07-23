@@ -5,7 +5,7 @@ part 'dining_table.g.dart';
 @HiveType(typeId: TypeIndex.diningTable)
 class DiningTable extends HiveObject {
   @HiveField(0)
-  int id;
+  int? id;
   @HiveField(1)
   String name;
   @HiveField(2)
@@ -26,7 +26,7 @@ class DiningTable extends HiveObject {
       this.description,
       this.image,
       this.orderId,
-      this.isActive = false}): id = EateryDB.instance.diningTableBox!.nextId();
+      this.isActive = false}): id = EateryDB.instance.diningTableBox?.nextId();
 
   DiningTable.fromMap(Map<String, dynamic> map)
       : id = map['id'],

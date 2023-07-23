@@ -5,7 +5,7 @@ part 'company.g.dart';
 @HiveType(typeId: TypeIndex.company)
 class Company extends HiveObject {
   @HiveField(0)
-  int id;
+  int? id;
   @HiveField(1)
   String? logo;
   @HiveField(2)

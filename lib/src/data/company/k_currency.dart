@@ -5,7 +5,7 @@ part 'k_currency.g.dart';
 @HiveType(typeId: TypeIndex.currency)
 class KCurrency extends HiveObject {
   @HiveField(0)
-  int id;
+  int? id;
   @HiveField(1)
   String code;
   @HiveField(2)
@@ -41,7 +41,7 @@ class KCurrency extends HiveObject {
     required this.thousandsSeparator,
     required this.symbolOnLeft,
     required this.spaceBetweenAmountAndSymbol,
-  }): id = EateryDB.instance.currencyBox!.nextId();
+  }): id = EateryDB.instance.currencyBox?.nextId();
 
   KCurrency.fromMap(Map<String, dynamic> map)
       : id = map['id'],
