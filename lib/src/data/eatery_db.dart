@@ -13,52 +13,52 @@ import 'package:eatery_db/eatery_db.dart';
 class EateryDB {
   static final EateryDB instance = EateryDB();
 
-  Box<Company>? companyBox;
-  Box<KCurrency>? currencyBox;
-  Box<AutoPrint>? autoPrintBox;
-  Box<Customer>? customerBox;
-  Box<DiningTable>? diningTableBox;
-  Box<DiningTableCategory>? diningTableCategoryBox;
-  Box<Order>? orderBox;
-  Box<Printer>? printerBox;
-  Box<Product>? productBox;
-  Box<ProductCategory>? productCategoryBox;
-  Box<Subscription>? subscriptionBox;
-  Box<TaxSlab>? taxSlabBox;
-  Box<Staff>? staffBox;
-  Box<StaffType>? staffTypeBox;
-  Box<TaxType>? taxTypeBox;
-  Box<ProductType>? productTypeBox;
-  Box<FoodType>? foodTypeBox;
-  Box<SubscriptionType>? subscriptionTypeBox;
-  Box<Edition>? editionBox;
-  Box<OrderType>? orderTypeBox;
-  Box<PrinterType>? printerTypeBox;
+  Box<Company> companyBox = Hive.box<Company>('company');
+  Box<KCurrency> currencyBox = Hive.box<KCurrency>('currency');
+  Box<AutoPrint> autoPrintBox = Hive.box<AutoPrint>('autoPrint');
+  Box<Customer> customerBox = Hive.box<Customer>('customer');
+  Box<DiningTable> diningTableBox = Hive.box<DiningTable>('diningTable');
+  Box<DiningTableCategory> diningTableCategoryBox = Hive.box<DiningTableCategory>('diningTableCategory');
+  Box<Order> orderBox = Hive.box<Order>('order');
+  Box<Printer> printerBox = Hive.box<Printer>('printer');
+  Box<Product> productBox = Hive.box<Product>('product');
+  Box<ProductCategory> productCategoryBox = Hive.box<ProductCategory>('productCategory');
+  Box<Subscription> subscriptionBox = Hive.box<Subscription>('subscription');
+  Box<TaxSlab> taxSlabBox = Hive.box<TaxSlab>('taxSlab');
+  Box<Staff> staffBox = Hive.box<Staff>('staff');
+  Box<StaffType> staffTypeBox = Hive.box<StaffType>('staffType');
+  Box<TaxType> taxTypeBox = Hive.box<TaxType>('taxType');
+  Box<ProductType> productTypeBox = Hive.box<ProductType>('productType');
+  Box<FoodType> foodTypeBox = Hive.box<FoodType>('foodType');
+  Box<SubscriptionType> subscriptionTypeBox = Hive.box<SubscriptionType>('subscriptionType');
+  Box<Edition> editionBox = Hive.box<Edition>('edition');
+  Box<OrderType> orderTypeBox = Hive.box<OrderType>('orderType');
+  Box<PrinterType> printerTypeBox = Hive.box<PrinterType>('printerType');
 
   Future<void> dispose() => Hive.close();
 
-  bool isLoaded() =>
-      companyBox != null &&
-      currencyBox != null &&
-      autoPrintBox != null &&
-      customerBox != null &&
-      diningTableBox != null &&
-      diningTableCategoryBox != null &&
-      orderBox != null &&
-      printerBox != null &&
-      productBox != null &&
-      productCategoryBox != null &&
-      subscriptionBox != null &&
-      taxSlabBox != null &&
-      staffBox != null &&
-      staffTypeBox != null &&
-      taxTypeBox != null &&
-      productTypeBox != null &&
-      foodTypeBox != null &&
-      subscriptionTypeBox != null &&
-      editionBox != null &&
-      orderTypeBox != null &&
-      printerTypeBox != null;
+  // bool isLoaded() =>
+  //     companyBox != null &&
+  //     currencyBox != null &&
+  //     autoPrintBox != null &&
+  //     customerBox != null &&
+  //     diningTableBox != null &&
+  //     diningTableCategoryBox != null &&
+  //     orderBox != null &&
+  //     printerBox != null &&
+  //     productBox != null &&
+  //     productCategoryBox != null &&
+  //     subscriptionBox != null &&
+  //     taxSlabBox != null &&
+  //     staffBox != null &&
+  //     staffTypeBox != null &&
+  //     taxTypeBox != null &&
+  //     productTypeBox != null &&
+  //     foodTypeBox != null &&
+  //     subscriptionTypeBox != null &&
+  //     editionBox != null &&
+  //     orderTypeBox != null &&
+  //     printerTypeBox != null;
 
   Future<void> init([String? subDir]) async {
     // Initialize hive
@@ -88,28 +88,26 @@ class EateryDB {
     Hive.registerAdapter(TaxTypeAdapter());
 
     // Open boxes
-    companyBox = await Hive.openBox<Company>('company');
-    currencyBox = await Hive.openBox<KCurrency>('currency');
-    autoPrintBox = await Hive.openBox<AutoPrint>('autoPrint');
-    customerBox = await Hive.openBox<Customer>('customer');
-    diningTableBox = await Hive.openBox<DiningTable>('diningTable');
-    diningTableCategoryBox =
-        await Hive.openBox<DiningTableCategory>('diningTableCategory');
-    orderBox = await Hive.openBox<Order>('order');
-    printerBox = await Hive.openBox<Printer>('printer');
-    productBox = await Hive.openBox<Product>('product');
-    productCategoryBox = await Hive.openBox<ProductCategory>('productCategory');
-    subscriptionBox = await Hive.openBox<Subscription>('subscription');
-    taxSlabBox = await Hive.openBox<TaxSlab>('taxSlab');
-    staffBox = await Hive.openBox<Staff>('staff');
-    staffTypeBox = await Hive.openBox<StaffType>('staffType');
-    editionBox = await Hive.openBox<Edition>('edition');
-    orderTypeBox = await Hive.openBox<OrderType>('orderType');
-    printerTypeBox = await Hive.openBox<PrinterType>('printerType');
-    foodTypeBox = await Hive.openBox<FoodType>('foodType');
-    productTypeBox = await Hive.openBox<ProductType>('productType');
-    subscriptionTypeBox =
-        await Hive.openBox<SubscriptionType>('subscriptionType');
-    taxTypeBox = await Hive.openBox<TaxType>('taxType');
+    await Hive.openBox<Company>('company');
+    await Hive.openBox<KCurrency>('currency');
+    await Hive.openBox<AutoPrint>('autoPrint');
+    await Hive.openBox<Customer>('customer');
+    await Hive.openBox<DiningTable>('diningTable');
+    await Hive.openBox<DiningTableCategory>('diningTableCategory');
+    await Hive.openBox<Order>('order');
+    await Hive.openBox<Printer>('printer');
+    await Hive.openBox<Product>('product');
+    await Hive.openBox<ProductCategory>('productCategory');
+    await Hive.openBox<Subscription>('subscription');
+    await Hive.openBox<TaxSlab>('taxSlab');
+    await Hive.openBox<Staff>('staff');
+    await Hive.openBox<StaffType>('staffType');
+    await Hive.openBox<Edition>('edition');
+    await Hive.openBox<OrderType>('orderType');
+    await Hive.openBox<PrinterType>('printerType');
+    await Hive.openBox<FoodType>('foodType');
+    await Hive.openBox<ProductType>('productType');
+    await Hive.openBox<SubscriptionType>('subscriptionType');
+    await Hive.openBox<TaxType>('taxType');
   }
 }
