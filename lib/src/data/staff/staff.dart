@@ -23,7 +23,7 @@ class Staff extends HiveObject {
       this.photo,
       this.phone,
       required this.type,
-      required this.isActive}) : id = EateryDB.instance.staffBox != null ? EateryDB.instance.staffBox!.nextId() : throw 'Please wait for the database to initialize';
+      required this.isActive}) : id = EateryDB.instance.staffBox.nextId();
 
   Staff.fromMap(Map<String, dynamic> map)
       : id = map['id'],

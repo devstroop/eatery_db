@@ -26,7 +26,7 @@ class DiningTable extends HiveObject {
       this.description,
       this.image,
       this.orderId,
-      this.isActive = false}): id = EateryDB.instance.diningTableBox != null ? EateryDB.instance.diningTableBox!.nextId() : throw 'Please wait for the database to initialize';
+      this.isActive = false}): id = EateryDB.instance.diningTableBox.nextId();
 
   DiningTable.fromMap(Map<String, dynamic> map)
       : id = map['id'],

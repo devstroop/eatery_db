@@ -47,7 +47,7 @@ class Order extends HiveObject {
       this.isPaid = false,
       this.isClosed = false,
       required this.type})
-      : createdAt = DateTime.now(), id = EateryDB.instance.orderBox != null ? EateryDB.instance.orderBox!.nextId() : throw 'Please wait for the database to initialize';
+      : createdAt = DateTime.now(), id = EateryDB.instance.orderBox.nextId();
 
   Order.fromMap(Map<String, dynamic> map)
       : id = map['id'],

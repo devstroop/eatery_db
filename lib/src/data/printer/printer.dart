@@ -23,7 +23,7 @@ class Printer extends HiveObject {
       this.bluetoothAddress,
       this.usbVendorId,
       this.usbProductId,
-      this.type}): id = EateryDB.instance.printerBox != null ? EateryDB.instance.printerBox!.nextId() : throw 'Please wait for the database to initialize';
+      this.type}): id = EateryDB.instance.printerBox.nextId();
 
   Printer.fromMap(Map<String, dynamic> map)
       : id = map['id'],

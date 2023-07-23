@@ -13,7 +13,7 @@ class TaxSlab extends HiveObject {
   @HiveField(3)
   TaxType type;
 
-  TaxSlab({required this.name, required this.rate, required this.type}): id = EateryDB.instance.taxSlabBox != null ? EateryDB.instance.taxSlabBox!.nextId() : throw 'Please wait for the database to initialize';
+  TaxSlab({required this.name, required this.rate, required this.type}): id = EateryDB.instance.taxSlabBox.nextId();
 
   TaxSlab.fromMap(Map<String, dynamic> map)
       : id = map['id'],

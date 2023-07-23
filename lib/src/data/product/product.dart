@@ -38,7 +38,7 @@ class Product extends HiveObject {
       this.taxSlabId,
       this.foodType,
       required this.type,
-      required this.isActive}): id = EateryDB.instance.productBox != null ? EateryDB.instance.productBox!.nextId() : throw 'Please wait for the database to initialize';
+      required this.isActive}): id = EateryDB.instance.productBox.nextId();
 
   Product.fromMap(Map<String, dynamic> map)
       : id = map['id'],
