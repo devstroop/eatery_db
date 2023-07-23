@@ -23,7 +23,7 @@ class Printer extends HiveObject {
       this.bluetoothAddress,
       this.usbVendorId,
       this.usbProductId,
-      this.type}): id = EateryDB.instance.printerBox.nextId();
+      this.type}): id = EateryDB.instance.printerBox!.nextId();
 
   Printer.fromMap(Map<String, dynamic> map)
       : id = map['id'],

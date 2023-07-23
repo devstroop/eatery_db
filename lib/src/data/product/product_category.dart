@@ -14,7 +14,7 @@ class ProductCategory extends HiveObject {
   String? image;
 
   ProductCategory(
-      {required this.name, this.description, this.image}): id = EateryDB.instance.productCategoryBox.nextId();
+      {required this.name, this.description, this.image}): id = EateryDB.instance.productCategoryBox!.nextId();
 
   ProductCategory.fromMap(Map<String, dynamic> map)
       : id = map['id'],
