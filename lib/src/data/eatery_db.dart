@@ -16,7 +16,7 @@ class EateryDB {
   static final EateryDB instance = EateryDB();
   static String? dataDir;
 // Completer to signal when initialization is complete
-  Completer<void>? _completer;
+  final Completer<void> _completer = Completer<void>();
 
   late Box<Company> companyBox;
   late Box<KCurrency> currencyBox;
@@ -40,10 +40,8 @@ class EateryDB {
   late Box<OrderType> orderTypeBox;
   late Box<PrinterType> printerTypeBox;
 
-  EateryDB() {
-    _completer = Completer<void>();
-    Hive.initFlutter(dataDir).then((value) async {
-      Hive.registerAdapter(CompanyAdapter());
+  Future init() async {
+    Hive.registerAdapter(CompanyAdapter());
       Hive.registerAdapter(KCurrencyAdapter());
       Hive.registerAdapter(AutoPrintAdapter());
       Hive.registerAdapter(CustomerAdapter());
@@ -90,12 +88,11 @@ class EateryDB {
       editionBox = await Hive.openBox<Edition>('edition');
       printerBox = await Hive.openBox<Printer>('printer');
       printerTypeBox = await Hive.openBox<PrinterType>('printerType');
-      _completer?.complete();
-    });
+      _completer.complete();
   }
-  
+
   Future<void> waitUntilInitialized() {
-    return _completer?.future ?? Future.value();
+    return _completer.future;
   }
 
   Future<void> dispose() => Hive.close();
