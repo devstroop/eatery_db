@@ -23,7 +23,7 @@ class DiningTableAdapter extends TypeAdapter<DiningTable> {
       image: fields[4] as String?,
       orderId: fields[5] as int?,
       isActive: fields[6] as bool,
-    )..id = fields[0] as int;
+    )..id = fields[0] as int?;
   }
 
   @override

@@ -20,7 +20,7 @@ class TaxSlabAdapter extends TypeAdapter<TaxSlab> {
       name: fields[1] as String,
       rate: fields[2] as double,
       type: fields[3] as TaxType,
-    )..id = fields[0] as int;
+    )..id = fields[0] as int?;
   }
 
   @override

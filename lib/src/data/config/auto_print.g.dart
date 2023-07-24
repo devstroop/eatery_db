@@ -21,7 +21,7 @@ class AutoPrintAdapter extends TypeAdapter<AutoPrint> {
       kotPrintEnabled: fields[2] as bool?,
       invoicePrinterId: fields[3] as int?,
       kotPrinterId: fields[4] as int?,
-    )..id = fields[0] as int;
+    )..id = fields[0] as int?;
   }
 
   @override

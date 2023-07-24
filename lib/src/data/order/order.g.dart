@@ -30,7 +30,7 @@ class OrderAdapter extends TypeAdapter<Order> {
       isClosed: fields[12] as bool,
       type: fields[13] as OrderType,
     )
-      ..id = fields[0] as int
+      ..id = fields[0] as int?
       ..createdAt = fields[2] as DateTime;
   }
 

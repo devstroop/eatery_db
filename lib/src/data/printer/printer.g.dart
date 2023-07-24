@@ -22,7 +22,7 @@ class PrinterAdapter extends TypeAdapter<Printer> {
       usbVendorId: fields[3] as String?,
       usbProductId: fields[4] as String?,
       type: fields[5] as PrinterType?,
-    )..id = fields[0] as int;
+    )..id = fields[0] as int?;
   }
 
   @override

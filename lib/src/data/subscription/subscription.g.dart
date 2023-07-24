@@ -21,7 +21,7 @@ class SubscriptionAdapter extends TypeAdapter<Subscription> {
       validFrom: fields[2] as DateTime?,
       validTill: fields[3] as DateTime?,
       subscriptionType: fields[4] as SubscriptionType?,
-    )..id = fields[0] as int;
+    )..id = fields[0] as int?;
   }
 
   @override

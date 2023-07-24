@@ -5,28 +5,26 @@ part 'k_currency.g.dart';
 @HiveType(typeId: TypeIndex.currency)
 class KCurrency extends HiveObject {
   @HiveField(0)
-  int? id;
-  @HiveField(1)
   String code;
-  @HiveField(2)
+  @HiveField(1)
   String name;
-  @HiveField(3)
+  @HiveField(2)
   String symbol;
-  @HiveField(4)
+  @HiveField(3)
   String? flag;
-  @HiveField(5)
+  @HiveField(4)
   int number;
-  @HiveField(6)
+  @HiveField(5)
   int decimalDigits;
-  @HiveField(7)
+  @HiveField(6)
   String namePlural;
-  @HiveField(8)
+  @HiveField(7)
   String decimalSeparator;
-  @HiveField(9)
+  @HiveField(8)
   String thousandsSeparator;
-  @HiveField(10)
+  @HiveField(9)
   bool symbolOnLeft;
-  @HiveField(11)
+  @HiveField(10)
   bool spaceBetweenAmountAndSymbol;
 
   KCurrency({
@@ -41,36 +39,34 @@ class KCurrency extends HiveObject {
     required this.thousandsSeparator,
     required this.symbolOnLeft,
     required this.spaceBetweenAmountAndSymbol,
-  }): id = EateryDB.instance.currencyBox?.nextId();
+  });
 
   KCurrency.fromMap(Map<String, dynamic> map)
-      : id = map['id'],
+      : code = map['code'],
         name = map['name'],
-        code = map['code'],
         symbol = map['symbol'],
-        flag = map['flag'],
         number = map['number'],
-        decimalDigits = map['decimalDigits'],
-        namePlural = map['namePlural'],
-        decimalSeparator = map['decimalSeparator'],
-        thousandsSeparator = map['thousandsSeparator'],
-        symbolOnLeft = map['symbolOnLeft'],
-        spaceBetweenAmountAndSymbol = map['spaceBetweenAmountAndSymbol'];
+        flag = map['flag'],
+        decimalDigits = map['decimal_digits'],
+        namePlural = map['name_plural'],
+        symbolOnLeft = map['symbol_on_left'],
+        decimalSeparator = map['decimal_separator'],
+        thousandsSeparator = map['thousands_separator'],
+        spaceBetweenAmountAndSymbol = map['space_between_amount_and_symbol'];
 
   Map<String, Object?> toMap() {
     return {
-      'id': id,
-      'name': name,
       'code': code,
+      'name': name,
       'symbol': symbol,
-      'flag': flag,
       'number': number,
-      'decimalDigits': decimalDigits,
-      'namePlural': namePlural,
-      'decimalSeparator': decimalSeparator,
-      'thousandsSeparator': thousandsSeparator,
-      'symbolOnLeft': symbolOnLeft,
-      'spaceBetweenAmountAndSymbol': spaceBetweenAmountAndSymbol
+      'flag': flag,
+      'decimal_digits': decimalDigits,
+      'name_plural': namePlural,
+      'symbol_on_left': symbolOnLeft,
+      'decimal_separator': decimalSeparator,
+      'thousands_separator': thousandsSeparator,
+      'space_between_amount_and_symbol': spaceBetweenAmountAndSymbol
     };
   }
 }

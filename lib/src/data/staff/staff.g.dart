@@ -22,7 +22,7 @@ class StaffAdapter extends TypeAdapter<Staff> {
       phone: fields[3] as String?,
       type: fields[4] as StaffType,
       isActive: fields[5] as bool,
-    )..id = fields[0] as int;
+    )..id = fields[0] as int?;
   }
 
   @override

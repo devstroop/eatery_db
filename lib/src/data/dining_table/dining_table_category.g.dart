@@ -21,7 +21,7 @@ class DiningTableCategoryAdapter extends TypeAdapter<DiningTableCategory> {
       description: fields[2] as String?,
       image: fields[3] as String?,
       isActive: fields[4] as bool,
-    )..id = fields[0] as int;
+    )..id = fields[0] as int?;
   }
 
   @override

@@ -24,11 +24,11 @@ class CompanyAdapter extends TypeAdapter<Company> {
       address: fields[5] as String,
       password: fields[6] as String,
       edition: fields[7] as Edition,
-      currencyId: fields[8] as int?,
+      currencyCode: fields[8] as String?,
       foodLicenseNo: fields[10] as String?,
       salesTaxNumber: fields[9] as String?,
       subscriptionId: fields[11] as int?,
-    )..id = fields[0] as int;
+    )..id = fields[0] as int?;
   }
 
   @override
@@ -52,7 +52,7 @@ class CompanyAdapter extends TypeAdapter<Company> {
       ..writeByte(7)
       ..write(obj.edition)
       ..writeByte(8)
-      ..write(obj.currencyId)
+      ..write(obj.currencyCode)
       ..writeByte(9)
       ..write(obj.salesTaxNumber)
       ..writeByte(10)

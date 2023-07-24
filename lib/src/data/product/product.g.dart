@@ -27,7 +27,7 @@ class ProductAdapter extends TypeAdapter<Product> {
       foodType: fields[8] as FoodType?,
       type: fields[9] as ProductType,
       isActive: fields[10] as bool,
-    )..id = fields[0] as int;
+    )..id = fields[0] as int?;
   }
 
   @override

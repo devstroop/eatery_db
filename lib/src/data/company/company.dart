@@ -19,15 +19,15 @@ class Company extends HiveObject {
   @HiveField(6)
   String password;
   @HiveField(7)
-  Edition edition; // enum
+  Edition edition;
   @HiveField(8)
-  int? currencyId; // id?
+  String? currencyCode;
   @HiveField(9)
   String? salesTaxNumber;
   @HiveField(10)
   String? foodLicenseNo;
   @HiveField(11)
-  int? subscriptionId; // id?
+  int? subscriptionId;
 
   Company(
       {this.logo,
@@ -37,7 +37,7 @@ class Company extends HiveObject {
       required this.address,
       required this.password,
       required this.edition,
-      this.currencyId,
+      this.currencyCode,
       this.foodLicenseNo,
       this.salesTaxNumber,
       this.subscriptionId})
@@ -53,7 +53,7 @@ class Company extends HiveObject {
         password = map['password'],
         edition = Edition.values
             .singleWhere((element) => element.id == map['edition']),
-        currencyId = map['currencyId'],
+        currencyCode = map['currencyCode'],
         foodLicenseNo = map['foodLicNo'],
         salesTaxNumber = map['taxLicNo'],
         subscriptionId = map['subscriptionId'];
@@ -68,7 +68,7 @@ class Company extends HiveObject {
       'address': address,
       'password': password,
       'edition': edition.id,
-      'currencyId': currencyId,
+      'currencyCode': currencyCode,
       'foodLicNo': foodLicenseNo,
       'taxLicNo': salesTaxNumber,
       'subscriptionId': subscriptionId

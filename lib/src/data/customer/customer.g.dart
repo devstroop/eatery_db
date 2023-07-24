@@ -25,7 +25,7 @@ class CustomerAdapter extends TypeAdapter<Customer> {
       latitude: fields[6] as double?,
       longitude: fields[7] as double?,
       isActive: fields[8] as bool,
-    )..id = fields[0] as int;
+    )..id = fields[0] as int?;
   }
 
   @override
