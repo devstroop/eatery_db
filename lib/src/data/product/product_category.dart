@@ -13,8 +13,8 @@ class ProductCategory extends HiveObject {
   @HiveField(3)
   String? image;
 
-  ProductCategory(
-      {required this.name, this.description, this.image}): id = EateryDB.instance.productCategoryBox?.nextId();
+  ProductCategory({required this.name, this.description, this.image})
+      : id = EateryDB.instance.productCategoryBox?.nextId();
 
   ProductCategory.fromMap(Map<String, dynamic> map)
       : id = map['id'],
@@ -26,12 +26,13 @@ class ProductCategory extends HiveObject {
     return {'id': id, 'name': name, 'description': description, 'image': image};
   }
 
-  static ProductCategory fromIterable(List<dynamic> row) {
-    return ProductCategory(
-      name: row[0],
-      description: row[1],
-      image: row[2]
-    );
+  static ProductCategory fromIterable(Iterable<dynamic> row) {
+    return ProductCategory.fromMap({
+      'id': row.elementAt(0),
+      'name': row.elementAt(1),
+      'description': row.elementAt(2),
+      'image': row.elementAt(3)
+    });
   }
 
   List<dynamic> toIterable() {
