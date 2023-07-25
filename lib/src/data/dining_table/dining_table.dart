@@ -20,17 +20,17 @@ class DiningTable extends HiveObject {
   bool isActive;
 
   DiningTable(
-      {
-      required this.name,
+      {required this.name,
       this.categoryId,
       this.description,
       this.image,
       this.orderId,
-      this.isActive = false}): id = EateryDB.instance.diningTableBox?.nextId();
+      this.isActive = false})
+      : id = EateryDB.instance.diningTableBox?.nextId();
 
   DiningTable.fromMap(Map<String, dynamic> map)
       : id = map['id'],
-      name = map['name'],
+        name = map['name'],
         categoryId = map['categoryId'],
         description = map['description'],
         image = map['image'],
@@ -47,5 +47,30 @@ class DiningTable extends HiveObject {
       'orderId': orderId,
       'isActive': isActive
     };
+  }
+
+  static DiningTable fromIterable(Iterable<dynamic> row) {
+    return DiningTable.fromMap({
+      'id': row.elementAt(0),
+      'name': row.elementAt(1),
+      'categoryId': row.elementAt(2),
+      'description': row.elementAt(3),
+      'image': row.elementAt(4),
+      'orderId': row.elementAt(5),
+      'isActive': row.elementAt(6)
+    });
+  }
+
+  List<dynamic> toIterable() {
+    var map = toMap();
+    return [
+      map['id'],
+      map['name'],
+      map['categoryId'],
+      map['description'],
+      map['image'],
+      map['orderId'],
+      map['isActive']
+    ];
   }
 }

@@ -43,4 +43,28 @@ class Staff extends HiveObject {
       'isActive': isActive
     };
   }
+
+  static Staff fromIterable(Iterable<dynamic> row) {
+    return Staff.fromMap({
+      'id': row.elementAt(0),
+      'name': row.elementAt(1),
+      'photo': row.elementAt(2),
+      'phone': row.elementAt(3),
+      'type': row.elementAt(4),
+      'isActive': row.elementAt(5)
+    }
+    );
+  }
+
+  List<dynamic> toIterable() {
+    var map = toMap();
+    return [
+      map['id'],
+      map['name'],
+      map['photo'],
+      map['phone'],
+      map['type'],
+      map['isActive']
+    ];
+  }
 }

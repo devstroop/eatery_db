@@ -70,4 +70,37 @@ class Product extends HiveObject {
       'isActive': isActive
     };
   }
+
+  static Product fromIterable(Iterable<dynamic> iterable) {
+    return Product(
+      name: iterable.elementAt(1) as String,
+      categoryId: iterable.elementAt(2) as int?,
+      description: iterable.elementAt(3) as String?,
+      image: iterable.elementAt(4) as String?,
+      mrpPrice: iterable.elementAt(5) as double,
+      salePrice: iterable.elementAt(6) as double?,
+      taxSlabId: iterable.elementAt(7) as int?,
+      foodType: FoodType.values
+          .singleWhere((element) => element.id == iterable.elementAt(8) as int),
+      type: ProductType.values
+          .singleWhere((element) => element.index == iterable.elementAt(9) as int),
+      isActive: iterable.elementAt(10) as bool
+    );
+  }
+
+  List<dynamic> toIterable(){
+    return [
+      this.id,
+      this.name,
+      this.categoryId,
+      this.description,
+      this.image,
+      this.mrpPrice,
+      this.salePrice,
+      this.taxSlabId,
+      this.foodType != null ? this.foodType!.id : null,
+      this.type.index,
+      this.isActive
+    ];
+  }
 }

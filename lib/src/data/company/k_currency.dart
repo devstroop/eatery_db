@@ -69,4 +69,37 @@ class KCurrency extends HiveObject {
       'space_between_amount_and_symbol': spaceBetweenAmountAndSymbol
     };
   }
+
+  static KCurrency fromIterable(Iterable<dynamic> list) {
+    return KCurrency.fromMap({
+      'code': list.elementAt(0),
+      'name': list.elementAt(1),
+      'symbol': list.elementAt(2),
+      'number': list.elementAt(3),
+      'flag': list.elementAt(4),
+      'decimal_digits': list.elementAt(5),
+      'name_plural': list.elementAt(6),
+      'symbol_on_left': list.elementAt(7),
+      'decimal_separator': list.elementAt(8),
+      'thousands_separator': list.elementAt(9),
+      'space_between_amount_and_symbol': list.elementAt(10)
+    });
+  }
+
+  Iterable<dynamic> toIterable() {
+    var map = toMap();
+    return [
+      map['code'],
+      map['name'],
+      map['symbol'],
+      map['number'],
+      map['flag'],
+      map['decimal_digits'],
+      map['name_plural'],
+      map['symbol_on_left'],
+      map['decimal_separator'],
+      map['thousands_separator'],
+      map['space_between_amount_and_symbol']
+    ];
+  }
 }

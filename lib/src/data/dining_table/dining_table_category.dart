@@ -38,4 +38,27 @@ class DiningTableCategory extends HiveObject {
       'isActive': isActive ? 1 : 0
     };
   }
+
+  
+
+  static DiningTableCategory fromIterable(Iterable<dynamic> row) {
+    return DiningTableCategory.fromMap({ 
+      'id': row.elementAt(0),
+      'name': row.elementAt(1),
+      'description': row.elementAt(2),
+      'image': row.elementAt(3),
+      'isActive': row.elementAt(4)
+    });
+  }
+
+  Iterable<dynamic> toIterable() {
+    var map = toMap();
+    return [
+      map['id'],
+      map['name'],
+      map['description'],
+      map['image'],
+      map['isActive']
+    ];
+  }
 }

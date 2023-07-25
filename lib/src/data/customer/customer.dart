@@ -58,4 +58,34 @@ class Customer {
       'isActive': isActive ? 1 : 0
     };
   }
+
+
+  static Customer fromIterable(Iterable<dynamic> list) {
+    return Customer.fromMap({
+      'id': list.elementAt(0),
+      'name': list.elementAt(1),
+      'phone': list.elementAt(2),
+      'email': list.elementAt(3),
+      'address': list.elementAt(4),
+      'landmark': list.elementAt(5),
+      'latitude': list.elementAt(6),
+      'longitude': list.elementAt(7),
+      'isActive': list.elementAt(8)
+    });
+  }
+
+  Iterable<dynamic> toIterable() {
+    var map = toMap();
+    return [
+      map['id'],
+      map['name'],
+      map['phone'],
+      map['email'],
+      map['address'],
+      map['landmark'],
+      map['latitude'],
+      map['longitude'],
+      map['isActive']
+    ];
+  }
 }

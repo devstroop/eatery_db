@@ -25,4 +25,16 @@ class ProductCategory extends HiveObject {
   Map<String, Object?> toMap() {
     return {'id': id, 'name': name, 'description': description, 'image': image};
   }
+
+  static ProductCategory fromIterable(List<dynamic> row) {
+    return ProductCategory(
+      name: row[0],
+      description: row[1],
+      image: row[2]
+    );
+  }
+
+  List<dynamic> toIterable() {
+    return [name, description, image];
+  }
 }

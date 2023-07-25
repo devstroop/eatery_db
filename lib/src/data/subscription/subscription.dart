@@ -41,4 +41,25 @@ class Subscription extends HiveObject {
       'subscriptionType': subscriptionType?.id
     };
   }
+
+  static Subscription fromIterable(Iterable<dynamic> row) {
+    return Subscription.fromMap({
+      'id': row.elementAt(0),
+      'purchaseCode': row.elementAt(1),
+      'validFrom': row.elementAt(2),
+      'validTill': row.elementAt(3),
+      'subscriptionType': row.elementAt(4)
+    });
+  }
+
+  List<dynamic> toIterable() {
+    var map = toMap();
+    return [
+      map['id'],
+      map['purchaseCode'],
+      map['validFrom'],
+      map['validTill'],
+      map['subscriptionType']
+    ];
+  }
 }

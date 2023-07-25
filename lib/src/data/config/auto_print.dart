@@ -37,4 +37,25 @@ class AutoPrint extends HiveObject {
       'kotPrinterId': kotPrinterId
     };
   }
+
+  static AutoPrint fromIterable(Iterable<dynamic> list) {
+    return AutoPrint.fromMap({
+      'id': list.elementAt(0),
+      'invoicePrint': list.elementAt(1),
+      'kotPrint': list.elementAt(2),
+      'invoicePrinterId': list.elementAt(3),
+      'kotPrinterId': list.elementAt(4)
+    });
+  }
+
+  Iterable<dynamic> toIterable() {
+    var map = toMap();
+    return [
+      map['id'],
+      map['invoicePrint'],
+      map['kotPrint'],
+      map['invoicePrinterId'],
+      map['kotPrinterId']
+    ];
+  }
 }
