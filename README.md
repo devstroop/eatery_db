@@ -1,12 +1,7 @@
-# Eatery DB
-
- Eatery database package
-
 <p align="center">
-  <img src="https://raw.githubusercontent.com/hivedb/hive/master/.github/logo_transparent.svg?sanitize=true" width="350px">
+  <img src="https://raw.githubusercontent.com/devstroop/eatery_db/master/eatery_db.png" width="350px">
 </p>
 
-<h2 align="center">Made with ❤ by Devstroop Technologies</h2>
 
 ## Build Instructions
 
@@ -42,3 +37,18 @@ dart run build_runner build  --delete-conflicting-outputs
 
 For static models like placed orders (independent from ERP), use "model" instead of "model identity" as a column.
 For dynamic models like products, categories (dependent on ERP), use "model identity" instead of "model" as a column.
+
+
+## License
+  
+  ```
+  MIT License
+  
+  ```
+
+  
+
+
+
+
+<h4 align="center">Made with ❤ by Devstroop Technologies</h4>
