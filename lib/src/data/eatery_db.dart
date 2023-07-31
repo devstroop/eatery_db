@@ -36,6 +36,8 @@ class EateryDB {
   Box<Edition>? editionBox;
   Box<OrderType>? orderTypeBox;
   Box<PrinterType>? printerTypeBox;
+  Box<Payment>? paymentBox;
+  Box<PaymentMode>? paymentModeBox;
 
   Future init([String? dataDir]) async {
     await Hive.initFlutter(dataDir);
@@ -61,6 +63,8 @@ class EateryDB {
     Hive.registerAdapter(ProductTypeAdapter());
     Hive.registerAdapter(SubscriptionTypeAdapter());
     Hive.registerAdapter(TaxTypeAdapter());
+    Hive.registerAdapter(PaymentAdapter());
+    Hive.registerAdapter(PaymentModeAdapter());
 
     // Open boxes
     companyBox = await Hive.openBox<Company>('company');
@@ -86,6 +90,8 @@ class EateryDB {
     editionBox = await Hive.openBox<Edition>('edition');
     printerBox = await Hive.openBox<Printer>('printer');
     printerTypeBox = await Hive.openBox<PrinterType>('printerType');
+    paymentBox = await Hive.openBox<Payment>('payment');
+    paymentModeBox = await Hive.openBox<PaymentMode>('paymentMode');
   }
 
   Future flush() async {
@@ -110,6 +116,8 @@ class EateryDB {
     await staffTypeBox?.clear();
     await productTypeBox?.clear();
     await orderTypeBox?.clear();
+    await paymentBox?.clear();
+    await paymentModeBox?.clear();
   }
 
   Future<void> dispose() => Hive.close();

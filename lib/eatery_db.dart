@@ -28,6 +28,8 @@ export 'src/data/staff/staff.dart';
 export 'src/data/staff/staff_type.dart';
 export 'src/data/tax/tax_type.dart';
 export 'src/data/product/product_type.dart';
+export 'src/data/payment/payment.dart';
+export 'src/data/payment/payment_mode.dart';
 export 'src/data/eatery_db.dart';
 // Extensions
 export 'src/extensions/box.extension.dart';
@@ -58,4 +60,6 @@ class TypeIndex{
   static const edition = 18;
   static const currency = 19;
   static const autoPrint = 20;
+  static const payment = 21;
+  static const paymentMode = 22;
 }
