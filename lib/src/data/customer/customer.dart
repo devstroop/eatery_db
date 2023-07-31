@@ -9,53 +9,52 @@ class Customer {
   @HiveField(1)
   String name;
   @HiveField(2)
-  String? phone;
+  String phone;
   @HiveField(3)
-  String? email;
-  @HiveField(4)
   String? address;
-  @HiveField(5)
+  @HiveField(4)
   String? landmark;
-  @HiveField(6)
+  @HiveField(5)
   double? latitude;
-  @HiveField(7)
+  @HiveField(6)
   double? longitude;
-  @HiveField(8)
+  @HiveField(7)
   bool isActive;
+  @HiveField(8)
+  DateTime? lastOrderAt;
 
   Customer(
       {
       required this.name,
-      this.phone,
-      this.email,
+      required this.phone,
       this.address,
       this.landmark,
       this.latitude,
       this.longitude,
-      this.isActive = false}): id = EateryDB.instance.customerBox?.nextId();
+      this.isActive = true, this.lastOrderAt}): id = EateryDB.instance.customerBox?.nextId();
 
   Customer.fromMap(Map<String, dynamic> map)
       : id = map['id'],
         name = map['name'],
         phone = map['phone'],
-        email = map['email'],
         address = map['address'],
         landmark = map['landmark'],
         latitude = map['latitude'],
         longitude = map['longitude'],
-        isActive = map['isActive'] == 1 ? true : false;
+        isActive = map['isActive'] == 1 ? true : false,
+        lastOrderAt = DateTime.fromMillisecondsSinceEpoch(map['lastOrderAt']);
 
   Map<String, Object?> toMap() {
     return {
       'id': id,
       'name': name,
       'phone': phone,
-      'email': email,
       'address': address,
       'landmark': landmark,
       'latitude': latitude,
       'longitude': longitude,
-      'isActive': isActive ? 1 : 0
+      'isActive': isActive ? 1 : 0,
+      'lastOrderAt': lastOrderAt?.millisecondsSinceEpoch
     };
   }
 
@@ -65,12 +64,12 @@ class Customer {
       'id': list.elementAt(0),
       'name': list.elementAt(1),
       'phone': list.elementAt(2),
-      'email': list.elementAt(3),
-      'address': list.elementAt(4),
-      'landmark': list.elementAt(5),
-      'latitude': list.elementAt(6),
-      'longitude': list.elementAt(7),
-      'isActive': list.elementAt(8)
+      'address': list.elementAt(3),
+      'landmark': list.elementAt(4),
+      'latitude': list.elementAt(5),
+      'longitude': list.elementAt(6),
+      'isActive': list.elementAt(7),
+      'lastOrderAt': list.elementAt(8)
     });
   }
 
@@ -80,12 +79,12 @@ class Customer {
       map['id'],
       map['name'],
       map['phone'],
-      map['email'],
       map['address'],
       map['landmark'],
       map['latitude'],
       map['longitude'],
-      map['isActive']
+      map['isActive'],
+      map['lastOrderAt']
     ];
   }
 }
