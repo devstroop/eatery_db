@@ -22,6 +22,8 @@ class Customer {
   bool isActive;
   @HiveField(8)
   DateTime? lastOrderAt;
+  @HiveField(9)
+  double outstandingAmount;
 
   Customer(
       {
@@ -31,7 +33,7 @@ class Customer {
       this.landmark,
       this.latitude,
       this.longitude,
-      this.isActive = true, this.lastOrderAt}): id = EateryDB.instance.customerBox?.nextId();
+      this.isActive = true, this.lastOrderAt}): id = EateryDB.instance.customerBox?.nextId(), outstandingAmount = 0.0;
 
   Customer.fromMap(Map<String, dynamic> map)
       : id = map['id'],
@@ -42,7 +44,8 @@ class Customer {
         latitude = map['latitude'],
         longitude = map['longitude'],
         isActive = map['isActive'] == 1 ? true : false,
-        lastOrderAt = DateTime.fromMillisecondsSinceEpoch(map['lastOrderAt']);
+        lastOrderAt = DateTime.fromMillisecondsSinceEpoch(map['lastOrderAt']),
+        outstandingAmount = map['outstandingAmount'] ?? 0.0;
 
   Map<String, Object?> toMap() {
     return {
@@ -54,7 +57,8 @@ class Customer {
       'latitude': latitude,
       'longitude': longitude,
       'isActive': isActive ? 1 : 0,
-      'lastOrderAt': lastOrderAt?.millisecondsSinceEpoch
+      'lastOrderAt': lastOrderAt?.millisecondsSinceEpoch,
+      'outstandingAmount': outstandingAmount
     };
   }
 
@@ -69,7 +73,8 @@ class Customer {
       'latitude': list.elementAt(5),
       'longitude': list.elementAt(6),
       'isActive': list.elementAt(7),
-      'lastOrderAt': list.elementAt(8)
+      'lastOrderAt': list.elementAt(8),
+      'outstandingAmount': list.elementAt(9)
     });
   }
 
@@ -84,7 +89,8 @@ class Customer {
       map['latitude'],
       map['longitude'],
       map['isActive'],
-      map['lastOrderAt']
+      map['lastOrderAt'],
+      map['outstandingAmount']
     ];
   }
 }
