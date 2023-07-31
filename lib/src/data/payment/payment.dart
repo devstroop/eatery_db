@@ -3,23 +3,26 @@ import 'package:eatery_db/eatery_db.dart';
 part 'payment.g.dart';
 
 @HiveType(typeId: TypeIndex.payment)
-class Payment extends HiveObject{
+class Payment extends HiveObject {
   @HiveField(0)
-  final int? id;
+  int? id;
   @HiveField(1)
-  final int? orderId;
+  Order order;
   @HiveField(2)
-  final DateTime date;
+  DateTime date;
   @HiveField(3)
-  final double? amount;
+  double amount;
   @HiveField(4)
-  final PaymentMode paymentMode;
+  PaymentMode paymentMode;
 
-  Payment({this.id, this.orderId, required this.date, this.amount, required this.paymentMode});
+  Payment(
+      {required this.order, required this.amount, required this.paymentMode})
+      :id= EateryDB.instance.paymentBox?.nextId(),
+        date = DateTime.now();
 
   Payment.fromMap(Map<String, dynamic> map)
       : id = map['id'],
-        orderId = map['orderId'],
+        order = EateryDB.instance.orderBox!.values.where((element) => element.id == map['order']).first,
         date = DateTime.fromMillisecondsSinceEpoch(map['date']),
         amount = map['amount'],
         paymentMode = PaymentMode.values[map['paymentMode']];
@@ -27,7 +30,7 @@ class Payment extends HiveObject{
   Map<String, Object?> toMap() {
     return {
       'id': id,
-      'orderId': orderId,
+      'order': order.id,
       'date': date.millisecondsSinceEpoch,
       'amount': amount,
       'paymentMode': paymentMode.index
@@ -37,18 +40,18 @@ class Payment extends HiveObject{
   static Payment fromIterable(Iterable<dynamic> row) {
     return Payment.fromMap({
       'id': row.elementAt(0),
-      'orderId': row.elementAt(1),
+      'order': row.elementAt(1),
       'date': row.elementAt(2),
       'amount': row.elementAt(3),
       'paymentMode': row.elementAt(4)
     });
-  } 
+  }
 
   List<dynamic> toIterable() {
     var map = toMap();
     return [
       map['id'],
-      map['orderId'],
+      map['order'],
       map['date'],
       map['amount'],
       map['paymentMode']
