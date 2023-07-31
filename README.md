@@ -1,4 +1,5 @@
 # Eatery DB
+
  Eatery database package
 
 <p align="center">
@@ -7,30 +8,37 @@
 
 <h2 align="center">Made with ❤ by Devstroop Technologies</h2>
 
-## Build
+## Build Instructions
 
-Run the following command in the root of the project to generate the required files.
-`Depricated`
+To generate the required files, follow the appropriate commands based on your scenario:
+
+### Deprecated Build (Flutter)
 ```
 flutter packages pub run build_runner build
 ```
-Run the following command in the root of the project to generate the required files.
-`Stable`
+
+### Stable Build (Dart)
+
 ```
 dart run build_runner build
 ```
-### Rebuild
 
-Run the following command in the root of the project to generate the required files.
-`Depricated`
+## Rebuild Instructions
+
+If you need to regenerate the required files, you may need to delete conflicting output, use the following commands:
+
+### Deprecated Build (Flutter)
 ```
-flutter packages pub run build_runner build --delete-conflicting-outputs
+flutter packages pub run build_runner build  --delete-conflicting-outputs
 ```
-Run the following command in the root of the project to generate the required files.
-`Stable`
+
+### Stable Build (Dart)
+
 ```
-dart run build_runner build --delete-conflicting-outputs
+dart run build_runner build  --delete-conflicting-outputs
 ```
-#### Note
-Static model like placed order(independent from erp) should have model instead of model identity as a column
-Dynamic model like product, category(dependent on erp) should have model identity instead of model as a column
+
+### Note
+
+For static models like placed orders (independent from ERP), use "model" instead of "model identity" as a column.
+For dynamic models like products, categories (dependent on ERP), use "model identity" instead of "model" as a column.
