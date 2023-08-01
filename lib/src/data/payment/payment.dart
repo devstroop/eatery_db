@@ -13,10 +13,14 @@ class Payment extends HiveObject {
   @HiveField(3)
   double amount;
   @HiveField(4)
-  PaymentMode paymentMode;
+  PaymentMode mode;
+  @HiveField(5)
+  String? reference;
+  @HiveField(6)
+  String? attachment;
 
   Payment(
-      {required this.order, required this.amount, required this.paymentMode})
+      {required this.order, required this.amount, required this.mode, this.reference, this.attachment})
       :id= EateryDB.instance.paymentBox?.nextId(),
         date = DateTime.now();
 
@@ -25,7 +29,9 @@ class Payment extends HiveObject {
         order = EateryDB.instance.orderBox!.values.where((element) => element.id == map['order']).first,
         date = DateTime.fromMillisecondsSinceEpoch(map['date']),
         amount = map['amount'],
-        paymentMode = PaymentMode.values[map['paymentMode']];
+        mode = PaymentMode.values[map['mode']],
+        reference = map['reference'],
+        attachment = map['attachment'];
 
   Map<String, Object?> toMap() {
     return {
@@ -33,7 +39,9 @@ class Payment extends HiveObject {
       'order': order.id,
       'date': date.millisecondsSinceEpoch,
       'amount': amount,
-      'paymentMode': paymentMode.index
+      'mode': mode.index,
+      'reference': reference,
+      'attachment': attachment
     };
   }
 
@@ -43,7 +51,9 @@ class Payment extends HiveObject {
       'order': row.elementAt(1),
       'date': row.elementAt(2),
       'amount': row.elementAt(3),
-      'paymentMode': row.elementAt(4)
+      'mode': row.elementAt(4),
+      'reference': row.elementAt(5),
+      'attachment': row.elementAt(6)
     });
   }
 
@@ -54,8 +64,9 @@ class Payment extends HiveObject {
       map['order'],
       map['date'],
       map['amount'],
-      map['paymentMode']
+      map['mode'],
+      map['reference'],
+      map['attachment']
     ];
   }
-
 }

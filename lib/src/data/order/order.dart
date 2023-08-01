@@ -7,7 +7,7 @@ class Order extends HiveObject {
   @HiveField(0)
   int? id;
   @HiveField(1)
-  int customerId;
+  Customer customer;
   @HiveField(2)
   DateTime createdAt; // obj
   @HiveField(3)
@@ -34,7 +34,7 @@ class Order extends HiveObject {
   OrderType type; // enum
 
   Order({
-    required this.customerId,
+    required this.customer,
     this.updatedAt,
     this.taxable = 0.0,
     this.taxTotal,
@@ -51,7 +51,9 @@ class Order extends HiveObject {
 
   Order.fromMap(Map<String, dynamic> map)
       : id = map['id'],
-        customerId = map['customer'],
+        customer = EateryDB.instance.customerBox!.values
+            .where((element) => element.id == map['customerId'])
+            .first,
         createdAt = DateTime.parse(map['createdAt'] as String),
         updatedAt = DateTime.parse(map['updatedAt'] as String),
         taxable = map['taxable'],
@@ -69,7 +71,7 @@ class Order extends HiveObject {
   Map<String, Object?> toMap() {
     return {
       'id': id,
-      'customerId': customerId,
+      'customerId': customer.id,
       'createdAt': createdAt.toIso8601String(),
       'updatedAt': updatedAt != null ? updatedAt!.toIso8601String() : null,
       'taxable': taxable,

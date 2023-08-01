@@ -17,7 +17,7 @@ class OrderAdapter extends TypeAdapter<Order> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Order(
-      customerId: fields[1] as int,
+      customer: fields[1] as Customer,
       updatedAt: fields[3] as DateTime?,
       taxable: fields[4] as double,
       taxTotal: fields[5] as double?,
@@ -41,7 +41,7 @@ class OrderAdapter extends TypeAdapter<Order> {
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.customerId)
+      ..write(obj.customer)
       ..writeByte(2)
       ..write(obj.createdAt)
       ..writeByte(3)

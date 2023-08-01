@@ -21,6 +21,8 @@ class PaymentModeAdapter extends TypeAdapter<PaymentMode> {
         return PaymentMode.upi;
       case 3:
         return PaymentMode.wallet;
+      case 4:
+        return PaymentMode.other;
       default:
         return PaymentMode.cash;
     }
@@ -40,6 +42,9 @@ class PaymentModeAdapter extends TypeAdapter<PaymentMode> {
         break;
       case PaymentMode.wallet:
         writer.writeByte(3);
+        break;
+      case PaymentMode.other:
+        writer.writeByte(4);
         break;
     }
   }

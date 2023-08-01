@@ -18,10 +18,10 @@ class DiningTableAdapter extends TypeAdapter<DiningTable> {
     };
     return DiningTable(
       name: fields[1] as String,
-      categoryId: fields[2] as int?,
+      category: fields[2] as DiningTableCategory?,
       description: fields[3] as String?,
-      image: fields[4] as String?,
-      orderId: fields[5] as int?,
+      order: fields[4] as Order?,
+      capacity: fields[5] as int?,
       isActive: fields[6] as bool,
     )..id = fields[0] as int?;
   }
@@ -35,13 +35,13 @@ class DiningTableAdapter extends TypeAdapter<DiningTable> {
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.categoryId)
+      ..write(obj.category)
       ..writeByte(3)
       ..write(obj.description)
       ..writeByte(4)
-      ..write(obj.image)
+      ..write(obj.order)
       ..writeByte(5)
-      ..write(obj.orderId)
+      ..write(obj.capacity)
       ..writeByte(6)
       ..write(obj.isActive);
   }

@@ -12,6 +12,8 @@ enum PaymentMode {
   upi,
   @HiveField(3)
   wallet,
+  @HiveField(4)
+  other,
 }
 
 extension PaymentModeExtension on PaymentMode {
@@ -25,6 +27,8 @@ extension PaymentModeExtension on PaymentMode {
         return 'UPI';
       case PaymentMode.wallet:
         return 'Wallet';
+      case PaymentMode.other:
+        return 'Other';
       default:
         return 'Unknown';
     }

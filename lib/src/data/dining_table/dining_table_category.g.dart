@@ -19,15 +19,14 @@ class DiningTableCategoryAdapter extends TypeAdapter<DiningTableCategory> {
     return DiningTableCategory(
       name: fields[1] as String,
       description: fields[2] as String?,
-      image: fields[3] as String?,
-      isActive: fields[4] as bool,
+      isActive: fields[3] as bool,
     )..id = fields[0] as int?;
   }
 
   @override
   void write(BinaryWriter writer, DiningTableCategory obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -35,8 +34,6 @@ class DiningTableCategoryAdapter extends TypeAdapter<DiningTableCategory> {
       ..writeByte(2)
       ..write(obj.description)
       ..writeByte(3)
-      ..write(obj.image)
-      ..writeByte(4)
       ..write(obj.isActive);
   }
 

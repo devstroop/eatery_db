@@ -11,22 +11,18 @@ class DiningTableCategory extends HiveObject {
   @HiveField(2)
   String? description;
   @HiveField(3)
-  String? image;
-  @HiveField(4)
   bool isActive;
 
   DiningTableCategory(
       {
       required this.name,
       this.description,
-      this.image,
       this.isActive = false}): id = EateryDB.instance.diningTableCategoryBox?.nextId();
 
   DiningTableCategory.fromMap(Map<String, dynamic> map)
       : id = map['id'],
         name = map['name'],
         description = map['description'],
-        image = map['image'],
         isActive = map['isActive'] == 1 ? true : false;
 
   Map<String, Object?> toMap() {
@@ -34,7 +30,6 @@ class DiningTableCategory extends HiveObject {
       'id': id,
       'name': name,
       'description': description,
-      'image': image,
       'isActive': isActive ? 1 : 0
     };
   }

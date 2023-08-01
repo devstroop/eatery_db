@@ -9,42 +9,46 @@ class DiningTable extends HiveObject {
   @HiveField(1)
   String name;
   @HiveField(2)
-  int? categoryId; // id?
+  DiningTableCategory? category;
   @HiveField(3)
   String? description;
   @HiveField(4)
-  String? image;
+  Order? order;
   @HiveField(5)
-  int? orderId; // id?
+  int? capacity;
   @HiveField(6)
   bool isActive;
 
   DiningTable(
       {required this.name,
-      this.categoryId,
+      this.category,
       this.description,
-      this.image,
-      this.orderId,
+      this.order,
+      this.capacity = 0,
       this.isActive = false})
       : id = EateryDB.instance.diningTableBox?.nextId();
 
   DiningTable.fromMap(Map<String, dynamic> map)
       : id = map['id'],
         name = map['name'],
-        categoryId = map['categoryId'],
+        category = EateryDB.instance.diningTableCategoryBox!.values
+            .where((element) => element.id == map['categoryId'])
+            .first,
         description = map['description'],
-        image = map['image'],
-        orderId = map['orderId'],
+        order = EateryDB.instance.orderBox!.values
+            .where((element) => element.id == map['orderId'])
+            .first,
+        capacity = map['capacity'],
         isActive = map['isActive'];
 
   Map<String, Object?> toMap() {
     return {
       'id': id,
       'name': name,
-      'categoryId': categoryId,
+      'categoryId': category?.id,
       'description': description,
-      'image': image,
-      'orderId': orderId,
+      'orderId': order?.id,
+      'capacity': capacity,
       'isActive': isActive
     };
   }
@@ -55,8 +59,8 @@ class DiningTable extends HiveObject {
       'name': row.elementAt(1),
       'categoryId': row.elementAt(2),
       'description': row.elementAt(3),
-      'image': row.elementAt(4),
-      'orderId': row.elementAt(5),
+      'orderId': row.elementAt(4),
+      'capacity': row.elementAt(5),
       'isActive': row.elementAt(6)
     });
   }
@@ -68,8 +72,8 @@ class DiningTable extends HiveObject {
       map['name'],
       map['categoryId'],
       map['description'],
-      map['image'],
       map['orderId'],
+      map['capacity'],
       map['isActive']
     ];
   }
