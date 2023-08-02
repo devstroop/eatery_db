@@ -17,7 +17,7 @@ class DiningTable extends HiveObject {
   @HiveField(5)
   int? capacity;
   @HiveField(6)
-  bool isActive;
+  DiningTableStatus status;
 
   DiningTable(
       {required this.name,
@@ -25,7 +25,7 @@ class DiningTable extends HiveObject {
       this.description,
       this.order,
       this.capacity = 0,
-      this.isActive = false})
+      this.status = DiningTableStatus.available})
       : id = EateryDB.instance.diningTableBox?.nextId();
 
   DiningTable.fromMap(Map<String, dynamic> map)
@@ -39,7 +39,8 @@ class DiningTable extends HiveObject {
             .where((element) => element.id == map['orderId'])
             .first,
         capacity = map['capacity'],
-        isActive = map['isActive'];
+        status = DiningTableStatus.values.singleWhere(
+            (element) => element.index == map['status']);
 
   Map<String, Object?> toMap() {
     return {
@@ -49,7 +50,7 @@ class DiningTable extends HiveObject {
       'description': description,
       'orderId': order?.id,
       'capacity': capacity,
-      'isActive': isActive
+      'status': status
     };
   }
 
@@ -61,7 +62,7 @@ class DiningTable extends HiveObject {
       'description': row.elementAt(3),
       'orderId': row.elementAt(4),
       'capacity': row.elementAt(5),
-      'isActive': row.elementAt(6)
+      'status': row.elementAt(6)
     });
   }
 
@@ -74,7 +75,11 @@ class DiningTable extends HiveObject {
       map['description'],
       map['orderId'],
       map['capacity'],
-      map['isActive']
+      map['status']
     ];
   }
 }
+
+
+
+

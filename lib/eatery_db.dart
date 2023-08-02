@@ -19,6 +19,7 @@ export 'src/data/config/auto_print.dart';
 export 'src/data/customer/customer.dart';
 export 'src/data/dining_table/dining_table.dart';
 export 'src/data/dining_table/dining_table_category.dart';
+export 'src/data/dining_table/dining_table_status.dart';
 export 'src/data/order/order.dart';
 export 'src/data/printer/printer.dart';
 export 'src/data/product/product.dart';
@@ -62,4 +63,5 @@ class TypeIndex{
   static const autoPrint = 20;
   static const payment = 21;
   static const paymentMode = 22;
+  static const diningTableStatus = 23;
 }

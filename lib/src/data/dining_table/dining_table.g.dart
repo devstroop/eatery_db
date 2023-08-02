@@ -22,7 +22,7 @@ class DiningTableAdapter extends TypeAdapter<DiningTable> {
       description: fields[3] as String?,
       order: fields[4] as Order?,
       capacity: fields[5] as int?,
-      isActive: fields[6] as bool,
+      status: fields[6] as DiningTableStatus,
     )..id = fields[0] as int?;
   }
 
@@ -43,7 +43,7 @@ class DiningTableAdapter extends TypeAdapter<DiningTable> {
       ..writeByte(5)
       ..write(obj.capacity)
       ..writeByte(6)
-      ..write(obj.isActive);
+      ..write(obj.status);
   }
 
   @override
