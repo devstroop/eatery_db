@@ -81,14 +81,15 @@ class Order extends HiveObject {
     return Order.fromMap({
       'id': row.elementAt(0),
       'customerId': row.elementAt(1),
-      'timestamp': row.elementAt(2),
-      'subtotal': row.elementAt(3),
-      'taxTotal': row.elementAt(4),
-      'discountTotal': row.elementAt(5),
-      'convenienceFee': row.elementAt(6),
-      'roundOff': row.elementAt(7),
-      'finalTotal': row.elementAt(8),
-      'type': row.elementAt(9),
+      'products': row.elementAt(2),
+      'timestamp': row.elementAt(3),
+      'subtotal': row.elementAt(4),
+      'taxTotal': row.elementAt(5),
+      'discountTotal': row.elementAt(6),
+      'convenienceFee': row.elementAt(7),
+      'roundOff': row.elementAt(8),
+      'finalTotal': row.elementAt(9),
+      'type': row.elementAt(10),
     });
   }
 
@@ -97,6 +98,7 @@ class Order extends HiveObject {
     return [
       map['id'],
       map['customerId'],
+      map['products'],
       map['timestamp'],
       map['subtotal'],
       map['taxTotal'],
@@ -104,7 +106,7 @@ class Order extends HiveObject {
       map['convenienceFee'],
       map['roundOff'],
       map['finalTotal'],
-      map['type'],
+      map['type']
     ];
   }
 }
