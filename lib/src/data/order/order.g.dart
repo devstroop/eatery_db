@@ -18,53 +18,47 @@ class OrderAdapter extends TypeAdapter<Order> {
     };
     return Order(
       customer: fields[1] as Customer,
-      updatedAt: fields[3] as DateTime?,
-      taxable: fields[4] as double,
-      taxTotal: fields[5] as double?,
-      discountTotal: fields[6] as double?,
-      serviceCharges: fields[7] as double?,
-      otherCharges: fields[8] as double?,
-      roundOff: fields[9] as double?,
-      finalTotal: fields[10] as double,
-      isPaid: fields[11] as bool,
-      isClosed: fields[12] as bool,
-      type: fields[13] as OrderType,
+      products: (fields[3] as List).cast<Product>(),
+      type: fields[11] as OrderType,
     )
       ..id = fields[0] as int?
-      ..createdAt = fields[2] as DateTime;
+      ..timestamp = fields[2] as DateTime
+      ..subtotal = fields[4] as double
+      ..taxTotal = fields[5] as double?
+      ..discountTotal = fields[6] as double?
+      ..convenienceFee = fields[7] as double?
+      ..roundOff = fields[8] as double?
+      ..finalTotal = fields[9] as double
+      ..payment = fields[10] as Payment?;
   }
 
   @override
   void write(BinaryWriter writer, Order obj) {
     writer
-      ..writeByte(14)
+      ..writeByte(12)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
       ..write(obj.customer)
       ..writeByte(2)
-      ..write(obj.createdAt)
+      ..write(obj.timestamp)
       ..writeByte(3)
-      ..write(obj.updatedAt)
+      ..write(obj.products)
       ..writeByte(4)
-      ..write(obj.taxable)
+      ..write(obj.subtotal)
       ..writeByte(5)
       ..write(obj.taxTotal)
       ..writeByte(6)
       ..write(obj.discountTotal)
       ..writeByte(7)
-      ..write(obj.serviceCharges)
+      ..write(obj.convenienceFee)
       ..writeByte(8)
-      ..write(obj.otherCharges)
-      ..writeByte(9)
       ..write(obj.roundOff)
-      ..writeByte(10)
+      ..writeByte(9)
       ..write(obj.finalTotal)
+      ..writeByte(10)
+      ..write(obj.payment)
       ..writeByte(11)
-      ..write(obj.isPaid)
-      ..writeByte(12)
-      ..write(obj.isClosed)
-      ..writeByte(13)
       ..write(obj.type);
   }
 

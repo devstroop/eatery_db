@@ -9,62 +9,55 @@ class Order extends HiveObject {
   @HiveField(1)
   Customer customer;
   @HiveField(2)
-  DateTime createdAt; // obj
+  DateTime timestamp;
   @HiveField(3)
-  DateTime? updatedAt; // obj
+  List<Product> products;
   @HiveField(4)
-  double taxable;
+  double subtotal;
   @HiveField(5)
   double? taxTotal;
   @HiveField(6)
   double? discountTotal;
   @HiveField(7)
-  double? serviceCharges;
+  double? convenienceFee;
   @HiveField(8)
-  double? otherCharges;
-  @HiveField(9)
   double? roundOff;
-  @HiveField(10)
+  @HiveField(9)
   double finalTotal;
+  @HiveField(10)
+  Payment? payment;
   @HiveField(11)
-  bool isPaid;
-  @HiveField(12)
-  bool isClosed;
-  @HiveField(13)
-  OrderType type; // enum
+  OrderType type;
 
-  Order({
-    required this.customer,
-    this.updatedAt,
-    this.taxable = 0.0,
-    this.taxTotal,
-    this.discountTotal,
-    this.serviceCharges,
-    this.otherCharges,
-    this.roundOff,
-    this.finalTotal = 0.0,
-    this.isPaid = false,
-    this.isClosed = false,
-    required this.type})
-      : createdAt = DateTime.now(),
-        id = EateryDB.instance.orderBox?.nextId();
+  Order({required this.customer, required this.products, required this.type})
+      : id = EateryDB.instance.orderBox?.nextId(),
+        timestamp = DateTime.now(),
+        subtotal = products.fold(
+            0, (previousValue, element) => previousValue + element.salePrice!),
+        taxTotal = 0,
+        discountTotal = 0,
+        convenienceFee = 0,
+        roundOff = 0,
+        finalTotal = products.fold(
+            0, (previousValue, element) => previousValue + element.salePrice!);
 
   Order.fromMap(Map<String, dynamic> map)
       : id = map['id'],
         customer = EateryDB.instance.customerBox!.values
             .where((element) => element.id == map['customerId'])
             .first,
-        createdAt = DateTime.parse(map['createdAt'] as String),
-        updatedAt = DateTime.parse(map['updatedAt'] as String),
-        taxable = map['taxable'],
+        products = map['products'].map((e) {
+          return EateryDB.instance.productBox!.values
+              .where((element) => element.id == e)
+              .first;
+        }).toList(),
+        timestamp = DateTime.parse(map['timestamp'] as String),
+        subtotal = map['subtotal'],
         taxTotal = map['taxTotal'],
         discountTotal = map['discountTotal'],
-        serviceCharges = map['serviceCharges'],
-        otherCharges = map['otherCharges'],
+        convenienceFee = map['convenienceFee'],
         roundOff = map['roundOff'],
         finalTotal = map['finalTotal'],
-        isPaid = map['isPaid'],
-        isClosed = map['isClosed'],
         type = OrderType.values
             .singleWhere((element) => element.id == map['type']);
 
@@ -72,17 +65,14 @@ class Order extends HiveObject {
     return {
       'id': id,
       'customerId': customer.id,
-      'createdAt': createdAt.toIso8601String(),
-      'updatedAt': updatedAt != null ? updatedAt!.toIso8601String() : null,
-      'taxable': taxable,
+      'products': products.map((e) => e.id).toList(),
+      'timestamp': timestamp.millisecondsSinceEpoch,
+      'subtotal': subtotal,
       'taxTotal': taxTotal,
       'discountTotal': discountTotal,
-      'serviceCharges': serviceCharges,
-      'otherCharges': otherCharges,
+      'convenienceFee': convenienceFee,
       'roundOff': roundOff,
       'finalTotal': finalTotal,
-      'isPaid': isPaid,
-      'isClosed': isClosed,
       'type': type.id,
     };
   }
@@ -91,18 +81,14 @@ class Order extends HiveObject {
     return Order.fromMap({
       'id': row.elementAt(0),
       'customerId': row.elementAt(1),
-      'createdAt': row.elementAt(2),
-      'updatedAt': row.elementAt(3),
-      'taxable': row.elementAt(4),
-      'taxTotal': row.elementAt(5),
-      'discountTotal': row.elementAt(6),
-      'serviceCharges': row.elementAt(7),
-      'otherCharges': row.elementAt(8),
-      'roundOff': row.elementAt(9),
-      'finalTotal': row.elementAt(10),
-      'isPaid': row.elementAt(11),
-      'isClosed': row.elementAt(12),
-      'type': row.elementAt(13),
+      'timestamp': row.elementAt(2),
+      'subtotal': row.elementAt(3),
+      'taxTotal': row.elementAt(4),
+      'discountTotal': row.elementAt(5),
+      'convenienceFee': row.elementAt(6),
+      'roundOff': row.elementAt(7),
+      'finalTotal': row.elementAt(8),
+      'type': row.elementAt(9),
     });
   }
 
@@ -111,17 +97,13 @@ class Order extends HiveObject {
     return [
       map['id'],
       map['customerId'],
-      map['createdAt'],
-      map['updatedAt'],
-      map['taxable'],
+      map['timestamp'],
+      map['subtotal'],
       map['taxTotal'],
       map['discountTotal'],
-      map['serviceCharges'],
-      map['otherCharges'],
+      map['convenienceFee'],
       map['roundOff'],
       map['finalTotal'],
-      map['isPaid'],
-      map['isClosed'],
       map['type'],
     ];
   }
