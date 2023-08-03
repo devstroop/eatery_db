@@ -48,6 +48,7 @@ class EateryDB {
     Hive.registerAdapter(CustomerAdapter());
     Hive.registerAdapter(DiningTableAdapter());
     Hive.registerAdapter(DiningTableCategoryAdapter());
+    Hive.registerAdapter(DiningTableStatusAdapter());
     Hive.registerAdapter(OrderAdapter());
     Hive.registerAdapter(PrinterAdapter());
     Hive.registerAdapter(ProductAdapter());
