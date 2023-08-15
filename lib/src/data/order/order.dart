@@ -7,7 +7,7 @@ class Order extends HiveObject {
   @HiveField(0)
   int? id;
   @HiveField(1)
-  Customer customer;
+  Customer? customer;
   @HiveField(2)
   DateTime timestamp;
   @HiveField(3)
@@ -45,11 +45,11 @@ class Order extends HiveObject {
       : id = map['id'],
         customer = EateryDB.instance.customerBox!.values
             .where((element) => element.id == map['customerId'])
-            .first,
+            .firstOrNull,
         products = map['products'].map((e) {
           return EateryDB.instance.productBox!.values
               .where((element) => element.id == e)
-              .first;
+              .firstOrNull;
         }).toList(),
         timestamp = DateTime.parse(map['timestamp'] as String),
         subtotal = map['subtotal'],
@@ -64,7 +64,7 @@ class Order extends HiveObject {
   Map<String, Object?> toMap() {
     return {
       'id': id,
-      'customerId': customer.id,
+      'customerId': customer?.id,
       'products': products.map((e) => e.id).toList(),
       'timestamp': timestamp.millisecondsSinceEpoch,
       'subtotal': subtotal,

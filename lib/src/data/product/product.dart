@@ -50,7 +50,7 @@ class Product extends HiveObject {
         salePrice = map['salePrice'],
         taxSlabId = map['taxSlabId'],
         foodType = FoodType.values
-            .singleWhere((element) => element.id == map['foodType']),
+            .where((element) => element.id == map['foodType']).firstOrNull,
         type = ProductType.values
             .singleWhere((element) => element.index == map['type']),
         isActive = map['isActive'];
