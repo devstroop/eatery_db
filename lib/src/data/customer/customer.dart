@@ -41,11 +41,11 @@ class Customer extends HiveObject {
         phone = map['phone'],
         address = map['address'],
         landmark = map['landmark'],
-        latitude = map['latitude'] != null ? double.parse(map['latitude']) : null,
-        longitude = map['longitude'] != null ? double.parse(map['longitude']) : null,
+        latitude = map['latitude'] != null ? double.parse(map['latitude'].toString()) : null,
+        longitude = map['longitude'] != null ? double.parse(map['longitude'].toString()) : null,
         isActive = map['isActive'] == 1 ? true : false,
-        lastOrderAt = DateTime.fromMillisecondsSinceEpoch(map['lastOrderAt']),
-        outstandingAmount = map['outstandingAmount'] ?? 0.0;
+        lastOrderAt = map['lastOrderAt'] != null ? DateTime.fromMillisecondsSinceEpoch(map['lastOrderAt']) : null,
+        outstandingAmount = map['outstandingAmount'] != null ? double.parse(map['outstandingAmount'].toString()) : 0;
 
   Map<String, Object?> toMap() {
     return {
