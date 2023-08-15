@@ -41,8 +41,8 @@ class Customer extends HiveObject {
         phone = map['phone'],
         address = map['address'],
         landmark = map['landmark'],
-        latitude = map['latitude'],
-        longitude = map['longitude'],
+        latitude = map['latitude'] != null ? double.parse(map['latitude']) : null,
+        longitude = map['longitude'] != null ? double.parse(map['longitude']) : null,
         isActive = map['isActive'] == 1 ? true : false,
         lastOrderAt = DateTime.fromMillisecondsSinceEpoch(map['lastOrderAt']),
         outstandingAmount = map['outstandingAmount'] ?? 0.0;

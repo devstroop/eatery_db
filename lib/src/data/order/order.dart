@@ -46,18 +46,14 @@ class Order extends HiveObject {
         customer = EateryDB.instance.customerBox!.values
             .where((element) => element.id == map['customerId'])
             .firstOrNull,
-        products = map['products'].map((e) {
-          return EateryDB.instance.productBox!.values
-              .where((element) => element.id == e)
-              .firstOrNull;
-        }).toList(),
-        timestamp = DateTime.parse(map['timestamp'] as String),
+        products = map['products'].map<Product>((e) => EateryDB.instance.productBox!.values.singleWhere((element) => element.id == e)).toList(),
+        timestamp = DateTime.fromMillisecondsSinceEpoch(map['timestamp']),
         subtotal = map['subtotal'],
         taxTotal = map['taxTotal'],
-        discountTotal = map['discountTotal'],
-        convenienceFee = map['convenienceFee'],
-        roundOff = map['roundOff'],
-        finalTotal = map['finalTotal'],
+        discountTotal = map['discountTotal'] != null ? double.parse(map['discountTotal'].toString()) : null,
+        convenienceFee = map['convenienceFee'] != null ? double.parse(map['convenienceFee'].toString()) : null,
+        roundOff = map['roundOff'] != null ? double.parse(map['roundOff'].toString()) : null,
+        finalTotal = double.parse(map['finalTotal'].toString()),
         type = OrderType.values
             .singleWhere((element) => element.id == map['type']);
 
