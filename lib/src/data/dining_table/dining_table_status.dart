@@ -15,6 +15,18 @@ enum DiningTableStatus {
 }
 
 extension DiningTableStatusExtension on DiningTableStatus {
+  int get id{
+    switch (this) {
+      case DiningTableStatus.available:
+        return 0;
+      case DiningTableStatus.occupied:
+        return 1;
+      case DiningTableStatus.reserved:
+        return 2;
+      case DiningTableStatus.inactive:
+        return 3;
+    }
+  }
   String get name {
     switch (this) {
       case DiningTableStatus.available:

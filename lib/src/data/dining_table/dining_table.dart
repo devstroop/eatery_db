@@ -40,7 +40,7 @@ class DiningTable extends HiveObject {
             .first,
         capacity = map['capacity'],
         status = DiningTableStatus.values.singleWhere(
-            (element) => element.index == map['status']);
+            (element) => element.id == map['status']);
 
   Map<String, Object?> toMap() {
     return {
@@ -50,7 +50,7 @@ class DiningTable extends HiveObject {
       'description': description,
       'orderId': order?.id,
       'capacity': capacity,
-      'status': status
+      'status': status.id
     };
   }
 
