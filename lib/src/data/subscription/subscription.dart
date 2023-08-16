@@ -13,7 +13,7 @@ class Subscription extends HiveObject {
   @HiveField(3)
   DateTime? validTill;
   @HiveField(4)
-  SubscriptionType? subscriptionType = SubscriptionType.free;
+  SubscriptionType? subscriptionType = SubscriptionType.individual;
 
   Subscription(
       {

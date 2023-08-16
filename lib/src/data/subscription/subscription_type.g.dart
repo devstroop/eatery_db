@@ -14,21 +14,21 @@ class SubscriptionTypeAdapter extends TypeAdapter<SubscriptionType> {
   SubscriptionType read(BinaryReader reader) {
     switch (reader.readByte()) {
       case 0:
-        return SubscriptionType.free;
+        return SubscriptionType.individual;
       case 1:
-        return SubscriptionType.premium;
+        return SubscriptionType.business;
       default:
-        return SubscriptionType.free;
+        return SubscriptionType.individual;
     }
   }
 
   @override
   void write(BinaryWriter writer, SubscriptionType obj) {
     switch (obj) {
-      case SubscriptionType.free:
+      case SubscriptionType.individual:
         writer.writeByte(0);
         break;
-      case SubscriptionType.premium:
+      case SubscriptionType.business:
         writer.writeByte(1);
         break;
     }
