@@ -44,8 +44,8 @@ class Order extends HiveObject {
   Order.fromMap(Map<String, dynamic> map)
       : id = map['id'],
         customer = EateryDB.instance.customerBox!.values
-            .where((element) => element.id == map['customerId'])
-            .firstOrNull,
+            .where((element) => element.phone == map['customerPhone'])
+            .firstOrNull ?? Customer(phone: map['customerPhone']),
         products = map['products'].map<Product>((e) => EateryDB.instance.productBox!.values.singleWhere((element) => element.id == e)).toList(),
         timestamp = DateTime.fromMillisecondsSinceEpoch(map['timestamp']),
         subtotal = map['subtotal'],
@@ -60,7 +60,7 @@ class Order extends HiveObject {
   Map<String, Object?> toMap() {
     return {
       'id': id,
-      'customerId': customer?.id,
+      'customerPhone': customer?.phone,
       'products': products.map((e) => e.id).toList(),
       'timestamp': timestamp.millisecondsSinceEpoch,
       'subtotal': subtotal,

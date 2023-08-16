@@ -7,7 +7,7 @@ class Customer extends HiveObject {
   @HiveField(0)
   int? id;
   @HiveField(1)
-  String name;
+  String? name;
   @HiveField(2)
   String phone;
   @HiveField(3)
@@ -27,7 +27,7 @@ class Customer extends HiveObject {
 
   Customer(
       {
-      required this.name,
+      this.name,
       required this.phone,
       this.address,
       this.landmark,

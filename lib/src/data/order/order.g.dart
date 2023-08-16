@@ -17,7 +17,7 @@ class OrderAdapter extends TypeAdapter<Order> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Order(
-      customer: fields[1] as Customer,
+      customer: fields[1] as Customer?,
       products: (fields[3] as List).cast<Product>(),
       type: fields[11] as OrderType,
     )
