@@ -33,11 +33,11 @@ class DiningTable extends HiveObject {
         name = map['name'],
         category = EateryDB.instance.diningTableCategoryBox!.values
             .where((element) => element.id == map['categoryId'])
-            .first,
+            .firstOrNull,
         description = map['description'],
         order = EateryDB.instance.orderBox!.values
             .where((element) => element.id == map['orderId'])
-            .first,
+            .firstOrNull,
         capacity = map['capacity'],
         status = DiningTableStatus.values.singleWhere(
             (element) => element.id == map['status']);
