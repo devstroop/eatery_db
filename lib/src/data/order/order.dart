@@ -15,45 +15,48 @@ class Order extends HiveObject {
   @HiveField(4)
   double subtotal;
   @HiveField(5)
-  double? taxTotal;
+  double taxTotal;
   @HiveField(6)
-  double? discountTotal;
-  @HiveField(7)
-  double? convenienceFee;
-  @HiveField(8)
-  double? roundOff;
-  @HiveField(9)
   double finalTotal;
-  @HiveField(10)
+  @HiveField(7)
+  double roundOff;
+  @HiveField(8)
+  double grandTotal;
+  @HiveField(9)
   Payment? payment;
-  @HiveField(11)
+  @HiveField(10)
   OrderType type;
 
-  Order({required this.customer, required this.products, required this.type})
-      : id = EateryDB.instance.orderBox?.nextId(),
-        timestamp = DateTime.now(),
-        subtotal = products.fold(
-            0, (previousValue, element) => previousValue + element.salePrice!),
-        taxTotal = 0,
-        discountTotal = 0,
-        convenienceFee = 0,
-        roundOff = 0,
-        finalTotal = products.fold(
-            0, (previousValue, element) => previousValue + element.salePrice!);
+  Order({
+    required this.customer,
+    required this.timestamp,
+    required this.products,
+    required this.subtotal,
+    required this.taxTotal,
+    required this.finalTotal,
+    required this.roundOff,
+    required this.grandTotal,
+    this.payment,
+    required this.type,
+  }) : id = EateryDB.instance.orderBox?.nextId();
 
   Order.fromMap(Map<String, dynamic> map)
       : id = map['id'],
         customer = EateryDB.instance.customerBox!.values
-            .where((element) => element.phone == map['customerPhone'])
-            .firstOrNull ?? Customer(phone: map['customerPhone']),
-        products = map['products'].map<Product>((e) => EateryDB.instance.productBox!.values.singleWhere((element) => element.id == e)).toList(),
+            .firstWhere((element) =>
+        element.phone == map['customerPhone'],
+            orElse: () => Customer(phone: map['customerPhone'])),
         timestamp = DateTime.fromMillisecondsSinceEpoch(map['timestamp']),
+        products = map['products']
+            .map<Product>((e) =>
+            EateryDB.instance.productBox!.values
+                .singleWhere((element) => element.id == e))
+            .toList(),
         subtotal = map['subtotal'],
         taxTotal = map['taxTotal'],
-        discountTotal = map['discountTotal'] != null ? double.parse(map['discountTotal'].toString()) : null,
-        convenienceFee = map['convenienceFee'] != null ? double.parse(map['convenienceFee'].toString()) : null,
-        roundOff = map['roundOff'] != null ? double.parse(map['roundOff'].toString()) : null,
-        finalTotal = double.parse(map['finalTotal'].toString()),
+        finalTotal = map['finalTotal']?.toDouble(),
+        roundOff = map['roundOff']?.toDouble(),
+        grandTotal = map['grandTotal'].toDouble(),
         type = OrderType.values
             .singleWhere((element) => element.id == map['type']);
 
@@ -65,8 +68,6 @@ class Order extends HiveObject {
       'timestamp': timestamp.millisecondsSinceEpoch,
       'subtotal': subtotal,
       'taxTotal': taxTotal,
-      'discountTotal': discountTotal,
-      'convenienceFee': convenienceFee,
       'roundOff': roundOff,
       'finalTotal': finalTotal,
       'type': type.id,
@@ -76,13 +77,11 @@ class Order extends HiveObject {
   static Order fromIterable(Iterable<dynamic> row) {
     return Order.fromMap({
       'id': row.elementAt(0),
-      'customerId': row.elementAt(1),
+      'customerPhone': row.elementAt(1),
       'products': row.elementAt(2),
       'timestamp': row.elementAt(3),
       'subtotal': row.elementAt(4),
       'taxTotal': row.elementAt(5),
-      'discountTotal': row.elementAt(6),
-      'convenienceFee': row.elementAt(7),
       'roundOff': row.elementAt(8),
       'finalTotal': row.elementAt(9),
       'type': row.elementAt(10),
@@ -93,13 +92,11 @@ class Order extends HiveObject {
     var map = toMap();
     return [
       map['id'],
-      map['customerId'],
+      map['customerPhone'],
       map['products'],
       map['timestamp'],
       map['subtotal'],
       map['taxTotal'],
-      map['discountTotal'],
-      map['convenienceFee'],
       map['roundOff'],
       map['finalTotal'],
       map['type']

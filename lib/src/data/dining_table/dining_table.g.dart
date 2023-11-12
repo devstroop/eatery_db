@@ -17,13 +17,14 @@ class DiningTableAdapter extends TypeAdapter<DiningTable> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return DiningTable(
+      id: fields[0] as int?,
       name: fields[1] as String,
       category: fields[2] as DiningTableCategory?,
       description: fields[3] as String?,
       order: fields[4] as Order?,
       capacity: fields[5] as int?,
       status: fields[6] as DiningTableStatus,
-    )..id = fields[0] as int?;
+    );
   }
 
   @override

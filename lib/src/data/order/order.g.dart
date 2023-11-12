@@ -18,24 +18,22 @@ class OrderAdapter extends TypeAdapter<Order> {
     };
     return Order(
       customer: fields[1] as Customer?,
+      timestamp: fields[2] as DateTime,
       products: (fields[3] as List).cast<Product>(),
-      type: fields[11] as OrderType,
-    )
-      ..id = fields[0] as int?
-      ..timestamp = fields[2] as DateTime
-      ..subtotal = fields[4] as double
-      ..taxTotal = fields[5] as double?
-      ..discountTotal = fields[6] as double?
-      ..convenienceFee = fields[7] as double?
-      ..roundOff = fields[8] as double?
-      ..finalTotal = fields[9] as double
-      ..payment = fields[10] as Payment?;
+      subtotal: fields[4] as double,
+      taxTotal: fields[5] as double,
+      finalTotal: fields[6] as double,
+      roundOff: fields[7] as double,
+      grandTotal: fields[8] as double,
+      payment: fields[9] as Payment?,
+      type: fields[10] as OrderType,
+    )..id = fields[0] as int?;
   }
 
   @override
   void write(BinaryWriter writer, Order obj) {
     writer
-      ..writeByte(12)
+      ..writeByte(11)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -49,16 +47,14 @@ class OrderAdapter extends TypeAdapter<Order> {
       ..writeByte(5)
       ..write(obj.taxTotal)
       ..writeByte(6)
-      ..write(obj.discountTotal)
-      ..writeByte(7)
-      ..write(obj.convenienceFee)
-      ..writeByte(8)
-      ..write(obj.roundOff)
-      ..writeByte(9)
       ..write(obj.finalTotal)
-      ..writeByte(10)
+      ..writeByte(7)
+      ..write(obj.roundOff)
+      ..writeByte(8)
+      ..write(obj.grandTotal)
+      ..writeByte(9)
       ..write(obj.payment)
-      ..writeByte(11)
+      ..writeByte(10)
       ..write(obj.type);
   }
 

@@ -20,7 +20,8 @@ class DiningTable extends HiveObject {
   DiningTableStatus status;
 
   DiningTable(
-      {required this.name,
+      {
+        required this.name,
       this.category,
       this.description,
       this.order,

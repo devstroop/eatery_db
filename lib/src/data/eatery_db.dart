@@ -95,30 +95,56 @@ class EateryDB {
     paymentModeBox = await Hive.openBox<PaymentMode>('paymentMode');
   }
 
-  Future flush() async {
-    await companyBox?.clear();
-    await currencyBox?.clear();
-    await autoPrintBox?.clear();
-    await customerBox?.clear();
-    await diningTableBox?.clear();
-    await diningTableCategoryBox?.clear();
-    await orderBox?.clear();
-    await productBox?.clear();
-    await productCategoryBox?.clear();
-    await printerBox?.clear();
-    await printerTypeBox?.clear();
-    await subscriptionBox?.clear();
-    await subscriptionTypeBox?.clear();
-    await editionBox?.clear();
-    await foodTypeBox?.clear();
-    await taxSlabBox?.clear();
-    await taxTypeBox?.clear();
-    await staffBox?.clear();
-    await staffTypeBox?.clear();
-    await productTypeBox?.clear();
-    await orderTypeBox?.clear();
-    await paymentBox?.clear();
-    await paymentModeBox?.clear();
+  // Future flush() async {
+  //   await companyBox?.clear();
+  //   await currencyBox?.clear();
+  //   await autoPrintBox?.clear();
+  //   await customerBox?.clear();
+  //   await diningTableBox?.clear();
+  //   await diningTableCategoryBox?.clear();
+  //   await orderBox?.clear();
+  //   await productBox?.clear();
+  //   await productCategoryBox?.clear();
+  //   await printerBox?.clear();
+  //   await printerTypeBox?.clear();
+  //   await subscriptionBox?.clear();
+  //   await subscriptionTypeBox?.clear();
+  //   await editionBox?.clear();
+  //   await foodTypeBox?.clear();
+  //   await taxSlabBox?.clear();
+  //   await taxTypeBox?.clear();
+  //   await staffBox?.clear();
+  //   await staffTypeBox?.clear();
+  //   await productTypeBox?.clear();
+  //   await orderTypeBox?.clear();
+  //   await paymentBox?.clear();
+  //   await paymentModeBox?.clear();
+  // }
+
+  Future deleteAll() async {
+    await companyBox?.deleteFromDisk();
+    await currencyBox?.deleteFromDisk();
+    await autoPrintBox?.deleteFromDisk();
+    await customerBox?.deleteFromDisk();
+    await diningTableBox?.deleteFromDisk();
+    await diningTableCategoryBox?.deleteFromDisk();
+    await orderBox?.deleteFromDisk();
+    await productBox?.deleteFromDisk();
+    await productCategoryBox?.deleteFromDisk();
+    await printerBox?.deleteFromDisk();
+    await printerTypeBox?.deleteFromDisk();
+    await subscriptionBox?.deleteFromDisk();
+    await subscriptionTypeBox?.deleteFromDisk();
+    await editionBox?.deleteFromDisk();
+    await foodTypeBox?.deleteFromDisk();
+    await taxSlabBox?.deleteFromDisk();
+    await taxTypeBox?.deleteFromDisk();
+    await staffBox?.deleteFromDisk();
+    await staffTypeBox?.deleteFromDisk();
+    await productTypeBox?.deleteFromDisk();
+    await orderTypeBox?.deleteFromDisk();
+    await paymentBox?.deleteFromDisk();
+    await paymentModeBox?.deleteFromDisk();
   }
 
   Future<void> dispose() => Hive.close();
