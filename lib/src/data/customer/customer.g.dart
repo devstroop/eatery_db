@@ -25,15 +25,13 @@ class CustomerAdapter extends TypeAdapter<Customer> {
       longitude: fields[6] as double?,
       isActive: fields[7] as bool,
       lastOrderAt: fields[8] as DateTime?,
-    )
-      ..id = fields[0] as int?
-      ..outstandingAmount = fields[9] as double;
+    )..id = fields[0] as int?;
   }
 
   @override
   void write(BinaryWriter writer, Customer obj) {
     writer
-      ..writeByte(10)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -51,9 +49,7 @@ class CustomerAdapter extends TypeAdapter<Customer> {
       ..writeByte(7)
       ..write(obj.isActive)
       ..writeByte(8)
-      ..write(obj.lastOrderAt)
-      ..writeByte(9)
-      ..write(obj.outstandingAmount);
+      ..write(obj.lastOrderAt);
   }
 
   @override

@@ -17,7 +17,7 @@ class Order extends HiveObject {
   @HiveField(5)
   double taxTotal;
   @HiveField(6)
-  double finalTotal;
+  double total;
   @HiveField(7)
   double roundOff;
   @HiveField(8)
@@ -26,6 +26,10 @@ class Order extends HiveObject {
   Payment? payment;
   @HiveField(10)
   OrderType type;
+  @HiveField(11)
+  double? previousDue;
+  @HiveField(12)
+  double payable;
 
   Order({
     required this.customer,
@@ -33,11 +37,14 @@ class Order extends HiveObject {
     required this.products,
     required this.subtotal,
     required this.taxTotal,
-    required this.finalTotal,
+    required this.total,
     required this.roundOff,
     required this.grandTotal,
     this.payment,
     required this.type,
+    this.previousDue,
+    required this.payable,
+
   }) : id = EateryDB.instance.orderBox?.nextId();
 
   Order.fromMap(Map<String, dynamic> map)
@@ -54,11 +61,15 @@ class Order extends HiveObject {
             .toList(),
         subtotal = map['subtotal'],
         taxTotal = map['taxTotal'],
-        finalTotal = map['finalTotal']?.toDouble(),
+        total = map['total']?.toDouble(),
         roundOff = map['roundOff']?.toDouble(),
         grandTotal = map['grandTotal'].toDouble(),
+            payment = map['payment'] != null ? Payment.fromMap(map['payment']) : null,
+
         type = OrderType.values
-            .singleWhere((element) => element.id == map['type']);
+            .singleWhere((element) => element.id == map['type']),
+            previousDue = map['previousDue']?.toDouble(),
+    payable = (map['grandTotal'] + (map['previousDue'] ?? 0)) - (map['payment']?.amount ?? 0);
 
   Map<String, Object?> toMap() {
     return {
@@ -68,9 +79,13 @@ class Order extends HiveObject {
       'timestamp': timestamp.millisecondsSinceEpoch,
       'subtotal': subtotal,
       'taxTotal': taxTotal,
+      'total': total,
       'roundOff': roundOff,
-      'finalTotal': finalTotal,
+      'grandTotal': grandTotal,
+      'payment': payment?.toMap(),
       'type': type.id,
+      'previousDue': previousDue,
+      'payable': payable,
     };
   }
 
@@ -82,9 +97,13 @@ class Order extends HiveObject {
       'timestamp': row.elementAt(3),
       'subtotal': row.elementAt(4),
       'taxTotal': row.elementAt(5),
+      'total': row.elementAt(9),
       'roundOff': row.elementAt(8),
-      'finalTotal': row.elementAt(9),
+      'grandTotal': row.elementAt(6),
+      'payment': row.elementAt(7),
       'type': row.elementAt(10),
+      'previousDue': row.elementAt(11),
+      'payable': row.elementAt(12),
     });
   }
 
@@ -97,9 +116,12 @@ class Order extends HiveObject {
       map['timestamp'],
       map['subtotal'],
       map['taxTotal'],
+      map['total'],
       map['roundOff'],
-      map['finalTotal'],
-      map['type']
+      map['grandTotal'],
+      map['type'],
+      map['previousDue'],
+      map['payable'],
     ];
   }
 }

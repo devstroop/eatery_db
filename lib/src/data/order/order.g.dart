@@ -22,18 +22,20 @@ class OrderAdapter extends TypeAdapter<Order> {
       products: (fields[3] as List).cast<Product>(),
       subtotal: fields[4] as double,
       taxTotal: fields[5] as double,
-      finalTotal: fields[6] as double,
+      total: fields[6] as double,
       roundOff: fields[7] as double,
       grandTotal: fields[8] as double,
       payment: fields[9] as Payment?,
       type: fields[10] as OrderType,
+      previousDue: fields[11] as double?,
+      payable: fields[12] as double,
     )..id = fields[0] as int?;
   }
 
   @override
   void write(BinaryWriter writer, Order obj) {
     writer
-      ..writeByte(11)
+      ..writeByte(13)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -47,7 +49,7 @@ class OrderAdapter extends TypeAdapter<Order> {
       ..writeByte(5)
       ..write(obj.taxTotal)
       ..writeByte(6)
-      ..write(obj.finalTotal)
+      ..write(obj.total)
       ..writeByte(7)
       ..write(obj.roundOff)
       ..writeByte(8)
@@ -55,7 +57,11 @@ class OrderAdapter extends TypeAdapter<Order> {
       ..writeByte(9)
       ..write(obj.payment)
       ..writeByte(10)
-      ..write(obj.type);
+      ..write(obj.type)
+      ..writeByte(11)
+      ..write(obj.previousDue)
+      ..writeByte(12)
+      ..write(obj.payable);
   }
 
   @override

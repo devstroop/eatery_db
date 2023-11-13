@@ -22,8 +22,6 @@ class Customer extends HiveObject {
   bool isActive;
   @HiveField(8)
   DateTime? lastOrderAt;
-  @HiveField(9)
-  double outstandingAmount;
 
   Customer(
       {
@@ -33,7 +31,7 @@ class Customer extends HiveObject {
       this.landmark,
       this.latitude,
       this.longitude,
-      this.isActive = true, this.lastOrderAt}): id = EateryDB.instance.customerBox?.nextId(), outstandingAmount = 0.0;
+      this.isActive = true, this.lastOrderAt}): id = EateryDB.instance.customerBox?.nextId();
 
   Customer.fromMap(Map<String, dynamic> map)
       : id = map['id'],
@@ -44,8 +42,7 @@ class Customer extends HiveObject {
         latitude = map['latitude'] != null ? double.parse(map['latitude'].toString()) : null,
         longitude = map['longitude'] != null ? double.parse(map['longitude'].toString()) : null,
         isActive = map['isActive'] == 1 ? true : false,
-        lastOrderAt = map['lastOrderAt'] != null ? DateTime.fromMillisecondsSinceEpoch(map['lastOrderAt']) : null,
-        outstandingAmount = map['outstandingAmount'] != null ? double.parse(map['outstandingAmount'].toString()) : 0;
+        lastOrderAt = map['lastOrderAt'] != null ? DateTime.fromMillisecondsSinceEpoch(map['lastOrderAt']) : null;
 
   Map<String, Object?> toMap() {
     return {
@@ -57,8 +54,7 @@ class Customer extends HiveObject {
       'latitude': latitude,
       'longitude': longitude,
       'isActive': isActive ? 1 : 0,
-      'lastOrderAt': lastOrderAt?.millisecondsSinceEpoch,
-      'outstandingAmount': outstandingAmount
+      'lastOrderAt': lastOrderAt?.millisecondsSinceEpoch
     };
   }
 
@@ -73,8 +69,7 @@ class Customer extends HiveObject {
       'latitude': list.elementAt(5),
       'longitude': list.elementAt(6),
       'isActive': list.elementAt(7),
-      'lastOrderAt': list.elementAt(8),
-      'outstandingAmount': list.elementAt(9)
+      'lastOrderAt': list.elementAt(8)
     });
   }
 
@@ -89,8 +84,7 @@ class Customer extends HiveObject {
       map['latitude'],
       map['longitude'],
       map['isActive'],
-      map['lastOrderAt'],
-      map['outstandingAmount']
+      map['lastOrderAt']
     ];
   }
 }

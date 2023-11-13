@@ -23,13 +23,14 @@ class DiningTableAdapter extends TypeAdapter<DiningTable> {
       order: fields[4] as Order?,
       capacity: fields[5] as int?,
       status: fields[6] as DiningTableStatus,
+      customer: fields[7] as Customer?,
     )..id = fields[0] as int?;
   }
 
   @override
   void write(BinaryWriter writer, DiningTable obj) {
     writer
-      ..writeByte(7)
+      ..writeByte(8)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -43,7 +44,9 @@ class DiningTableAdapter extends TypeAdapter<DiningTable> {
       ..writeByte(5)
       ..write(obj.capacity)
       ..writeByte(6)
-      ..write(obj.status);
+      ..write(obj.status)
+      ..writeByte(7)
+      ..write(obj.customer);
   }
 
   @override
