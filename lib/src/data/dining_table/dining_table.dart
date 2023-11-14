@@ -13,21 +13,21 @@ class DiningTable extends HiveObject {
   @HiveField(3)
   String? description;
   @HiveField(4)
-  Order? order;
+  int? orderId;
   @HiveField(5)
   int? capacity;
   @HiveField(6)
   DiningTableStatus status;
   @HiveField(7)
-  Customer? customer;
+  String? customerPhone;
   DiningTable(
       {
         required this.name,
       this.category,
       this.description,
-      this.order,
+      this.orderId,
       this.capacity = 0,
-      this.status = DiningTableStatus.available, this.customer})
+      this.status = DiningTableStatus.available, this.customerPhone})
       : id = EateryDB.instance.diningTableBox?.nextId();
 
   DiningTable.fromMap(Map<String, dynamic> map)
@@ -37,15 +37,11 @@ class DiningTable extends HiveObject {
             .where((element) => element.id == map['categoryId'])
             .firstOrNull,
         description = map['description'],
-        order = EateryDB.instance.orderBox!.values
-            .where((element) => element.id == map['orderId'])
-            .firstOrNull,
+        orderId = map['orderId'],
         capacity = map['capacity'],
         status = DiningTableStatus.values.singleWhere(
             (element) => element.id == map['status']),
-    customer = EateryDB.instance.customerBox!.values
-        .where((element) => element.id == map['customerId'])
-        .firstOrNull;
+    customerPhone = map['customerPhone'];
 
   Map<String, Object?> toMap() {
     return {
@@ -53,10 +49,10 @@ class DiningTable extends HiveObject {
       'name': name,
       'categoryId': category?.id,
       'description': description,
-      'orderId': order?.id,
+      'orderId': orderId,
       'capacity': capacity,
       'status': status.id,
-      'customerId': customer?.id
+      'customerPhone': customerPhone
     };
   }
 
@@ -69,7 +65,7 @@ class DiningTable extends HiveObject {
       'orderId': row.elementAt(4),
       'capacity': row.elementAt(5),
       'status': row.elementAt(6),
-      'customerId': row.elementAt(7)
+      'customerPhone': row.elementAt(7)
     });
   }
 
@@ -83,7 +79,7 @@ class DiningTable extends HiveObject {
       map['orderId'],
       map['capacity'],
       map['status'],
-      map['customerId']
+      map['customerPhone']
     ];
   }
 }

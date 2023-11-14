@@ -7,7 +7,7 @@ class Payment extends HiveObject {
   @HiveField(0)
   int? id;
   @HiveField(1)
-  int orderId;
+  int? orderId;
   @HiveField(2)
   DateTime date;
   @HiveField(3)
@@ -20,7 +20,7 @@ class Payment extends HiveObject {
   String? attachment;
 
   Payment(
-      {required this.orderId, required this.amount, required this.mode, this.reference, this.attachment})
+      {this.orderId, required this.amount, required this.mode, this.reference, this.attachment})
       :id= EateryDB.instance.paymentBox?.nextId(),
         date = DateTime.now();
 

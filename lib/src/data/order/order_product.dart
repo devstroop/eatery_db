@@ -7,30 +7,71 @@ class OrderProduct extends HiveObject{
   @HiveField(0)
   int? id;
   @HiveField(1)
-  int orderId;
+  int? orderId;
   @HiveField(2)
-  String productName;
+  int? productId;
   @HiveField(3)
-  int quantity;
+  String productName;
   @HiveField(4)
-  double price;
+  int quantity;
   @HiveField(5)
-  double tax;
+  double price;
   @HiveField(6)
-  double total;
+  double subTotal;
   @HiveField(7)
-  double discount;
+  double? discountRate;
   @HiveField(8)
-  double grandTotal;
+  double? discountAmount;
+  @HiveField(9)
+  double? taxRate;
+  @HiveField(10)
+  double? taxAmount;
+  @HiveField(11)
+  double total;
 
   OrderProduct({
     required this.orderId,
+    required this.productId,
     required this.productName,
     required this.quantity,
     required this.price,
-    required this.tax,
+    required this.subTotal,
+    this.taxRate,
+    this.taxAmount,
+    this.discountRate,
+    this.discountAmount,
     required this.total,
-    required this.discount,
-    required this.grandTotal,
+
   }) : id = EateryDB.instance.orderProductBox?.nextId();
+
+  OrderProduct.fromMap(Map<String, dynamic> map)
+      : id = map['id'],
+        orderId = map['orderId'],
+        productId = map['productId'],
+        productName = map['productName'],
+        quantity = map['quantity'],
+        price = map['price'],
+        subTotal = map['subTotal'],
+        taxRate = map['taxRate'],
+        taxAmount = map['taxAmount'],
+        discountRate = map['discountRate'],
+        discountAmount = map['discountAmount'],
+        total = map['total'];
+
+  Map<String, Object?> toMap() {
+    return {
+      'id': id,
+      'orderId': orderId,
+      'productId': productId,
+      'productName': productName,
+      'quantity': quantity,
+      'price': price,
+      'subTotal': subTotal,
+      'taxRate': taxRate,
+      'taxAmount': taxAmount,
+      'discountRate': discountRate,
+      'discountAmount': discountAmount,
+      'total': total,
+    };
+  }
 }

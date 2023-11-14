@@ -17,39 +17,48 @@ class OrderProductAdapter extends TypeAdapter<OrderProduct> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return OrderProduct(
-      orderId: fields[1] as int,
-      productName: fields[2] as String,
-      quantity: fields[3] as int,
-      price: fields[4] as double,
-      tax: fields[5] as double,
-      total: fields[6] as double,
-      discount: fields[7] as double,
-      grandTotal: fields[8] as double,
+      orderId: fields[1] as int?,
+      productId: fields[2] as int?,
+      productName: fields[3] as String,
+      quantity: fields[4] as int,
+      price: fields[5] as double,
+      subTotal: fields[6] as double,
+      taxRate: fields[9] as double?,
+      taxAmount: fields[10] as double?,
+      discountRate: fields[7] as double?,
+      discountAmount: fields[8] as double?,
+      total: fields[11] as double,
     )..id = fields[0] as int?;
   }
 
   @override
   void write(BinaryWriter writer, OrderProduct obj) {
     writer
-      ..writeByte(9)
+      ..writeByte(12)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
       ..write(obj.orderId)
       ..writeByte(2)
-      ..write(obj.productName)
+      ..write(obj.productId)
       ..writeByte(3)
-      ..write(obj.quantity)
+      ..write(obj.productName)
       ..writeByte(4)
-      ..write(obj.price)
+      ..write(obj.quantity)
       ..writeByte(5)
-      ..write(obj.tax)
+      ..write(obj.price)
       ..writeByte(6)
-      ..write(obj.total)
+      ..write(obj.subTotal)
       ..writeByte(7)
-      ..write(obj.discount)
+      ..write(obj.discountRate)
       ..writeByte(8)
-      ..write(obj.grandTotal);
+      ..write(obj.discountAmount)
+      ..writeByte(9)
+      ..write(obj.taxRate)
+      ..writeByte(10)
+      ..write(obj.taxAmount)
+      ..writeByte(11)
+      ..write(obj.total);
   }
 
   @override

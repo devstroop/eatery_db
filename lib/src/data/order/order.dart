@@ -7,37 +7,74 @@ class Order extends HiveObject {
   @HiveField(0)
   int? id;
   @HiveField(1)
-  int customerId;
+  String? customerPhone;
   @HiveField(2)
   DateTime createdAt;
   @HiveField(3)
   DateTime? updatedAt;
   @HiveField(4)
-  double subTotal;
+  int totalQuantity;
   @HiveField(5)
-  double taxTotal;
+  double subTotal;
   @HiveField(6)
-  double finalTotal;
+  double discountTotal;
   @HiveField(7)
-  double roundOff;
+  double taxTotal;
   @HiveField(8)
-  double grandTotal;
+  double finalTotal;
   @HiveField(9)
-  double? paidTotal;
+  double roundOff;
   @HiveField(10)
+  double grandTotal;
+  @HiveField(11)
+  double? paidTotal;
+  @HiveField(12)
   OrderType type;
 
   Order({
-    required this.customerId,
-    required this.createdAt,
-    this.updatedAt,
+    this.customerPhone,
+    required this.totalQuantity,
     required this.subTotal,
+    required this.discountTotal,
     required this.taxTotal,
     required this.finalTotal,
     required this.roundOff,
     required this.grandTotal,
     this.paidTotal,
     required this.type,
+  })   : id = EateryDB.instance.orderBox?.nextId(),
+        createdAt = DateTime.now();
 
-  }) : id = EateryDB.instance.orderBox?.nextId();
+  Order.fromMap(Map<String, dynamic> map)
+      : id = map['id'],
+        customerPhone = map['customerPhone'],
+        createdAt = DateTime.fromMillisecondsSinceEpoch(map['createdAt']),
+        updatedAt = map['updatedAt'] != null ? DateTime.fromMillisecondsSinceEpoch(map['updatedAt']) : null,
+        totalQuantity = map['totalQuantity'],
+        subTotal = map['subTotal'],
+        discountTotal = map['discountTotal'],
+        taxTotal = map['taxTotal'],
+        finalTotal = map['finalTotal'],
+        roundOff = map['roundOff'],
+        grandTotal = map['grandTotal'],
+        paidTotal = map['paidTotal'],
+        type = OrderType.values[map['type']];
+
+  Map<String, Object?> toMap() {
+    return {
+      'id': id,
+      'customerPhone': customerPhone,
+      'createdAt': createdAt.millisecondsSinceEpoch,
+      'updatedAt': updatedAt?.millisecondsSinceEpoch,
+      'totalQuantity': totalQuantity,
+      'subTotal': subTotal,
+      'discountTotal': discountTotal,
+      'taxTotal': taxTotal,
+      'finalTotal': finalTotal,
+      'roundOff': roundOff,
+      'grandTotal': grandTotal,
+      'paidTotal': paidTotal,
+      'type': type.index,
+    };
+  }
 }

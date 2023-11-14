@@ -20,10 +20,10 @@ class DiningTableAdapter extends TypeAdapter<DiningTable> {
       name: fields[1] as String,
       category: fields[2] as DiningTableCategory?,
       description: fields[3] as String?,
-      order: fields[4] as Order?,
+      orderId: fields[4] as int?,
       capacity: fields[5] as int?,
       status: fields[6] as DiningTableStatus,
-      customer: fields[7] as Customer?,
+      customerPhone: fields[7] as String?,
     )..id = fields[0] as int?;
   }
 
@@ -40,13 +40,13 @@ class DiningTableAdapter extends TypeAdapter<DiningTable> {
       ..writeByte(3)
       ..write(obj.description)
       ..writeByte(4)
-      ..write(obj.order)
+      ..write(obj.orderId)
       ..writeByte(5)
       ..write(obj.capacity)
       ..writeByte(6)
       ..write(obj.status)
       ..writeByte(7)
-      ..write(obj.customer);
+      ..write(obj.customerPhone);
   }
 
   @override

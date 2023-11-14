@@ -17,44 +17,51 @@ class OrderAdapter extends TypeAdapter<Order> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Order(
-      customerId: fields[1] as int,
-      createdAt: fields[2] as DateTime,
-      updatedAt: fields[3] as DateTime?,
-      subTotal: fields[4] as double,
-      taxTotal: fields[5] as double,
-      finalTotal: fields[6] as double,
-      roundOff: fields[7] as double,
-      grandTotal: fields[8] as double,
-      paidTotal: fields[9] as double?,
-      type: fields[10] as OrderType,
-    )..id = fields[0] as int?;
+      customerPhone: fields[1] as String?,
+      totalQuantity: fields[4] as int,
+      subTotal: fields[5] as double,
+      discountTotal: fields[6] as double,
+      taxTotal: fields[7] as double,
+      finalTotal: fields[8] as double,
+      roundOff: fields[9] as double,
+      grandTotal: fields[10] as double,
+      paidTotal: fields[11] as double?,
+      type: fields[12] as OrderType,
+    )
+      ..id = fields[0] as int?
+      ..createdAt = fields[2] as DateTime
+      ..updatedAt = fields[3] as DateTime?;
   }
 
   @override
   void write(BinaryWriter writer, Order obj) {
     writer
-      ..writeByte(11)
+      ..writeByte(13)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.customerId)
+      ..write(obj.customerPhone)
       ..writeByte(2)
       ..write(obj.createdAt)
       ..writeByte(3)
       ..write(obj.updatedAt)
       ..writeByte(4)
-      ..write(obj.subTotal)
+      ..write(obj.totalQuantity)
       ..writeByte(5)
-      ..write(obj.taxTotal)
+      ..write(obj.subTotal)
       ..writeByte(6)
-      ..write(obj.finalTotal)
+      ..write(obj.discountTotal)
       ..writeByte(7)
-      ..write(obj.roundOff)
+      ..write(obj.taxTotal)
       ..writeByte(8)
-      ..write(obj.grandTotal)
+      ..write(obj.finalTotal)
       ..writeByte(9)
-      ..write(obj.paidTotal)
+      ..write(obj.roundOff)
       ..writeByte(10)
+      ..write(obj.grandTotal)
+      ..writeByte(11)
+      ..write(obj.paidTotal)
+      ..writeByte(12)
       ..write(obj.type);
   }
 

@@ -17,7 +17,7 @@ class PaymentAdapter extends TypeAdapter<Payment> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Payment(
-      orderId: fields[1] as int,
+      orderId: fields[1] as int?,
       amount: fields[3] as double,
       mode: fields[4] as PaymentMode,
       reference: fields[5] as String?,
