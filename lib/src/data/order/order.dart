@@ -26,10 +26,6 @@ class Order extends HiveObject {
   Payment? payment;
   @HiveField(10)
   OrderType type;
-  @HiveField(11)
-  double? previousDue;
-  @HiveField(12)
-  double payable;
 
   Order({
     required this.customer,
@@ -42,8 +38,6 @@ class Order extends HiveObject {
     required this.grandTotal,
     this.payment,
     required this.type,
-    this.previousDue,
-    required this.payable,
 
   }) : id = EateryDB.instance.orderBox?.nextId();
 
@@ -67,9 +61,7 @@ class Order extends HiveObject {
             payment = map['payment'] != null ? Payment.fromMap(map['payment']) : null,
 
         type = OrderType.values
-            .singleWhere((element) => element.id == map['type']),
-            previousDue = map['previousDue']?.toDouble(),
-    payable = (map['grandTotal'] + (map['previousDue'] ?? 0)) - (map['payment']?.amount ?? 0);
+            .singleWhere((element) => element.id == map['type']);
 
   Map<String, Object?> toMap() {
     return {
@@ -84,8 +76,6 @@ class Order extends HiveObject {
       'grandTotal': grandTotal,
       'payment': payment?.toMap(),
       'type': type.id,
-      'previousDue': previousDue,
-      'payable': payable,
     };
   }
 
@@ -102,8 +92,6 @@ class Order extends HiveObject {
       'grandTotal': row.elementAt(6),
       'payment': row.elementAt(7),
       'type': row.elementAt(10),
-      'previousDue': row.elementAt(11),
-      'payable': row.elementAt(12),
     });
   }
 
@@ -120,8 +108,6 @@ class Order extends HiveObject {
       map['roundOff'],
       map['grandTotal'],
       map['type'],
-      map['previousDue'],
-      map['payable'],
     ];
   }
 }
