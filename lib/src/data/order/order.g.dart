@@ -17,15 +17,15 @@ class OrderAdapter extends TypeAdapter<Order> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Order(
-      customer: fields[1] as Customer?,
-      timestamp: fields[2] as DateTime,
-      products: (fields[3] as List).cast<Product>(),
-      subtotal: fields[4] as double,
+      customerId: fields[1] as int,
+      createdAt: fields[2] as DateTime,
+      updatedAt: fields[3] as DateTime?,
+      subTotal: fields[4] as double,
       taxTotal: fields[5] as double,
-      total: fields[6] as double,
+      finalTotal: fields[6] as double,
       roundOff: fields[7] as double,
       grandTotal: fields[8] as double,
-      payment: fields[9] as Payment?,
+      paidTotal: fields[9] as double?,
       type: fields[10] as OrderType,
     )..id = fields[0] as int?;
   }
@@ -37,23 +37,23 @@ class OrderAdapter extends TypeAdapter<Order> {
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.customer)
+      ..write(obj.customerId)
       ..writeByte(2)
-      ..write(obj.timestamp)
+      ..write(obj.createdAt)
       ..writeByte(3)
-      ..write(obj.products)
+      ..write(obj.updatedAt)
       ..writeByte(4)
-      ..write(obj.subtotal)
+      ..write(obj.subTotal)
       ..writeByte(5)
       ..write(obj.taxTotal)
       ..writeByte(6)
-      ..write(obj.total)
+      ..write(obj.finalTotal)
       ..writeByte(7)
       ..write(obj.roundOff)
       ..writeByte(8)
       ..write(obj.grandTotal)
       ..writeByte(9)
-      ..write(obj.payment)
+      ..write(obj.paidTotal)
       ..writeByte(10)
       ..write(obj.type);
   }

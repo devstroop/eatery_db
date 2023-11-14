@@ -7,7 +7,7 @@ class Payment extends HiveObject {
   @HiveField(0)
   int? id;
   @HiveField(1)
-  Order order;
+  int orderId;
   @HiveField(2)
   DateTime date;
   @HiveField(3)
@@ -20,13 +20,13 @@ class Payment extends HiveObject {
   String? attachment;
 
   Payment(
-      {required this.order, required this.amount, required this.mode, this.reference, this.attachment})
+      {required this.orderId, required this.amount, required this.mode, this.reference, this.attachment})
       :id= EateryDB.instance.paymentBox?.nextId(),
         date = DateTime.now();
 
   Payment.fromMap(Map<String, dynamic> map)
       : id = map['id'],
-        order = EateryDB.instance.orderBox!.values.where((element) => element.id == map['order']).first,
+        orderId = map['orderId'],
         date = DateTime.fromMillisecondsSinceEpoch(map['date']),
         amount = map['amount'],
         mode = PaymentMode.values[map['mode']],
@@ -36,7 +36,7 @@ class Payment extends HiveObject {
   Map<String, Object?> toMap() {
     return {
       'id': id,
-      'order': order.id,
+      'orderId': orderId,
       'date': date.millisecondsSinceEpoch,
       'amount': amount,
       'mode': mode.index,

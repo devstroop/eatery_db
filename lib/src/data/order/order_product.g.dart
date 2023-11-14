@@ -1,50 +1,55 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'payment.dart';
+part of 'order_product.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class PaymentAdapter extends TypeAdapter<Payment> {
+class OrderProductAdapter extends TypeAdapter<OrderProduct> {
   @override
-  final int typeId = 21;
+  final int typeId = 24;
 
   @override
-  Payment read(BinaryReader reader) {
+  OrderProduct read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Payment(
+    return OrderProduct(
       orderId: fields[1] as int,
-      amount: fields[3] as double,
-      mode: fields[4] as PaymentMode,
-      reference: fields[5] as String?,
-      attachment: fields[6] as String?,
-    )
-      ..id = fields[0] as int?
-      ..date = fields[2] as DateTime;
+      productName: fields[2] as String,
+      quantity: fields[3] as int,
+      price: fields[4] as double,
+      tax: fields[5] as double,
+      total: fields[6] as double,
+      discount: fields[7] as double,
+      grandTotal: fields[8] as double,
+    )..id = fields[0] as int?;
   }
 
   @override
-  void write(BinaryWriter writer, Payment obj) {
+  void write(BinaryWriter writer, OrderProduct obj) {
     writer
-      ..writeByte(7)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
       ..write(obj.orderId)
       ..writeByte(2)
-      ..write(obj.date)
+      ..write(obj.productName)
       ..writeByte(3)
-      ..write(obj.amount)
+      ..write(obj.quantity)
       ..writeByte(4)
-      ..write(obj.mode)
+      ..write(obj.price)
       ..writeByte(5)
-      ..write(obj.reference)
+      ..write(obj.tax)
       ..writeByte(6)
-      ..write(obj.attachment);
+      ..write(obj.total)
+      ..writeByte(7)
+      ..write(obj.discount)
+      ..writeByte(8)
+      ..write(obj.grandTotal);
   }
 
   @override
@@ -53,7 +58,7 @@ class PaymentAdapter extends TypeAdapter<Payment> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is PaymentAdapter &&
+      other is OrderProductAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

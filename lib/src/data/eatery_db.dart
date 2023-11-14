@@ -22,6 +22,7 @@ class EateryDB {
   Box<DiningTable>? diningTableBox;
   Box<DiningTableCategory>? diningTableCategoryBox;
   Box<Order>? orderBox;
+  Box<OrderProduct>? orderProductBox;
   Box<Printer>? printerBox;
   Box<Product>? productBox;
   Box<ProductCategory>? productCategoryBox;
@@ -50,6 +51,7 @@ class EateryDB {
     Hive.registerAdapter(DiningTableCategoryAdapter());
     Hive.registerAdapter(DiningTableStatusAdapter());
     Hive.registerAdapter(OrderAdapter());
+    Hive.registerAdapter(OrderProductAdapter());
     Hive.registerAdapter(PrinterAdapter());
     Hive.registerAdapter(ProductAdapter());
     Hive.registerAdapter(ProductCategoryAdapter());
@@ -76,6 +78,7 @@ class EateryDB {
     diningTableCategoryBox =
         await Hive.openBox<DiningTableCategory>('diningTableCategory');
     orderBox = await Hive.openBox<Order>('order');
+    orderProductBox = await Hive.openBox<OrderProduct>('orderProduct');
     orderTypeBox = await Hive.openBox<OrderType>('orderType');
     productBox = await Hive.openBox<Product>('product');
     foodTypeBox = await Hive.openBox<FoodType>('foodType');
@@ -129,6 +132,7 @@ class EateryDB {
     await diningTableBox?.deleteFromDisk();
     await diningTableCategoryBox?.deleteFromDisk();
     await orderBox?.deleteFromDisk();
+    await orderProductBox?.deleteFromDisk();
     await productBox?.deleteFromDisk();
     await productCategoryBox?.deleteFromDisk();
     await printerBox?.deleteFromDisk();

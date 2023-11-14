@@ -39,6 +39,8 @@ export 'src/drawings/dine_in.drawing.dart';
 export 'src/drawings/delivery.drawing.dart';
 export 'src/drawings/take_away.drawing.dart';
 
+export 'src/data/order/order_product.dart';
+
 class TypeIndex{
   static const company = 0;
   static const customer = 1;
@@ -55,7 +57,7 @@ class TypeIndex{
   static const subscription = 12;
   static const subscriptionType = 13;
   static const taxSlab = 14;
-  static const taxType = 15;
+  static const taxSlabType = 15;
   static const staff = 16;
   static const staffType = 17;
   static const edition = 18;
@@ -64,4 +66,6 @@ class TypeIndex{
   static const payment = 21;
   static const paymentMode = 22;
   static const diningTableStatus = 23;
+  static const orderProduct = 24;
+
 }
